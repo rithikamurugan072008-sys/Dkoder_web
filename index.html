@@ -1,0 +1,1917 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dkoder — The Placement LMS for Engineering Colleges | Real Placement Questions & Live Coding</title>
+  <meta name="description" content="Dkoder: real placement questions, company-tagged and constantly growing. Live coding lab, salary filters, entrance exam prep (TCS NQT, InfyTQ). Built for engineering colleges across India." />
+  <meta name="theme-color" content="#1E0D47" />
+
+  <!-- Google Fonts: Bricolage Grotesque, Space Grotesk & DM Sans (Live Dkoder Typography) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome 6 CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Tailwind CSS CDN with Authentic Dkoder Yellow & Purple Palette -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            dkoder: {
+              yellow: '#FCC419',      /* Live Dkoder Primary Gold/Yellow */
+              yellowLight: '#FFD84D',
+              yellowBright: '#FFE066',
+              yellowCream: '#FFF3C4',
+              yellowTint: '#FFF1BF',
+              cream: '#FFFAF0',
+              creamAlt: '#FFFDF5',
+              purple: '#1E0D47',      /* Live Dkoder Signature Deep Purple */
+              purpleDark: '#12052B',  /* Deepest Night Purple */
+              purpleMedium: '#280F57',/* Rich Violet */
+              purpleCard: '#240C52',  /* Purple Card Surface */
+              purpleLight: '#4E25A5',
+              purpleAccent: '#B7AEDA',
+              purpleSoft: '#D9D0F2',
+              purpleGlow: '#9333EA',
+              dark: '#110626',        /* Deep contrast text/border */
+              slate: '#57514A',
+              muted: '#6B6457',
+            }
+          },
+          fontFamily: {
+            sans: ['"DM Sans"', 'system-ui', 'sans-serif'],
+            display: ['"Bricolage Grotesque"', '"Space Grotesk"', 'sans-serif'],
+            space: ['"Space Grotesk"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          boxShadow: {
+            'brutal-sm': '2px 2px 0px 0px #110626',
+            'brutal': '4px 4px 0px 0px #110626',
+            'brutal-md': '6px 6px 0px 0px #110626',
+            'brutal-lg': '8px 8px 0px 0px #110626',
+            'brutal-xl': '10px 10px 0px 0px #110626',
+            'brutal-yellow': '4px 4px 0px 0px #FCC419',
+            'brutal-yellow-lg': '8px 8px 0px 0px #FCC419',
+            'brutal-purple': '6px 6px 0px 0px #1E0D47',
+            'glow-yellow': '0 0 25px rgba(252, 196, 25, 0.45)',
+            'glow-purple': '0 0 25px rgba(147, 51, 234, 0.45)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Scrollbar in Yellow & Purple */
+    ::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #12052B;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #FCC419;
+      border: 2px solid #1E0D47;
+      border-radius: 6px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #FFE066;
+    }
+
+    /* Infinite Marquee Animation for Company Logos */
+    @keyframes marquee {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+    }
+    .animate-marquee {
+      display: flex;
+      width: max-content;
+      animation: marquee 35s linear infinite;
+    }
+    .animate-marquee:hover {
+      animation-play-state: paused;
+    }
+
+    /* Neo-brutalist button press effect */
+    .btn-brutal {
+      transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .btn-brutal:hover {
+      transform: translate(-2px, -2px);
+    }
+    .btn-brutal:active {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px 0px 0px #110626 !important;
+    }
+
+    /* Floating subtle animation */
+    @keyframes float-gentle {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-7px); }
+    }
+    .animate-float {
+      animation: float-gentle 4s ease-in-out infinite;
+    }
+
+    /* Pulsing glow */
+    @keyframes pulse-glow {
+      0%, 100% { opacity: 0.4; transform: scale(1); }
+      50% { opacity: 0.75; transform: scale(1.05); }
+    }
+    .animate-glow {
+      animation: pulse-glow 3s ease-in-out infinite;
+    }
+
+    /* Chat bubble tail */
+    .bubble-tail-left::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 24px;
+      width: 0;
+      height: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-top: 10px solid #110626;
+    }
+    .bubble-tail-right::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      right: 24px;
+      width: 0;
+      height: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-top: 10px solid #110626;
+    }
+  </style>
+</head>
+<body class="bg-[#140628] text-white font-sans antialiased selection:bg-dkoder-yellow selection:text-dkoder-purple min-h-screen">
+
+  <!-- ========================================================================= -->
+  <!-- 0. TOP NOTIFICATION BANNER: FOR COLLEGES & ACCREDITATION                  -->
+  <!-- ========================================================================= -->
+  <div class="bg-gradient-to-r from-[#12052B] via-[#1E0D47] to-[#12052B] border-b-2 border-dkoder-yellow/50 text-dkoder-purpleSoft text-xs sm:text-sm py-2.5 px-4 font-sans font-medium">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
+      <div class="flex items-center space-x-2">
+        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-dkoder-yellow text-dkoder-dark uppercase tracking-wider shadow-sm animate-pulse">
+          Campus MOU 2026-27
+        </span>
+        <span class="text-white font-medium">
+          Dkoder for Higher Education: Real placement question banks &amp; automated batch screening.
+        </span>
+      </div>
+      <a href="#college-mou" class="text-dkoder-yellow hover:text-white font-bold inline-flex items-center space-x-1 underline decoration-2 underline-offset-2 transition-colors">
+        <span>Apply for Institutional MOU</span>
+        <i class="fa-solid fa-arrow-right text-[11px] ml-1"></i>
+      </a>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- 1. GLOBAL NAVIGATION (YELLOW & PURPLE GLASSMORPHISM)                     -->
+  <!-- ========================================================================= -->
+  <header id="landing-nav" class="sticky top-0 z-50 bg-[#150730]/90 backdrop-blur-xl border-b-2 border-dkoder-yellow/30 transition-all duration-300 shadow-[0_4px_25px_rgba(18,5,43,0.8)]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- Brand Logo (Official Dkoder Link) -->
+        <a href="https://dkoder.co.in/" class="flex items-center space-x-3 group focus:outline-none" title="Dkoder Home">
+          <div class="w-11 h-11 rounded-2xl bg-dkoder-yellow border-2 border-white shadow-brutal-sm flex items-center justify-center text-dkoder-dark group-hover:scale-105 transition-transform shadow-[0_0_15px_rgba(252,196,25,0.4)]">
+            <span class="font-display font-black text-2xl tracking-tighter">&gt;_</span>
+          </div>
+          <div class="flex flex-col">
+            <div class="flex items-center space-x-1">
+              <span class="font-display font-black text-2xl sm:text-3xl tracking-tight text-white group-hover:text-dkoder-yellow transition-colors">dkoder</span>
+              <span class="w-2.5 h-2.5 rounded-full bg-dkoder-yellow border border-white animate-pulse"></span>
+            </div>
+            <span class="text-[10px] font-extrabold uppercase tracking-widest text-dkoder-yellow/80 -mt-1 font-space">Placement LMS</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Items with Official Links -->
+        <nav class="hidden lg:flex items-center space-x-1 xl:space-x-2">
+          <!-- 1. Home -->
+          <a href="https://dkoder.co.in/" class="px-3.5 py-2 rounded-full font-bold text-sm text-dkoder-dark bg-dkoder-yellow border-2 border-white shadow-brutal-sm">
+            Home
+          </a>
+
+          <!-- 2. Learn (Official Link & Dropdown) -->
+          <div class="relative group" id="learn-dropdown">
+            <a href="https://dkoder.co.in/learn/courses" class="px-3.5 py-2 rounded-full font-semibold text-sm text-white hover:text-dkoder-yellow hover:bg-white/10 transition-colors flex items-center space-x-1.5 no-underline">
+              <span>Learn</span>
+              <i class="fa-solid fa-chevron-down text-xs opacity-70 group-hover:rotate-180 transition-transform"></i>
+            </a>
+            <div class="absolute left-0 mt-2 w-72 bg-[#1E0D47] border-2 border-dkoder-yellow/40 rounded-2xl p-2.5 shadow-brutal opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50">
+              <div class="px-3 py-1 text-[10px] font-extrabold uppercase tracking-widest text-dkoder-yellow font-space">Official Learn Directory</div>
+              <a href="https://dkoder.co.in/learn/courses" class="flex items-start space-x-3 p-2.5 rounded-xl hover:bg-white/10 transition-colors">
+                <span class="w-8 h-8 rounded-lg bg-dkoder-yellow border border-white flex items-center justify-center text-xs font-bold shrink-0 text-dkoder-dark">
+                  <i class="fa-solid fa-laptop-code"></i>
+                </span>
+                <div>
+                  <p class="font-bold text-xs text-white">Courses</p>
+                  <p class="text-[11px] text-dkoder-purpleSoft">Skill-based placement modules</p>
+                </div>
+              </a>
+              <a href="https://dkoder.co.in/learn/events" class="flex items-start space-x-3 p-2.5 rounded-xl hover:bg-white/10 transition-colors">
+                <span class="w-8 h-8 rounded-lg bg-dkoder-yellow/20 border border-dkoder-yellow/40 flex items-center justify-center text-xs font-bold shrink-0 text-dkoder-yellow">
+                  <i class="fa-solid fa-calendar-check"></i>
+                </span>
+                <div>
+                  <p class="font-bold text-xs text-white">Events &amp; Workshops</p>
+                  <p class="text-[11px] text-dkoder-purpleSoft">Live company prep sessions</p>
+                </div>
+              </a>
+              <a href="https://dkoder.co.in/learn/resources" class="flex items-start space-x-3 p-2.5 rounded-xl hover:bg-white/10 transition-colors">
+                <span class="w-8 h-8 rounded-lg bg-dkoder-yellow/20 border border-dkoder-yellow/40 flex items-center justify-center text-xs font-bold shrink-0 text-dkoder-yellow">
+                  <i class="fa-solid fa-folder-open"></i>
+                </span>
+                <div>
+                  <p class="font-bold text-xs text-white">Resources</p>
+                  <p class="text-[11px] text-dkoder-purpleSoft">Interview cheat sheets &amp; guides</p>
+                </div>
+              </a>
+              <a href="https://dkoder.co.in/final-year-projects" class="flex items-start space-x-3 p-2.5 rounded-xl hover:bg-white/10 transition-colors">
+                <span class="w-8 h-8 rounded-lg bg-dkoder-yellow border border-white flex items-center justify-center text-xs font-bold shrink-0 text-dkoder-dark">
+                  <i class="fa-solid fa-graduation-cap"></i>
+                </span>
+                <div>
+                  <p class="font-bold text-xs text-white">Final Year Projects</p>
+                  <p class="text-[11px] text-dkoder-purpleSoft">Guidance, mentor &amp; publication</p>
+                </div>
+              </a>
+              <div class="border-t border-white/15 my-1"></div>
+              <div class="px-3 py-1 text-[10px] font-extrabold uppercase tracking-widest text-dkoder-yellow font-space">Certifications</div>
+              <a href="https://dkoder.co.in/certifications/topic" class="flex items-center space-x-2 px-3 py-1.5 rounded-lg text-xs font-bold text-white hover:text-dkoder-yellow hover:bg-white/10 transition-colors">
+                <i class="fa-solid fa-award text-sm text-dkoder-yellow"></i>
+                <span>Topic Wise Certifications</span>
+              </a>
+              <a href="https://dkoder.co.in/certifications/technology" class="flex items-center space-x-2 px-3 py-1.5 rounded-lg text-xs font-bold text-white hover:text-dkoder-yellow hover:bg-white/10 transition-colors">
+                <i class="fa-solid fa-microchip text-sm text-dkoder-yellow"></i>
+                <span>Technology Wise Certifications</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- 3. Hackathons (Official Link) -->
+          <a href="https://dkoder.co.in/hackathons" class="px-3.5 py-2 rounded-full font-semibold text-sm text-white hover:text-dkoder-yellow hover:bg-white/10 transition-colors flex items-center space-x-1.5">
+            <span>Hackathons</span>
+            <span class="inline-flex items-center px-1.5 py-0.2 rounded-full bg-dkoder-yellow text-[9px] font-black uppercase tracking-wider text-dkoder-dark">
+              LIVE
+            </span>
+          </a>
+
+          <!-- 4. For Colleges (Official Link) -->
+          <a href="https://dkoder.co.in/colleges" class="px-3.5 py-2 rounded-full font-semibold text-sm text-white hover:text-dkoder-yellow hover:bg-white/10 transition-colors">
+            For Colleges
+          </a>
+
+          <!-- 5. Apply for MOU (Official Link) -->
+          <a href="https://dkoder.co.in/partner-mou" class="px-3.5 py-2 rounded-full font-semibold text-sm text-white hover:text-dkoder-yellow hover:bg-white/10 transition-colors">
+            Apply for MOU
+          </a>
+        </nav>
+
+        <!-- Right Side CTA Cluster: Dashboard + Sign In + Apply for MOU -->
+        <div class="hidden sm:flex items-center space-x-2.5">
+          <!-- Official Go to Dashboard Button -->
+          <a href="https://dkoder.co.in/dashboard" 
+             id="nav-dashboard-btn"
+             title="Go to Official Dkoder Dashboard"
+             class="flex items-center gap-2 whitespace-nowrap rounded-full border-2 border-dkoder-yellow/50 bg-[#1E0D47] px-4 py-2.5 text-sm font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#FCC419] active:translate-y-0">
+            <i class="fa-solid fa-gauge-high text-dkoder-yellow text-xs"></i>
+            <span class="hidden md:inline">Go to Dashboard</span>
+            <span class="md:hidden">Dashboard</span>
+          </a>
+
+          <!-- Sign In -->
+          <a href="https://dkoder.co.in/auth/login" class="px-3 py-2 font-bold text-sm text-white hover:text-dkoder-yellow transition-colors">
+            Sign In
+          </a>
+          
+          <!-- Apply for MOU Highlighted Button -->
+          <a href="https://dkoder.co.in/partner-mou" 
+             id="nav-partner-mou-btn"
+             data-tracking="partner-mou"
+             class="btn-brutal inline-flex items-center space-x-1.5 px-4 xl:px-5 py-2.5 rounded-full font-extrabold text-sm text-dkoder-dark bg-dkoder-yellow border-2 border-white shadow-[3px_3px_0_0_#fff] hover:shadow-[5px_5px_0_0_#fff] transition-all">
+            <i class="fa-solid fa-file-signature text-xs"></i>
+            <span>Apply for MOU</span>
+            <span class="ml-1 text-[10px] font-black uppercase tracking-wider bg-dkoder-dark text-dkoder-yellow px-1.5 py-0.5 rounded-full">
+              Colleges
+            </span>
+          </a>
+        </div>
+
+        <!-- Mobile Menu Hamburger Button -->
+        <div class="flex lg:hidden">
+          <button id="mobile-toggle-btn" class="w-11 h-11 rounded-2xl bg-dkoder-yellow border-2 border-white shadow-brutal-sm flex items-center justify-center text-dkoder-dark focus:outline-none" aria-label="Toggle menu">
+            <i class="fa-solid fa-bars text-lg" id="mobile-icon"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Mobile Drawer with Official Links (Yellow & Purple) -->
+    <div id="mobile-drawer" class="hidden lg:hidden border-t-2 border-dkoder-yellow/30 bg-[#160731] px-4 pt-3 pb-6 space-y-2">
+      <a href="https://dkoder.co.in/" class="block px-4 py-3 rounded-xl font-bold text-dkoder-dark bg-dkoder-yellow border-2 border-white shadow-brutal-sm">
+        Home
+      </a>
+      <a href="https://dkoder.co.in/learn/courses" class="block px-4 py-3 rounded-xl font-semibold text-white hover:bg-white/10">
+        Learn (Courses, Events, Resources)
+      </a>
+      <a href="https://dkoder.co.in/hackathons" class="block px-4 py-3 rounded-xl font-semibold text-white hover:bg-white/10 flex items-center justify-between">
+        <span>Hackathons</span>
+        <span class="text-[9px] font-black uppercase tracking-wider bg-dkoder-yellow text-dkoder-dark px-2 py-0.5 rounded-full">LIVE</span>
+      </a>
+      <a href="https://dkoder.co.in/colleges" class="block px-4 py-3 rounded-xl font-semibold text-white hover:bg-white/10">
+        For Colleges
+      </a>
+      <a href="https://dkoder.co.in/partner-mou" class="block px-4 py-3 rounded-xl font-semibold text-white hover:bg-white/10">
+        Apply for MOU
+      </a>
+      <div class="pt-3 border-t-2 border-white/15 flex flex-col gap-2.5">
+        <a href="https://dkoder.co.in/dashboard" class="flex items-center justify-center gap-2 px-4 py-3 rounded-full font-bold text-dkoder-dark bg-dkoder-yellow border-2 border-white shadow-brutal">
+          <i class="fa-solid fa-gauge-high text-dkoder-dark text-sm"></i>
+          <span>Go to Official Dashboard</span>
+        </a>
+        <a href="https://dkoder.co.in/auth/login" class="text-center px-4 py-2.5 rounded-full font-bold text-white bg-white/10 border border-white/20">
+          Sign In
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- 2. HERO SECTION / FRONT PAGE: VIBRANT YELLOW & ROYAL PURPLE EXPERIENCE    -->
+  <!-- ========================================================================= -->
+  <section class="relative pt-12 pb-20 lg:pt-16 lg:pb-28 overflow-hidden border-b-2 border-dkoder-yellow/40 bg-gradient-to-b from-[#150730] via-[#240c54] to-[#150730]">
+    
+    <!-- Ambient Yellow & Purple Glow Orbs -->
+    <div class="absolute -top-32 -left-32 w-[520px] h-[520px] rounded-full bg-dkoder-yellow/20 blur-[130px] pointer-events-none animate-glow"></div>
+    <div class="absolute top-1/4 -right-32 w-[550px] h-[550px] rounded-full bg-purple-600/25 blur-[140px] pointer-events-none animate-glow" style="animation-delay: 1.5s;"></div>
+    <div class="absolute -bottom-20 left-1/3 w-[450px] h-[450px] rounded-full bg-amber-400/15 blur-[120px] pointer-events-none"></div>
+
+    <!-- Neo-Brutalist Cyber Grid Pattern -->
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,rgba(252,196,25,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(168,85,247,0.06)_1px,transparent_1px)] bg-[size:32px_32px] pointer-events-none"></div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Top Eyebrow -->
+      <div class="text-center max-w-3xl mx-auto space-y-4 mb-10">
+        <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-[#1E0D47]/80 backdrop-blur-md border-2 border-dkoder-yellow shadow-[0_0_20px_rgba(252,196,25,0.35)] text-xs font-bold text-white">
+          <span class="w-2.5 h-2.5 rounded-full bg-dkoder-yellow border border-white animate-pulse"></span>
+          <span class="uppercase tracking-wider font-space text-dkoder-yellow">The Placement LMS for Engineering Colleges</span>
+          <span class="text-white/40">|</span>
+          <span class="text-white font-extrabold">Across India</span>
+        </div>
+
+        <h1 class="font-display font-black text-4xl sm:text-6xl lg:text-7xl text-white tracking-tight leading-[1.06]">
+          One goal can narrow <br class="hidden sm:inline">
+          <span class="relative inline-block mt-2">
+            <span class="text-dkoder-dark bg-gradient-to-r from-dkoder-yellow via-amber-300 to-yellow-200 px-4 py-1.5 rounded-2xl border-2 border-white shadow-[6px_6px_0_0_#9333EA] inline-block font-black transform -rotate-1 hover:rotate-0 transition-transform">
+              the next question.
+            </span>
+          </span>
+        </h1>
+
+        <p class="text-base sm:text-xl text-dkoder-purpleSoft max-w-2xl mx-auto font-normal leading-relaxed pt-2">
+          Real placement questions, company-tagged and constantly growing. Live coding lab, salary filters (₹3 LPA to ₹45 LPA), and entrance exam prep for <strong class="text-dkoder-yellow">TCS NQT</strong>, <strong class="text-dkoder-yellow">Zoho</strong>, <strong class="text-dkoder-yellow">Amazon SDE</strong> &amp; <strong class="text-dkoder-yellow">Infosys</strong>.
+        </p>
+
+        <!-- Quick Metrics Highlights Strip -->
+        <div class="flex flex-wrap items-center justify-center gap-2.5 pt-2">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[#1E0D47]/80 border border-dkoder-yellow/40 text-dkoder-yellow">
+            <i class="fa-solid fa-code"></i> 1,200+ Company Questions
+          </span>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[#1E0D47]/80 border border-dkoder-yellow/40 text-white">
+            <i class="fa-solid fa-bolt text-dkoder-yellow"></i> Live Online Sandbox
+          </span>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[#1E0D47]/80 border border-dkoder-yellow/40 text-dkoder-yellow">
+            <i class="fa-solid fa-trophy"></i> ₹45 LPA Dream CTC
+          </span>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[#1E0D47]/80 border border-dkoder-yellow/40 text-white">
+            <i class="fa-solid fa-building-columns text-dkoder-yellow"></i> 350+ Campus MOUs
+          </span>
+        </div>
+      </div>
+
+      <!-- Hero Two-Column Grid: Visual Showcase (Left) + Interactive Bot Intelligence (Right) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-12">
+        
+        <!-- Left: Student Success Visual Card (Using assets/images/hero_students.jpg) -->
+        <div class="lg:col-span-5 bg-gradient-to-br from-[#240C52] to-[#170634] rounded-3xl border-2 border-dkoder-yellow p-4 sm:p-5 shadow-[8px_8px_0_0_#FCC419] flex flex-col justify-between relative overflow-hidden group">
+          
+          <div class="flex items-center justify-between pb-3 border-b border-dkoder-yellow/30 mb-3">
+            <div class="flex items-center space-x-2">
+              <span class="w-3 h-3 rounded-full bg-rose-500 border border-white"></span>
+              <span class="w-3 h-3 rounded-full bg-dkoder-yellow border border-white"></span>
+              <span class="w-3 h-3 rounded-full bg-emerald-400 border border-white"></span>
+              <span class="font-mono text-xs font-bold text-dkoder-yellow ml-2">campus_placements_hub.svg</span>
+            </div>
+            <span class="text-[10px] font-black uppercase tracking-wider bg-dkoder-yellow text-dkoder-dark px-2.5 py-0.5 rounded-full font-space">
+              LIVE BATCH 2026
+            </span>
+          </div>
+
+          <!-- The Real Student Illustration Image with Overlay Badges -->
+          <div class="relative rounded-2xl overflow-hidden border-2 border-white/20 shadow-md">
+            <img src="assets/images/hero_students.jpg" alt="Dkoder Engineering Students Celebrating Placement Offers" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500">
+            
+            <!-- Live Offer Pop Badge -->
+            <div class="absolute top-3 left-3 bg-[#1E0D47]/95 backdrop-blur-md border border-dkoder-yellow text-white px-3 py-1.5 rounded-xl shadow-lg flex items-center space-x-2 animate-float">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span class="text-[11px] font-bold">🎉 Zoho Offer: ₹8.4 LPA</span>
+            </div>
+
+            <!-- Live Coding Accuracy Badge -->
+            <div class="absolute bottom-3 right-3 bg-dkoder-yellow text-dkoder-dark px-3 py-1 rounded-xl shadow-lg flex items-center space-x-1.5 font-extrabold text-[11px] border border-white">
+              <i class="fa-solid fa-code text-xs"></i>
+              <span>Compiler 0.04s execution</span>
+            </div>
+          </div>
+
+          <!-- Bottom Credibility & Social Proof Bar -->
+          <div class="mt-4 pt-3 border-t border-white/10 flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+              <div class="flex -space-x-2 overflow-hidden">
+                <span class="inline-block h-7 w-7 rounded-full ring-2 ring-dkoder-yellow bg-purple-700 flex items-center justify-center text-[10px] font-bold text-white">RK</span>
+                <span class="inline-block h-7 w-7 rounded-full ring-2 ring-dkoder-yellow bg-amber-500 flex items-center justify-center text-[10px] font-bold text-white">AP</span>
+                <span class="inline-block h-7 w-7 rounded-full ring-2 ring-dkoder-yellow bg-violet-600 flex items-center justify-center text-[10px] font-bold text-white">MN</span>
+                <span class="inline-block h-7 w-7 rounded-full ring-2 ring-dkoder-yellow bg-emerald-600 flex items-center justify-center text-[10px] font-bold text-white">+5k</span>
+              </div>
+              <div class="text-[11px]">
+                <p class="font-bold text-white">48,000+ Students</p>
+                <div class="flex text-dkoder-yellow text-[10px]">
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <span class="ml-1 text-white font-bold">4.9/5</span>
+                </div>
+              </div>
+            </div>
+
+            <a href="#college-mou" class="text-xs font-bold text-dkoder-yellow hover:text-white underline decoration-2 underline-offset-2">
+              Campus MOU ↗
+            </a>
+          </div>
+
+        </div>
+
+        <!-- Right: Interactive Placement Intelligence Bot Card (Preserving Original Content with Enhanced Yellow/Purple) -->
+        <div class="lg:col-span-7 bg-[#1E0D47] rounded-3xl border-2 border-dkoder-yellow shadow-[8px_8px_0_0_#FCC419] p-6 sm:p-8 relative">
+          
+          <div class="flex items-center justify-between border-b-2 border-white/15 pb-4 mb-4">
+            <div class="flex items-center space-x-2">
+              <span class="w-3.5 h-3.5 rounded-full bg-rose-500 border border-white"></span>
+              <span class="w-3.5 h-3.5 rounded-full bg-dkoder-yellow border border-white"></span>
+              <span class="w-3.5 h-3.5 rounded-full bg-emerald-400 border border-white"></span>
+              <span class="ml-2 font-mono text-xs font-bold text-dkoder-yellow">dkoder-bot // placement_intelligence_dashboard</span>
+            </div>
+            <span class="text-xs font-extrabold bg-dkoder-yellow text-dkoder-dark px-3 py-1 rounded-full border border-white font-space">
+              INTERACTIVE ROADMAP
+            </span>
+          </div>
+
+          <!-- Official Dashboard Module Links Dock -->
+          <div class="flex flex-wrap items-center justify-between gap-2 bg-[#2B1160] border-2 border-dkoder-yellow/50 rounded-2xl p-2.5 mb-5 text-xs font-bold shadow-sm">
+            <div class="flex flex-wrap items-center gap-1 sm:gap-1.5">
+              <a href="https://dkoder.co.in/dashboard" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-[10px] uppercase font-black tracking-wider bg-dkoder-yellow px-2.5 py-1 rounded-lg border border-white text-dkoder-dark hover:bg-white transition-colors" title="Official Dkoder Dashboard">
+                <i class="fa-solid fa-gauge-high mr-1"></i> Dashboard
+              </a>
+              <a href="https://dkoder.co.in/" target="_blank" rel="noopener noreferrer" class="px-2 py-1 rounded-lg hover:bg-white/10 text-white transition-colors">
+                Home
+              </a>
+              <a href="https://dkoder.co.in/learn/courses" target="_blank" rel="noopener noreferrer" class="px-2 py-1 rounded-lg hover:bg-white/10 text-white transition-colors">
+                Learn
+              </a>
+              <a href="https://dkoder.co.in/hackathons" target="_blank" rel="noopener noreferrer" class="px-2 py-1 rounded-lg hover:bg-white/10 text-white transition-colors inline-flex items-center gap-1">
+                <span>Hackathons</span>
+                <span class="w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse"></span>
+              </a>
+              <a href="https://dkoder.co.in/colleges" target="_blank" rel="noopener noreferrer" class="px-2 py-1 rounded-lg hover:bg-white/10 text-white transition-colors">
+                For Colleges
+              </a>
+              <a href="https://dkoder.co.in/partner-mou" target="_blank" rel="noopener noreferrer" class="px-2 py-1 rounded-lg bg-dkoder-yellow/20 border border-dkoder-yellow/40 text-dkoder-yellow hover:bg-dkoder-yellow hover:text-dkoder-dark transition-colors">
+                Apply for MOU
+              </a>
+            </div>
+            <a href="https://dkoder.co.in/dashboard" target="_blank" rel="noopener noreferrer" class="btn-brutal inline-flex items-center space-x-1.5 px-3 py-1 rounded-lg bg-dkoder-yellow text-dkoder-dark font-extrabold text-[11px] hover:bg-white transition-colors">
+              <span>Open Dashboard</span>
+              <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+            </a>
+          </div>
+
+          <!-- Interactive Goal Switching Tabs (Zoho 10 LPA / TCS NQT / Amazon SDE) -->
+          <div class="mb-5">
+            <p class="text-[11px] font-extrabold uppercase tracking-widest text-dkoder-yellow/90 mb-2 font-space">
+              Simulate Your Career Target:
+            </p>
+            <div class="grid grid-cols-3 gap-2">
+              <button onclick="setHeroGoal('zoho', this)" class="hero-goal-btn px-2.5 py-2 rounded-xl text-xs font-bold border-2 border-dkoder-yellow bg-dkoder-yellow text-dkoder-dark shadow-sm transition-all text-center">
+                <span class="block text-[10px] opacity-75 font-mono">PRODUCT</span>
+                <span>🎯 Zoho ₹10 LPA</span>
+              </button>
+              <button onclick="setHeroGoal('tcs', this)" class="hero-goal-btn px-2.5 py-2 rounded-xl text-xs font-bold border-2 border-white/20 bg-white/10 text-white hover:border-dkoder-yellow text-center transition-all">
+                <span class="block text-[10px] opacity-75 font-mono">ENTRANCE</span>
+                <span>⚡ TCS NQT</span>
+              </button>
+              <button onclick="setHeroGoal('amazon', this)" class="hero-goal-btn px-2.5 py-2 rounded-xl text-xs font-bold border-2 border-white/20 bg-white/10 text-white hover:border-dkoder-yellow text-center transition-all">
+                <span class="block text-[10px] opacity-75 font-mono">SUPER DREAM</span>
+                <span>🚀 Amazon SDE</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Dynamic Dialogue Stack (Updated by Goal Tabs) -->
+          <div class="space-y-3.5 text-sm" id="hero-dialogue-container">
+            
+            <!-- Dialogue 1: Student -->
+            <div class="flex items-start space-x-3">
+              <div class="w-10 h-10 rounded-full bg-dkoder-yellow text-dkoder-dark border-2 border-white flex items-center justify-center font-bold text-xs shrink-0 shadow-sm">
+                <i class="fa-solid fa-graduation-cap"></i>
+              </div>
+              <div class="bg-[#2B1160] border-2 border-dkoder-yellow/30 rounded-2xl px-5 py-3 shadow-sm max-w-xl text-white">
+                <p class="font-semibold" id="hero-dialogue-student-1">
+                  &ldquo;I have a dream to get placed with a <strong class="text-dkoder-yellow">₹10 LPA package</strong>. Can you help me?&rdquo;
+                </p>
+              </div>
+            </div>
+
+            <!-- Dialogue 2: Bot Response -->
+            <div class="flex items-start justify-end space-x-3">
+              <div class="bg-gradient-to-r from-purple-800 to-indigo-900 text-white border-2 border-dkoder-yellow/40 rounded-2xl px-5 py-3 shadow-sm max-w-xl text-right">
+                <p class="font-medium text-dkoder-purpleSoft" id="hero-dialogue-bot-1">
+                  &ldquo;Of course. I’m here to help you achieve your dream. I will frame a <strong class="text-dkoder-yellow">personalized roadmap</strong> for you.&rdquo;
+                </p>
+              </div>
+              <div class="w-10 h-10 rounded-full bg-dkoder-yellow border-2 border-white flex items-center justify-center font-bold text-xs shrink-0 text-dkoder-dark shadow-sm">
+                <i class="fa-solid fa-robot"></i>
+              </div>
+            </div>
+
+            <!-- Dialogue 3: Student Target Selection -->
+            <div class="flex items-start space-x-3">
+              <div class="w-10 h-10 rounded-full bg-white/15 text-white border-2 border-white/20 flex items-center justify-center font-bold text-xs shrink-0 shadow-sm">
+                <i class="fa-solid fa-user-astronaut"></i>
+              </div>
+              <div class="bg-[#2B1160] border-2 border-dkoder-yellow/30 rounded-2xl px-5 py-3 shadow-sm max-w-xl text-white">
+                <p class="font-semibold" id="hero-dialogue-student-2">
+                  &ldquo;I practise coding every day, but I don’t have a clear target. Can I crack <strong class="text-dkoder-yellow">Zoho or TCS NQT</strong>?&rdquo;
+                </p>
+              </div>
+            </div>
+
+            <!-- Dialogue 4: Bot Target Action -->
+            <div class="flex items-start justify-end space-x-3">
+              <div class="bg-dkoder-yellow text-dkoder-dark border-2 border-white rounded-2xl px-5 py-3 shadow-sm max-w-xl text-right">
+                <p class="font-extrabold" id="hero-dialogue-bot-2">
+                  &ldquo;I will help you practise toward a clear target. Select your target company and watch the noise fall away.&rdquo;
+                </p>
+              </div>
+              <div class="w-10 h-10 rounded-full bg-dkoder-yellow border-2 border-white flex items-center justify-center font-bold text-xs shrink-0 text-dkoder-dark shadow-sm">
+                <i class="fa-solid fa-code"></i>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Hero CTAs -->
+          <div class="mt-6 pt-5 border-t-2 border-white/15 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex flex-wrap gap-2 text-xs font-bold text-dkoder-purpleSoft">
+              <span class="inline-flex items-center px-2.5 py-1 rounded-lg bg-white/10 border border-white/15 text-white">
+                <i class="fa-solid fa-check text-dkoder-yellow mr-1.5"></i>Company-Tagged
+              </span>
+              <span class="inline-flex items-center px-2.5 py-1 rounded-lg bg-white/10 border border-white/15 text-white">
+                <i class="fa-solid fa-check text-dkoder-yellow mr-1.5"></i>Salary Filters
+              </span>
+              <span class="inline-flex items-center px-2.5 py-1 rounded-lg bg-white/10 border border-white/15 text-white">
+                <i class="fa-solid fa-check text-dkoder-yellow mr-1.5"></i>Live Online Sandbox
+              </span>
+            </div>
+
+            <div class="flex items-center space-x-3 w-full sm:w-auto">
+              <a href="#practice-demo" class="btn-brutal flex-1 sm:flex-none text-center px-6 py-3 rounded-full font-extrabold text-sm text-dkoder-dark bg-dkoder-yellow border-2 border-white shadow-[4px_4px_0_0_#fff] hover:shadow-[6px_6px_0_0_#fff]">
+                Try the filters ↗
+              </a>
+              <a href="#college-mou" class="btn-brutal flex-1 sm:flex-none text-center px-6 py-3 rounded-full font-bold text-sm text-white bg-purple-700 hover:bg-purple-600 border-2 border-dkoder-yellow shadow-[4px_4px_0_0_#FCC419]">
+                College MOU ↗
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 3. SIGNATURE YELLOW RECRUITER TICKER BAND (LIVE DKODER COMPANY BAND)       -->
+  <!-- ========================================================================= -->
+  <section class="bg-dkoder-yellow border-y-2 border-dkoder-dark py-5 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center gap-6">
+      
+      <!-- Label -->
+      <div class="shrink-0 md:border-r-2 md:border-dkoder-dark/40 md:pr-6 text-center md:text-left">
+        <p class="font-display font-extrabold text-sm sm:text-base text-dkoder-dark leading-tight uppercase tracking-wider">
+          Companies you can prepare for:
+        </p>
+        <p class="text-[11px] font-semibold text-dkoder-dark/75">Verified recent hiring test patterns</p>
+      </div>
+
+      <!-- Scroller Track -->
+      <div class="relative flex-1 overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_10%,#000_90%,transparent)]">
+        <div class="animate-marquee items-center gap-8 text-dkoder-dark font-display font-black text-lg tracking-tight select-none">
+          <span class="inline-flex items-center gap-2"><i class="fa-brands fa-amazon"></i> Amazon</span>
+          <span class="opacity-30">/</span>
+          <span class="inline-flex items-center gap-2"><i class="fa-brands fa-google"></i> Google</span>
+          <span class="opacity-30">/</span>
+          <span class="inline-flex items-center gap-2"><i class="fa-brands fa-microsoft"></i> Microsoft</span>
+          <span class="opacity-30">/</span>
+          <span class="inline-flex items-center gap-2"><i class="fa-solid fa-code"></i> Zoho</span>
+          <span class="opacity-30">/</span>
+          <span class="inline-flex items-center gap-2"><i class="fa-solid fa-building-columns"></i> TCS Digital &amp; NQT</span>
+          <span class="opacity-30">/</span>
+          <span class="inline-flex items-center gap-2"><i class="fa-solid fa-briefcase"></i> Infosys InfyTQ</span>
+          <span class="opacity-30">/</span>
+          <span class="inline-flex items-center gap-2"><i class="fa-solid fa-terminal"></i> Wipro Elite</span>
+          <span class="opacity-30">/</span>
+          <span class="inline-flex items-center gap-2"><i class="fa-solid fa-network-wired"></i> Cognizant GenC</span>
+          <span class="opacity-30">/</span>
+          <span class="inline-flex items-center gap-2"><i class="fa-brands fa-adobe"></i> Adobe</span>
+          <span class="opacity-30">/</span>
+          <span class="inline-flex items-center gap-2"><i class="fa-solid fa-cart-shopping"></i> Flipkart</span>
+          <span class="opacity-30">/</span>
+          <!-- Duplicate set for infinite loop -->
+          <span class="inline-flex items-center gap-2"><i class="fa-brands fa-amazon"></i> Amazon</span>
+          <span class="opacity-30">/</span>
+          <span class="inline-flex items-center gap-2"><i class="fa-brands fa-google"></i> Google</span>
+          <span class="opacity-30">/</span>
+          <span class="inline-flex items-center gap-2"><i class="fa-brands fa-microsoft"></i> Microsoft</span>
+          <span class="opacity-30">/</span>
+          <span class="inline-flex items-center gap-2"><i class="fa-solid fa-code"></i> Zoho</span>
+          <span class="opacity-30">/</span>
+          <span class="inline-flex items-center gap-2"><i class="fa-solid fa-building-columns"></i> TCS Digital</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 4. FOCUSED PRACTICE DEMO: CUT THE NOISE (YELLOW & PURPLE CODING ARENA)   -->
+  <!-- ========================================================================= -->
+  <section id="practice-demo" class="py-20 bg-gradient-to-b from-[#150730] via-[#210c49] to-[#160731] text-white border-b-2 border-dkoder-yellow/40 relative overflow-hidden">
+    
+    <!-- Ambient yellow glow orb -->
+    <div class="absolute top-1/2 -left-28 w-96 h-96 rounded-full bg-dkoder-yellow/15 blur-[120px] pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      
+      <div class="text-center max-w-3xl mx-auto mb-14 space-y-3">
+        <span class="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-black bg-dkoder-yellow text-dkoder-dark uppercase tracking-widest font-space border border-white shadow-[0_0_15px_rgba(252,196,25,0.4)]">
+          A Focused Practice Demo
+        </span>
+        <h2 class="font-display font-black text-3xl sm:text-5xl text-white tracking-tight">
+          A deep question bank. <br class="hidden sm:inline">
+          <span class="underline decoration-dkoder-yellow decoration-4 underline-offset-4 text-dkoder-yellow">Only a few for you.</span>
+        </h2>
+        <p class="text-base text-dkoder-purpleSoft">
+          MCQs, live coding rounds and platform problems, tagged by company, package and level. Pick a target and watch the noise fall away.
+        </p>
+      </div>
+
+      <!-- Interactive Filtering Matrix Card in Royal Purple & Gold Yellow -->
+      <div class="bg-[#1E0D47] rounded-3xl border-2 border-dkoder-yellow shadow-[8px_8px_0_0_#FCC419] p-6 sm:p-10">
+        
+        <!-- Live Pair Programming Visual Banner (Featuring assets/images/study_pair.jpg) -->
+        <div class="mb-8 rounded-2xl overflow-hidden border-2 border-white/20 relative bg-[#12052B] grid grid-cols-1 md:grid-cols-12 items-center">
+          <div class="md:col-span-5 h-48 md:h-full overflow-hidden relative">
+            <img src="assets/images/study_pair.jpg" alt="Students Pair Programming in Dkoder Python Lab" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-transparent via-[#1E0D47]/40 to-[#1E0D47]"></div>
+          </div>
+          <div class="md:col-span-7 p-5 sm:p-6 space-y-2">
+            <div class="inline-flex items-center space-x-1.5 px-2.5 py-0.5 rounded-full bg-dkoder-yellow text-dkoder-dark font-mono font-black text-[10px] uppercase">
+              <i class="fa-solid fa-terminal"></i>
+              <span>Live Pair Sandbox &amp; Test Suite</span>
+            </div>
+            <h3 class="font-display font-bold text-xl text-white">
+              Instant Online Compiler with Hidden Placement Testcases
+            </h3>
+            <p class="text-xs text-dkoder-purpleSoft leading-relaxed">
+              Solve problems in Python, C, C++, Java, or JavaScript with real-time memory profiling, edge case validation, and AST code similarity checks.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          
+          <!-- Filter Controls Column -->
+          <div class="lg:col-span-5 space-y-6">
+            <div>
+              <p class="text-xs font-extrabold uppercase tracking-widest text-dkoder-yellow mb-2 font-space">
+                1. Select Target Company
+              </p>
+              <div class="flex flex-wrap gap-2" id="company-filter-chips">
+                <button onclick="setFilterCompany('Zoho', this)" class="company-chip px-3.5 py-1.5 rounded-full text-xs font-bold border-2 border-white bg-dkoder-yellow text-dkoder-dark shadow-sm">
+                  Zoho
+                </button>
+                <button onclick="setFilterCompany('TCS', this)" class="company-chip px-3.5 py-1.5 rounded-full text-xs font-bold border-2 border-white/20 bg-[#2B1160] text-white hover:border-dkoder-yellow transition-colors">
+                  TCS NQT
+                </button>
+                <button onclick="setFilterCompany('Amazon', this)" class="company-chip px-3.5 py-1.5 rounded-full text-xs font-bold border-2 border-white/20 bg-[#2B1160] text-white hover:border-dkoder-yellow transition-colors">
+                  Amazon SDE
+                </button>
+                <button onclick="setFilterCompany('Infosys', this)" class="company-chip px-3.5 py-1.5 rounded-full text-xs font-bold border-2 border-white/20 bg-[#2B1160] text-white hover:border-dkoder-yellow transition-colors">
+                  Infosys SP
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <p class="text-xs font-extrabold uppercase tracking-widest text-dkoder-yellow mb-2 font-space">
+                2. Target Salary Package
+              </p>
+              <div class="flex flex-wrap gap-2" id="package-filter-chips">
+                <button onclick="setFilterPackage('3-5 LPA', this)" class="package-chip px-3 py-1.5 rounded-full text-xs font-bold border-2 border-white/20 bg-[#2B1160] text-white hover:border-dkoder-yellow transition-colors">
+                  3 – 5 LPA
+                </button>
+                <button onclick="setFilterPackage('6-10 LPA', this)" class="package-chip px-3 py-1.5 rounded-full text-xs font-bold border-2 border-white bg-dkoder-yellow text-dkoder-dark shadow-sm">
+                  6 – 10 LPA
+                </button>
+                <button onclick="setFilterPackage('12+ LPA', this)" class="package-chip px-3 py-1.5 rounded-full text-xs font-bold border-2 border-white/20 bg-[#2B1160] text-white hover:border-dkoder-yellow transition-colors">
+                  12+ Super Dream
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <p class="text-xs font-extrabold uppercase tracking-widest text-dkoder-yellow mb-2 font-space">
+                3. Assessment Mode
+              </p>
+              <div class="grid grid-cols-3 gap-2 text-center text-xs font-bold">
+                <div class="p-2.5 rounded-xl border-2 border-white/20 bg-[#2B1160] text-white">
+                  <i class="fa-solid fa-list-check block mb-1 text-sm text-dkoder-yellow"></i> MCQs
+                </div>
+                <div class="p-2.5 rounded-xl border-2 border-white bg-dkoder-yellow text-dkoder-dark">
+                  <i class="fa-solid fa-terminal block mb-1 text-sm"></i> Coding Lab
+                </div>
+                <div class="p-2.5 rounded-xl border-2 border-white/20 bg-[#2B1160] text-white">
+                  <i class="fa-solid fa-stopwatch block mb-1 text-sm text-dkoder-yellow"></i> Full Mock
+                </div>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-[#280F57] text-white border-2 border-dkoder-yellow/50 space-y-2">
+              <div class="flex items-center justify-between text-xs font-bold">
+                <span class="text-dkoder-yellow uppercase tracking-wider">Shortlist Filter Accuracy</span>
+                <span id="active-match-count" class="bg-dkoder-yellow text-dkoder-dark px-2 py-0.5 rounded font-mono">18 Curated Questions</span>
+              </div>
+              <p class="text-xs text-dkoder-purpleSoft leading-normal">
+                Out of 4,800+ total problems in the bank, only verified recent matches for this exact company &amp; CTC bracket will be surfaced.
+              </p>
+            </div>
+          </div>
+
+          <!-- Live Sample Matching Questions Display -->
+          <div class="lg:col-span-7 bg-[#280F57] rounded-2xl border-2 border-dkoder-yellow/40 p-5 space-y-4">
+            
+            <div class="flex items-center justify-between border-b-2 border-white/15 pb-3">
+              <div>
+                <h4 class="font-display font-extrabold text-base text-white" id="display-target-title">
+                  Zoho · 6 – 10 LPA Targeted Prep
+                </h4>
+                <p class="text-xs text-dkoder-purpleSoft">3 sample problems from your targeted shortlist</p>
+              </div>
+              <span class="text-xs font-mono font-bold bg-dkoder-yellow text-dkoder-dark px-2.5 py-1 rounded-full border border-white">
+                LEVEL: MEDIUM
+              </span>
+            </div>
+
+            <!-- Question Card 1 -->
+            <div class="bg-[#1E0D47] rounded-xl border-2 border-dkoder-yellow/30 p-4 shadow-sm hover:border-dkoder-yellow transition-colors space-y-2">
+              <div class="flex items-center justify-between text-xs">
+                <div class="flex items-center space-x-2">
+                  <span class="px-2 py-0.5 rounded bg-dkoder-yellow text-dkoder-dark font-extrabold text-[10px]">CODING</span>
+                  <span class="font-bold text-white" id="q1-title">String Pattern Expansion with Bracket Multipliers</span>
+                </div>
+                <span class="font-mono text-dkoder-yellow font-bold text-[11px]">Reported at Zoho</span>
+              </div>
+              <p class="text-xs text-dkoder-purpleSoft leading-relaxed">
+                Given an encoded string such as 3[a2[c]], return its expanded output &ldquo;accaccacc&rdquo;. Solve with space efficiency O(N).
+              </p>
+              <div class="flex items-center justify-between pt-1 text-[11px] text-white/60">
+                <span>Data Structure: <strong class="text-dkoder-yellow">Stack &amp; Recursion</strong></span>
+                <span class="font-mono text-white">Time: 25 mins</span>
+              </div>
+            </div>
+
+            <!-- Question Card 2 -->
+            <div class="bg-[#1E0D47] rounded-xl border-2 border-dkoder-yellow/30 p-4 shadow-sm hover:border-dkoder-yellow transition-colors space-y-2">
+              <div class="flex items-center justify-between text-xs">
+                <div class="flex items-center space-x-2">
+                  <span class="px-2 py-0.5 rounded bg-purple-700 text-white font-extrabold text-[10px] border border-white/20">ALGO</span>
+                  <span class="font-bold text-white" id="q2-title">Find Disappeared Numbers &amp; Duplicate In-Place</span>
+                </div>
+                <span class="font-mono text-dkoder-yellow font-bold text-[11px]">Asked in Round 2</span>
+              </div>
+              <p class="text-xs text-dkoder-purpleSoft leading-relaxed">
+                Modify array in place without using additional hash sets. Flag negative indices to track visitation in O(N) runtime.
+              </p>
+              <div class="flex items-center justify-between pt-1 text-[11px] text-white/60">
+                <span>Data Structure: <strong class="text-dkoder-yellow">Array Pointers</strong></span>
+                <span class="font-mono text-white">Time: 20 mins</span>
+              </div>
+            </div>
+
+            <!-- Question Card 3 -->
+            <div class="bg-[#1E0D47] rounded-xl border-2 border-dkoder-yellow/30 p-4 shadow-sm hover:border-dkoder-yellow transition-colors space-y-2">
+              <div class="flex items-center justify-between text-xs">
+                <div class="flex items-center space-x-2">
+                  <span class="px-2 py-0.5 rounded bg-amber-400 text-dkoder-dark font-extrabold text-[10px]">MCQ</span>
+                  <span class="font-bold text-white" id="q3-title">Pointer Arithmetic &amp; Struct Alignment in C</span>
+                </div>
+                <span class="font-mono text-dkoder-yellow font-bold text-[11px]">Round 1 Screening</span>
+              </div>
+              <p class="text-xs text-dkoder-purpleSoft leading-relaxed">
+                Calculate memory padding and struct alignment offset on a 64-bit architecture with nested union members.
+              </p>
+            </div>
+
+            <!-- Action footer -->
+            <div class="pt-2 flex items-center justify-between">
+              <span class="text-xs font-bold text-dkoder-purpleSoft">Plus 15 more questions ready in the live lab</span>
+              <a href="#plans" class="btn-brutal px-4 py-2 rounded-full text-xs font-extrabold bg-dkoder-yellow text-dkoder-dark border-2 border-white shadow-[3px_3px_0_0_#fff]">
+                Practise this shortlist ↗
+              </a>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 5. INTERVIEW WORRIES: "INTERVIEW TOMORROW. MIND EVERYWHERE?" (YELLOW ACCENT)-->
+  <!-- ========================================================================= -->
+  <section class="py-20 bg-gradient-to-r from-[#FCC419] via-[#FFD84D] to-[#FCC419] border-b-2 border-dkoder-dark relative overflow-hidden">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="bg-[#1E0D47] text-white rounded-3xl border-2 border-dkoder-dark shadow-[8px_8px_0_0_#110626] p-8 sm:p-12">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          
+          <div class="lg:col-span-5 space-y-4">
+            <span class="px-3 py-1 rounded-full text-xs font-black uppercase tracking-widest bg-dkoder-yellow border border-white text-dkoder-dark font-space">
+              Want a solution?
+            </span>
+            <h3 class="font-display font-black text-3xl sm:text-4xl text-white leading-tight">
+              Interview tomorrow. <br>
+              <span class="text-dkoder-yellow">Mind everywhere?</span>
+            </h3>
+            <p class="text-sm text-dkoder-purpleSoft leading-relaxed">
+              Tap a worry below to see how Dkoder handles the exact stress point before you step into the placement cabin.
+            </p>
+
+            <!-- Real Student Interview Preparation Waiting Area Visual -->
+            <div class="rounded-2xl overflow-hidden border-2 border-dkoder-yellow/50 shadow-md relative group">
+              <img src="assets/images/interview_prep.jpg" alt="Student Preparing for Placement Interview with Resume" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500">
+              <div class="absolute bottom-2 left-2 bg-[#12052B]/90 backdrop-blur-sm border border-dkoder-yellow/40 text-dkoder-yellow text-[10px] font-bold px-2 py-0.5 rounded-lg flex items-center gap-1.5">
+                <i class="fa-solid fa-building-user"></i>
+                <span>Placement Cell Waiting Area · Real Interview Prep</span>
+              </div>
+            </div>
+
+            <div class="pt-2">
+              <a href="#plans" class="btn-brutal inline-flex items-center space-x-2 px-5 py-3 rounded-full text-xs font-extrabold bg-dkoder-yellow text-dkoder-dark border-2 border-white shadow-[4px_4px_0_0_#fff]">
+                <span>Start practising on Dkoder</span>
+                <i class="fa-solid fa-arrow-right text-xs"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="lg:col-span-7 space-y-3">
+            
+            <!-- Worry 1 -->
+            <div onclick="selectWorry(this, 'Focus on Dkoder’s Top 15 company-specific questions and your 1-page cheatsheet. Re-solving 2 familiar questions builds confidence faster than panic-learning new algorithms.')" class="worry-card cursor-pointer p-4 rounded-2xl border-2 border-white bg-dkoder-yellow text-dkoder-dark shadow-sm transition-all">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-sm text-dkoder-dark">&ldquo;What should I revise tonight?&rdquo;</span>
+                <i class="fa-solid fa-circle-check text-dkoder-dark"></i>
+              </div>
+            </div>
+
+            <!-- Worry 2 -->
+            <div onclick="selectWorry(this, 'Yes, 90% of technical rounds require live coding in a browser or whiteboard. Practising inside Dkoder’s timed code editor eliminates terminal stage fright.')" class="worry-card cursor-pointer p-4 rounded-2xl border-2 border-white/20 bg-[#280F57] hover:border-dkoder-yellow transition-all text-white">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-sm text-white">&ldquo;Will they ask me to write code live?&rdquo;</span>
+                <i class="fa-solid fa-chevron-right text-xs text-dkoder-yellow"></i>
+              </div>
+            </div>
+
+            <!-- Worry 3 -->
+            <div onclick="selectWorry(this, 'Dkoder’s Super Dream bundle maps the exact graph, dynamic programming, and system design patterns tested in ₹10+ LPA day-1 recruitment drives.')" class="worry-card cursor-pointer p-4 rounded-2xl border-2 border-white/20 bg-[#280F57] hover:border-dkoder-yellow transition-all text-white">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-sm text-white">&ldquo;Can I really reach that ₹10 LPA goal?&rdquo;</span>
+                <i class="fa-solid fa-chevron-right text-xs text-dkoder-yellow"></i>
+              </div>
+            </div>
+
+            <!-- Worry 4 -->
+            <div onclick="selectWorry(this, 'Dkoder includes 450+ verified company aptitude sets (Quantitative, Logical, Verbal) to ensure you clear the screening cutoff effortlessly.')" class="worry-card cursor-pointer p-4 rounded-2xl border-2 border-white/20 bg-[#280F57] hover:border-dkoder-yellow transition-all text-white">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-sm text-white">&ldquo;What if I fail the aptitude screening round?&rdquo;</span>
+                <i class="fa-solid fa-chevron-right text-xs text-dkoder-yellow"></i>
+              </div>
+            </div>
+
+            <!-- Dynamic Answer Box -->
+            <div id="worry-solution-box" class="p-4 rounded-2xl bg-[#12052B] text-white border-2 border-dkoder-yellow text-xs sm:text-sm leading-relaxed shadow-sm">
+              <span class="font-extrabold text-dkoder-yellow block mb-1">Dkoder Placement Advice:</span>
+              <p id="worry-solution-text" class="text-dkoder-purpleSoft">
+                Focus on Dkoder’s Top 15 company-specific questions and your 1-page cheatsheet. Re-solving 2 familiar questions builds confidence faster than panic-learning new algorithms.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 6. DIFFERENT TARGET. DIFFERENT FOCUS. (CAREER TRACK COMPARISON)           -->
+  <!-- ========================================================================= -->
+  <section id="tracks" class="py-20 bg-gradient-to-b from-[#150730] via-[#240c54] to-[#150730] text-white border-b-2 border-dkoder-yellow/40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+        <span class="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-black bg-dkoder-yellow text-dkoder-dark uppercase tracking-widest font-space border border-white">
+          Choose Who You're Preparing For
+        </span>
+        <h2 class="font-display font-black text-4xl sm:text-5xl text-white tracking-tight">
+          Different target. <span class="bg-dkoder-yellow text-dkoder-dark px-3 py-1 rounded-xl border-2 border-white shadow-[4px_4px_0_0_#9333EA]">Different focus.</span>
+        </h2>
+        <p class="text-base text-dkoder-purpleSoft">
+          Preparing for an entrance exam like TCS NQT is completely different from a product engineering assessment like Amazon SDE. Dkoder calibrates your daily practice to the exact rubric.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Track 1: TCS NQT -->
+        <div class="bg-[#1E0D47] rounded-3xl border-2 border-white/20 hover:border-dkoder-yellow shadow-md p-7 flex flex-col justify-between hover:-translate-y-1 transition-all text-white">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-mono font-bold bg-[#2B1160] text-dkoder-yellow px-3 py-1 rounded-full border border-dkoder-yellow/30">
+                ENTRANCE EXAM TRACK
+              </span>
+              <span class="font-extrabold text-xs text-dkoder-yellow">3.36 – 7 LPA</span>
+            </div>
+            
+            <h3 class="font-display font-extrabold text-2xl text-white">TCS NQT Preparation</h3>
+            <p class="text-xs text-dkoder-purpleSoft leading-relaxed">
+              An entrance-exam track putting timed test-like aptitude practice and core language fundamentals (C/C++/Java) in one place.
+            </p>
+
+            <div class="space-y-2 pt-2 border-t border-white/10 text-xs">
+              <div class="flex items-center text-white font-semibold">
+                <i class="fa-solid fa-check text-dkoder-yellow mr-2"></i> Numerical Ability &amp; Logic
+              </div>
+              <div class="flex items-center text-white font-semibold">
+                <i class="fa-solid fa-check text-dkoder-yellow mr-2"></i> Hands-on Coding (Basic &amp; Advanced)
+              </div>
+              <div class="flex items-center text-white font-semibold">
+                <i class="fa-solid fa-check text-dkoder-yellow mr-2"></i> Verbal English &amp; Business Aptitude
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-6 mt-6 border-t-2 border-white/10">
+            <a href="#plans" class="w-full btn-brutal inline-flex items-center justify-center py-3 rounded-full text-xs font-extrabold bg-[#2B1160] hover:bg-dkoder-yellow hover:text-dkoder-dark text-white border-2 border-white/30 transition-colors">
+              Practice TCS NQT Track ↗
+            </a>
+          </div>
+        </div>
+
+        <!-- Track 2: Zoho Focused (Highlighted) -->
+        <div class="bg-gradient-to-b from-[#2B1160] to-[#1E0D47] rounded-3xl border-2 border-dkoder-yellow shadow-[6px_6px_0_0_#FCC419] p-7 flex flex-col justify-between relative overflow-hidden text-white">
+          <div class="absolute top-0 right-0 bg-dkoder-yellow text-dkoder-dark text-[10px] font-black uppercase tracking-widest px-4 py-1 rounded-bl-xl border-l-2 border-b-2 border-dkoder-dark">
+            MOST POPULAR
+          </div>
+
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-mono font-bold bg-dkoder-yellow text-dkoder-dark px-3 py-1 rounded-full border border-white">
+                PRODUCT PROBLEM SOLVING
+              </span>
+              <span class="font-extrabold text-xs text-dkoder-yellow">6 – 8.5 LPA</span>
+            </div>
+            
+            <h3 class="font-display font-extrabold text-2xl text-white">Zoho-Focused Track</h3>
+            <p class="text-xs text-dkoder-purpleSoft leading-relaxed">
+              Narrow the practice mix to pure algorithmic problem solving, clean pointer manipulation, and face-to-face code explanation.
+            </p>
+
+            <div class="space-y-2 pt-2 border-t border-white/15 text-xs">
+              <div class="flex items-center text-white font-semibold">
+                <i class="fa-solid fa-check text-dkoder-yellow mr-2"></i> Round 2 Basic Programming (String &amp; Matrix)
+              </div>
+              <div class="flex items-center text-white font-semibold">
+                <i class="fa-solid fa-check text-dkoder-yellow mr-2"></i> Round 3 Advanced Programming (Sudoku, Maze)
+              </div>
+              <div class="flex items-center text-white font-semibold">
+                <i class="fa-solid fa-check text-dkoder-yellow mr-2"></i> Design Round (Call Taxi / Railway Reservation)
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-6 mt-6 border-t-2 border-white/15">
+            <a href="#plans" class="w-full btn-brutal inline-flex items-center justify-center py-3.5 rounded-full text-xs font-extrabold bg-dkoder-yellow text-dkoder-dark border-2 border-white shadow-[3px_3px_0_0_#fff]">
+              Practice Zoho Track ↗
+            </a>
+          </div>
+        </div>
+
+        <!-- Track 3: Amazon SDE OA -->
+        <div class="bg-[#1E0D47] rounded-3xl border-2 border-white/20 hover:border-dkoder-yellow shadow-md p-7 flex flex-col justify-between hover:-translate-y-1 transition-all text-white">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-mono font-bold bg-[#2B1160] text-dkoder-yellow px-3 py-1 rounded-full border border-dkoder-yellow/30">
+                SUPER DREAM SDE
+              </span>
+              <span class="font-extrabold text-xs text-dkoder-yellow">14 – 45 LPA</span>
+            </div>
+            
+            <h3 class="font-display font-extrabold text-2xl text-white">Amazon SDE OA</h3>
+            <p class="text-xs text-dkoder-purpleSoft leading-relaxed">
+              A coding-heavy target making dynamic programming, graph algorithms, and timed online hacker-rank assessments paramount.
+            </p>
+
+            <div class="space-y-2 pt-2 border-t border-white/10 text-xs">
+              <div class="flex items-center text-white font-semibold">
+                <i class="fa-solid fa-check text-dkoder-yellow mr-2"></i> LeetCode Medium/Hard Graphs &amp; Heaps
+              </div>
+              <div class="flex items-center text-white font-semibold">
+                <i class="fa-solid fa-check text-dkoder-yellow mr-2"></i> Amazon Leadership Principles Simulation
+              </div>
+              <div class="flex items-center text-white font-semibold">
+                <i class="fa-solid fa-check text-dkoder-yellow mr-2"></i> Work Simulation Assessment (WSA)
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-6 mt-6 border-t-2 border-white/10">
+            <a href="#plans" class="w-full btn-brutal inline-flex items-center justify-center py-3 rounded-full text-xs font-extrabold bg-[#2B1160] hover:bg-dkoder-yellow hover:text-dkoder-dark text-white border-2 border-white/30 transition-colors">
+              Practice Amazon SDE Track ↗
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 7. LIVE PODIUM LEADERBOARD SHOWCASE (YELLOW & PURPLE PODIUM ARENA)        -->
+  <!-- ========================================================================= -->
+  <section id="leaderboard-preview" class="py-20 bg-gradient-to-b from-[#150730] via-[#210c49] to-[#150730] text-white border-b-2 border-dkoder-yellow/40 relative overflow-hidden">
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6 mb-12 border-b border-white/15 pb-8">
+        <div>
+          <span class="text-xs font-extrabold uppercase tracking-widest text-dkoder-yellow font-space">
+            Campus Competitive Arena
+          </span>
+          <h2 class="font-display font-black text-3xl sm:text-5xl text-white mt-1">
+            Student Leaderboard. <span class="text-dkoder-yellow">Consistency Ranked.</span>
+          </h2>
+          <p class="text-sm text-dkoder-purpleSoft mt-1">
+            Ranked by total experience earned across coding challenges, daily streaks, and company mock tests.
+          </p>
+        </div>
+
+        <!-- Leaderboard Filter Tabs -->
+        <div class="flex items-center bg-[#12052B] border-2 border-dkoder-yellow/40 rounded-full p-1.5 shadow-sm">
+          <button onclick="setBoardMode('xp', this)" class="lb-tab px-4 py-2 rounded-full text-xs font-bold bg-dkoder-yellow text-dkoder-dark">
+            Total XP
+          </button>
+          <button onclick="setBoardMode('problems', this)" class="lb-tab px-4 py-2 rounded-full text-xs font-bold text-dkoder-purpleSoft hover:text-white">
+            Most Active Solvers
+          </button>
+          <button onclick="setBoardMode('hard', this)" class="lb-tab px-4 py-2 rounded-full text-xs font-bold text-dkoder-purpleSoft hover:text-white">
+            Hard Cracked
+          </button>
+        </div>
+      </div>
+
+      <!-- The Podium Stage -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
+        
+        <!-- Podium Visualizer -->
+        <div class="lg:col-span-7 bg-[#12052B] rounded-3xl border-2 border-dkoder-yellow p-6 sm:p-8 shadow-[6px_6px_0_0_#FCC419]">
+          <div class="flex items-end justify-center gap-3 sm:gap-6 h-72 pb-4">
+            
+            <!-- Rank 2: Silver -->
+            <div class="flex-1 flex flex-col items-center">
+              <div class="w-14 h-14 rounded-full border-2 border-white bg-slate-200 flex items-center justify-center font-bold text-dkoder-dark mb-2 shadow-sm">
+                <i class="fa-solid fa-user-ninja text-lg"></i>
+              </div>
+              <p class="font-bold text-xs text-white truncate w-full text-center">Priya S.</p>
+              <p class="text-[10px] text-dkoder-yellow">IIT Madras</p>
+              <div class="w-full h-32 rounded-t-2xl border-2 border-b-0 border-white/20 bg-slate-300 text-dkoder-dark flex flex-col items-center justify-center mt-2">
+                <span class="font-display font-black text-2xl">#2</span>
+                <span class="text-[11px] font-bold font-mono">14,820 XP</span>
+              </div>
+            </div>
+
+            <!-- Rank 1: Gold Crown -->
+            <div class="flex-1 flex flex-col items-center">
+              <div class="text-dkoder-yellow text-2xl -mb-1 animate-bounce">
+                <i class="fa-solid fa-crown"></i>
+              </div>
+              <div class="w-16 h-16 rounded-full border-2 border-white bg-dkoder-yellow flex items-center justify-center font-bold text-dkoder-dark mb-2 shadow-[0_0_20px_rgba(252,196,25,0.6)]">
+                <i class="fa-solid fa-user-astronaut text-2xl"></i>
+              </div>
+              <p class="font-black text-sm text-dkoder-yellow truncate w-full text-center">Arjun Kumar</p>
+              <p class="text-[10px] text-white">NIT Trichy</p>
+              <div class="w-full h-44 rounded-t-2xl border-2 border-b-0 border-white bg-dkoder-yellow text-dkoder-dark flex flex-col items-center justify-center mt-2 shadow-[0_-4px_0_0_#1E0D47]">
+                <span class="font-display font-black text-3xl">#1</span>
+                <span class="text-xs font-black font-mono">19,450 XP</span>
+                <span class="text-[10px] font-bold uppercase tracking-wider bg-[#1E0D47] text-dkoder-yellow px-2 py-0.5 rounded-full mt-1">
+                  48-DAY STREAK
+                </span>
+              </div>
+            </div>
+
+            <!-- Rank 3: Bronze -->
+            <div class="flex-1 flex flex-col items-center">
+              <div class="w-14 h-14 rounded-full border-2 border-white bg-amber-200 flex items-center justify-center font-bold text-dkoder-dark mb-2 shadow-sm">
+                <i class="fa-solid fa-user-tie text-lg"></i>
+              </div>
+              <p class="font-bold text-xs text-white truncate w-full text-center">Karthik R.</p>
+              <p class="text-[10px] text-dkoder-yellow">PSG Tech</p>
+              <div class="w-full h-24 rounded-t-2xl border-2 border-b-0 border-white/20 bg-amber-300 text-dkoder-dark flex flex-col items-center justify-center mt-2">
+                <span class="font-display font-black text-xl">#3</span>
+                <span class="text-[11px] font-bold font-mono">12,190 XP</span>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="pt-4 border-t border-white/10 flex items-center justify-between text-xs text-dkoder-purpleSoft">
+            <span>Verified Institutional Leaderboard</span>
+            <span class="text-dkoder-yellow font-bold">Updated real-time with anti-cheat telemetry</span>
+          </div>
+        </div>
+
+        <!-- Leaderboard Table Preview -->
+        <div class="lg:col-span-5 bg-[#1E0D47] rounded-3xl border-2 border-dkoder-yellow text-white p-6 shadow-[6px_6px_0_0_#FCC419] space-y-3">
+          <div class="flex items-center justify-between pb-2 border-b-2 border-white/15">
+            <span class="font-bold text-sm uppercase tracking-wider text-white">Cohort Rankings #4 – #8</span>
+            <span class="text-xs font-mono font-bold bg-dkoder-yellow text-dkoder-dark px-2.5 py-0.5 rounded border border-white">LIVE BATCH</span>
+          </div>
+
+          <div class="space-y-2 text-xs">
+            <div class="flex items-center justify-between p-2.5 rounded-xl border border-white/10 hover:bg-[#280F57] transition-colors">
+              <div class="flex items-center space-x-3">
+                <span class="font-black text-sm w-5 text-dkoder-yellow">#4</span>
+                <div>
+                  <p class="font-bold text-white">Neha Sharma</p>
+                  <p class="text-[10px] text-dkoder-purpleSoft">RV College of Engg · 32-day streak</p>
+                </div>
+              </div>
+              <span class="font-mono font-bold text-dkoder-yellow">10,840 XP</span>
+            </div>
+
+            <div class="flex items-center justify-between p-2.5 rounded-xl border border-white/10 hover:bg-[#280F57] transition-colors">
+              <div class="flex items-center space-x-3">
+                <span class="font-black text-sm w-5 text-dkoder-yellow">#5</span>
+                <div>
+                  <p class="font-bold text-white">Vikram Patel</p>
+                  <p class="text-[10px] text-dkoder-purpleSoft">BMS College · 28-day streak</p>
+                </div>
+              </div>
+              <span class="font-mono font-bold text-dkoder-yellow">9,720 XP</span>
+            </div>
+
+            <div class="flex items-center justify-between p-2.5 rounded-xl border border-white/10 hover:bg-[#280F57] transition-colors">
+              <div class="flex items-center space-x-3">
+                <span class="font-black text-sm w-5 text-dkoder-yellow">#6</span>
+                <div>
+                  <p class="font-bold text-white">Ananya Deshmukh</p>
+                  <p class="text-[10px] text-dkoder-purpleSoft">COEP Pune · 21-day streak</p>
+                </div>
+              </div>
+              <span class="font-mono font-bold text-dkoder-yellow">8,950 XP</span>
+            </div>
+          </div>
+
+          <div class="pt-3 border-t border-white/10 text-center">
+            <a href="#plans" class="btn-brutal inline-flex items-center justify-center w-full py-2.5 rounded-full text-xs font-extrabold bg-dkoder-yellow text-dkoder-dark border-2 border-white shadow-[3px_3px_0_0_#fff]">
+              See Full Campus Standings ↗
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 8. WHAT EACH PLAN ACTUALLY COSTS (EXACT DKODER PRICING TIERS)             -->
+  <!-- ========================================================================= -->
+  <section id="plans" class="py-20 bg-gradient-to-b from-[#150730] via-[#240c54] to-[#150730] text-white border-b-2 border-dkoder-yellow/40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+        <p class="text-xs font-extrabold uppercase tracking-widest text-dkoder-yellow font-space">
+          What each plan actually costs
+        </p>
+        <h2 class="font-display font-black text-3xl sm:text-5xl text-white tracking-tight">
+          Pick your <span class="bg-dkoder-yellow text-dkoder-dark px-3 py-1 rounded-xl border-2 border-white shadow-[4px_4px_0_0_#9333EA]">price</span>, not a maybe.
+        </h2>
+        <p class="text-base text-dkoder-purpleSoft">
+          Transparent student licensing for individuals and cohorts. All plans include live compiler access and daily problem sets.
+        </p>
+      </div>
+
+      <!-- 3-Column Base Plans: Bronze, Silver, Gold -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        
+        <!-- Bronze -->
+        <div class="bg-[#1E0D47] rounded-3xl border-2 border-white/20 hover:border-dkoder-yellow shadow-md p-6 flex flex-col justify-between text-white transition-all">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="font-display font-extrabold text-xl text-amber-400">Bronze</span>
+              <span class="text-xs font-mono font-bold bg-amber-400/20 text-amber-300 px-2.5 py-0.5 rounded border border-amber-400/40">₹2 a day</span>
+            </div>
+            
+            <div>
+              <span class="font-display font-black text-4xl text-white">₹699</span>
+              <span class="text-xs text-dkoder-purpleSoft font-bold">/ year</span>
+            </div>
+
+            <div class="p-3 bg-[#280F57] rounded-xl border border-white/10 text-xs">
+              <span class="font-extrabold text-dkoder-yellow block">0 – 3 LPA Target</span>
+              <span class="text-dkoder-purpleSoft">Service Based Company Interview Questions (TCS, Infosys, Wipro, Accenture)</span>
+            </div>
+
+            <ul class="space-y-2.5 text-xs text-dkoder-purpleSoft font-medium pt-2">
+              <li class="flex items-center"><i class="fa-solid fa-check text-dkoder-yellow mr-2"></i> Daily challenges</li>
+              <li class="flex items-center"><i class="fa-solid fa-check text-dkoder-yellow mr-2"></i> MCQ Practice</li>
+              <li class="flex items-center"><i class="fa-solid fa-check text-dkoder-yellow mr-2"></i> Coding Questions</li>
+            </ul>
+          </div>
+
+          <div class="pt-6 mt-6 border-t border-white/10">
+            <a href="#college-mou" class="btn-brutal w-full inline-flex items-center justify-center py-3 rounded-full text-xs font-extrabold bg-[#280F57] hover:bg-dkoder-yellow hover:text-dkoder-dark text-white border-2 border-white/30 transition-colors">
+              Purchase ↗
+            </a>
+          </div>
+        </div>
+
+        <!-- Silver -->
+        <div class="bg-[#1E0D47] rounded-3xl border-2 border-white/20 hover:border-dkoder-yellow shadow-md p-6 flex flex-col justify-between text-white transition-all">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="font-display font-extrabold text-xl text-sky-400">Silver</span>
+              <span class="text-xs font-mono font-bold bg-sky-400/20 text-sky-300 px-2.5 py-0.5 rounded border border-sky-400/40">₹3 a day</span>
+            </div>
+            
+            <div>
+              <span class="font-display font-black text-4xl text-white">₹999</span>
+              <span class="text-xs text-dkoder-purpleSoft font-bold">/ year</span>
+            </div>
+
+            <div class="p-3 bg-[#280F57] rounded-xl border border-white/10 text-xs">
+              <span class="font-extrabold text-dkoder-yellow block">0 – 5 LPA Target</span>
+              <span class="text-dkoder-purpleSoft">Expanded Service Based Banks (IBM, Hexaware, TCS, Infosys)</span>
+            </div>
+
+            <ul class="space-y-2.5 text-xs text-dkoder-purpleSoft font-medium pt-2">
+              <li class="flex items-center"><i class="fa-solid fa-check text-dkoder-yellow mr-2"></i> Daily challenges</li>
+              <li class="flex items-center"><i class="fa-solid fa-check text-dkoder-yellow mr-2"></i> MCQ Practice</li>
+              <li class="flex items-center"><i class="fa-solid fa-check text-dkoder-yellow mr-2"></i> Coding Questions</li>
+              <li class="flex items-center"><i class="fa-solid fa-check text-dkoder-yellow mr-2"></i> Entrance Exam Simulations</li>
+            </ul>
+          </div>
+
+          <div class="pt-6 mt-6 border-t border-white/10">
+            <a href="#college-mou" class="btn-brutal w-full inline-flex items-center justify-center py-3 rounded-full text-xs font-extrabold bg-[#280F57] hover:bg-dkoder-yellow hover:text-dkoder-dark text-white border-2 border-white/30 transition-colors">
+              Purchase ↗
+            </a>
+          </div>
+        </div>
+
+        <!-- Gold (Highlighted Yellow Accent) -->
+        <div class="bg-gradient-to-b from-[#2B1160] to-[#1E0D47] rounded-3xl border-2 border-dkoder-yellow shadow-[6px_6px_0_0_#FCC419] p-6 flex flex-col justify-between text-white relative">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="font-display font-extrabold text-xl text-dkoder-yellow">Gold</span>
+              <span class="text-xs font-mono font-bold bg-dkoder-yellow text-dkoder-dark px-2.5 py-0.5 rounded font-black">₹5 a day</span>
+            </div>
+            
+            <div>
+              <span class="font-display font-black text-4xl text-white">₹1,599</span>
+              <span class="text-xs text-dkoder-yellow font-bold">/ year</span>
+            </div>
+
+            <div class="p-3 bg-[#12052B] rounded-xl border border-dkoder-yellow/40 text-xs">
+              <span class="font-extrabold text-dkoder-yellow block">0 – 7 LPA Target</span>
+              <span class="text-dkoder-purpleSoft">Service &amp; Product Based Interview Questions (Microsoft, Adobe, Flipkart)</span>
+            </div>
+
+            <ul class="space-y-2.5 text-xs text-white font-medium pt-2">
+              <li class="flex items-center"><i class="fa-solid fa-check text-dkoder-yellow mr-2"></i> Daily challenges &amp; MCQs</li>
+              <li class="flex items-center"><i class="fa-solid fa-check text-dkoder-yellow mr-2"></i> Coding Questions</li>
+              <li class="flex items-center"><i class="fa-solid fa-check text-dkoder-yellow mr-2"></i> Advanced AI Report Card</li>
+              <li class="flex items-center"><i class="fa-solid fa-check text-dkoder-yellow mr-2"></i> Topic-wise &amp; platform filter</li>
+            </ul>
+          </div>
+
+          <div class="pt-6 mt-6 border-t border-white/15">
+            <a href="#college-mou" class="btn-brutal w-full inline-flex items-center justify-center py-3 rounded-full text-xs font-extrabold bg-dkoder-yellow text-dkoder-dark border-2 border-white shadow-[3px_3px_0_0_#fff]">
+              Purchase Gold ↗
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 2-Column Higher Tiers: Platinum & Super Dream Pack -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+        
+        <!-- Platinum -->
+        <div class="bg-[#1E0D47] rounded-3xl border-2 border-white/20 hover:border-dkoder-yellow shadow-lg p-8 flex flex-col justify-between text-white">
+          <div class="space-y-5">
+            <div class="flex items-center justify-between">
+              <div>
+                <span class="inline-block px-2.5 py-0.5 rounded text-[10px] font-black uppercase tracking-wider bg-purple-700 text-dkoder-yellow border border-dkoder-yellow/40 mb-1">
+                  Most Popular
+                </span>
+                <h3 class="font-display font-black text-2xl text-white">Platinum</h3>
+              </div>
+              <div class="text-right">
+                <span class="font-display font-black text-4xl text-white">₹1,999</span>
+                <span class="text-xs text-dkoder-yellow block font-bold">₹6 a day · / year</span>
+              </div>
+            </div>
+
+            <div class="p-3.5 bg-[#280F57] rounded-xl border border-white/10 text-xs">
+              <span class="font-extrabold text-dkoder-yellow block">0 – 15 LPA Target</span>
+              <span class="text-dkoder-purpleSoft">Product &amp; FinTech Questions (Oracle, Atlassian, Salesforce, Stripe, Amazon)</span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-dkoder-purpleSoft font-medium pt-1">
+              <div class="flex items-center"><i class="fa-solid fa-circle-check text-dkoder-yellow mr-2"></i> Daily challenges &amp; Coding</div>
+              <div class="flex items-center"><i class="fa-solid fa-circle-check text-dkoder-yellow mr-2"></i> Advanced AI Report card</div>
+              <div class="flex items-center"><i class="fa-solid fa-circle-check text-dkoder-yellow mr-2"></i> Topic-wise &amp; Platform filters</div>
+              <div class="flex items-center"><i class="fa-solid fa-circle-check text-dkoder-yellow mr-2"></i> Company-wise Filter</div>
+              <div class="flex items-center"><i class="fa-solid fa-circle-check text-dkoder-yellow mr-2"></i> Package-wise CTC Filter</div>
+            </div>
+          </div>
+
+          <div class="pt-6 mt-6 border-t border-white/10">
+            <a href="#college-mou" class="btn-brutal w-full inline-flex items-center justify-center py-3.5 rounded-full text-xs font-extrabold bg-[#2B1160] hover:bg-dkoder-yellow hover:text-dkoder-dark text-white border-2 border-white/30 transition-colors">
+              Purchase Platinum ↗
+            </a>
+          </div>
+        </div>
+
+        <!-- Super Dream Pack (Featured / Best Value) -->
+        <div class="bg-gradient-to-br from-[#2B1160] via-[#1E0D47] to-[#12052B] rounded-3xl border-3 border-dkoder-yellow shadow-[8px_8px_0_0_#FCC419] p-8 flex flex-col justify-between relative overflow-hidden text-white">
+          <div class="absolute top-0 right-0 bg-dkoder-yellow text-dkoder-dark text-xs font-black uppercase tracking-widest px-5 py-1.5 rounded-bl-2xl border-l-2 border-b-2 border-dkoder-dark">
+            BEST VALUE · ALL UNLOCKED
+          </div>
+
+          <div class="space-y-5">
+            <div class="flex items-center justify-between">
+              <div>
+                <span class="inline-block px-2.5 py-0.5 rounded text-[10px] font-black uppercase tracking-wider bg-dkoder-yellow text-dkoder-dark border border-white mb-1">
+                  15+ LPA Super Dream
+                </span>
+                <h3 class="font-display font-black text-2xl text-white">Super Dream Pack</h3>
+              </div>
+              <div class="text-right">
+                <span class="font-display font-black text-4xl text-dkoder-yellow">₹2,999</span>
+                <span class="text-xs text-dkoder-purpleSoft block font-bold">₹9 a day · / year</span>
+              </div>
+            </div>
+
+            <div class="p-3.5 bg-[#12052B] rounded-xl border border-dkoder-yellow/40 text-xs">
+              <span class="font-extrabold text-dkoder-yellow block">15+ LPA FAANG &amp; Product Target</span>
+              <span class="text-dkoder-purpleSoft">Complete unlock: Google, Netflix, Uber, LinkedIn, Amazon, Adobe, Microsoft</span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-white font-semibold pt-1">
+              <div class="flex items-center"><i class="fa-solid fa-check-double text-dkoder-yellow mr-2"></i> All Bundles Unlocked</div>
+              <div class="flex items-center"><i class="fa-solid fa-check-double text-dkoder-yellow mr-2"></i> Advanced AI Report Card</div>
+              <div class="flex items-center"><i class="fa-solid fa-check-double text-dkoder-yellow mr-2"></i> Frequency &amp; Recency Filters</div>
+              <div class="flex items-center"><i class="fa-solid fa-check-double text-dkoder-yellow mr-2"></i> Year-wise &amp; Quarter Filters</div>
+              <div class="flex items-center"><i class="fa-solid fa-check-double text-dkoder-yellow mr-2"></i> Early Access to All Exam Series</div>
+              <div class="flex items-center"><i class="fa-solid fa-check-double text-dkoder-yellow mr-2"></i> Full Mock Test Simulations</div>
+            </div>
+          </div>
+
+          <div class="pt-6 mt-6 border-t-2 border-white/15">
+            <a href="#college-mou" class="btn-brutal w-full inline-flex items-center justify-center py-4 rounded-full text-sm font-extrabold bg-dkoder-yellow text-dkoder-dark border-2 border-white shadow-[4px_4px_0_0_#fff]">
+              Unlock Super Dream Pack ↗
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 9. FOR FACULTY & PLACEMENT TEAMS: APPLY FOR AN MOU                        -->
+  <!-- ========================================================================= -->
+  <section id="college-mou" class="py-20 bg-gradient-to-b from-[#150730] to-[#12052B] text-white border-b-2 border-dkoder-yellow/40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="bg-[#1E0D47] rounded-3xl border-2 border-dkoder-yellow shadow-[8px_8px_0_0_#FCC419] p-8 sm:p-14 text-white relative overflow-hidden">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          
+          <div class="lg:col-span-7 space-y-6">
+            <span class="inline-flex items-center px-3.5 py-1 rounded-full text-xs font-black uppercase tracking-widest bg-dkoder-yellow text-dkoder-dark font-space border border-white">
+              For Faculty &amp; Placement Teams
+            </span>
+            <h3 class="font-display font-black text-3xl sm:text-5xl text-white tracking-tight leading-[1.08]">
+              Now imagine seeing <br>
+              <span class="text-dkoder-yellow">the whole batch.</span>
+            </h3>
+            <p class="text-dkoder-purpleSoft text-sm sm:text-base leading-relaxed">
+              Who is practising consistently? Where is the batch getting stuck? Which cohort needs immediate attention? Partner with Dkoder for the whole campus to automate placements and close curriculum gaps.
+            </p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 text-xs">
+              <div class="p-3.5 rounded-xl bg-[#12052B] border border-dkoder-yellow/30">
+                <span class="font-bold text-dkoder-yellow block mb-1">Batch Insights</span>
+                <span class="text-dkoder-purpleSoft">Real-time attendance &amp; test analytics</span>
+              </div>
+              <div class="p-3.5 rounded-xl bg-[#12052B] border border-dkoder-yellow/30">
+                <span class="font-bold text-dkoder-yellow block mb-1">AI Proctoring</span>
+                <span class="text-dkoder-purpleSoft">Dual camera &amp; AST plagiarism check</span>
+              </div>
+              <div class="p-3.5 rounded-xl bg-[#12052B] border border-dkoder-yellow/30">
+                <span class="font-bold text-dkoder-yellow block mb-1">NAAC 5.2.1</span>
+                <span class="text-dkoder-purpleSoft">1-click statutory audit export</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Institutional Lead / MoU Application Module -->
+          <div class="lg:col-span-5 bg-[#12052B] text-white rounded-2xl border-2 border-dkoder-yellow p-6 sm:p-8 shadow-[6px_6px_0_0_#FCC419]">
+            
+            <form id="mou-form" onsubmit="handleMouSubmit(event)" class="space-y-4">
+              <div class="border-b-2 border-dkoder-yellow/40 pb-2">
+                <h4 class="font-display font-extrabold text-xl text-white">For Colleges: Apply for an MOU</h4>
+                <p class="text-[11px] text-dkoder-yellow font-semibold">Campus-wide placement operating system</p>
+              </div>
+
+              <div id="mou-feedback" class="hidden p-3 rounded-xl bg-emerald-950 border border-emerald-400 text-emerald-300 text-xs font-bold">
+                ✓ Institutional request transmitted! Reference ID: <span id="mou-ref-code" class="font-mono text-dkoder-yellow">DK-MOU-2026</span>
+              </div>
+
+              <div>
+                <label class="block text-[11px] font-extrabold uppercase tracking-wider text-dkoder-yellow mb-1">
+                  Institution Name *
+                </label>
+                <input type="text" id="mou-inst-name" required placeholder="e.g. National Institute of Engineering"
+                       class="w-full px-3.5 py-2.5 rounded-xl border-2 border-white/20 bg-[#1E0D47] text-white text-xs font-medium focus:border-dkoder-yellow focus:outline-none">
+              </div>
+
+              <div>
+                <label class="block text-[11px] font-extrabold uppercase tracking-wider text-dkoder-yellow mb-1">
+                  University Affiliation / Autonomous *
+                </label>
+                <input type="text" id="mou-univ" required placeholder="e.g. Autonomous / VTU / Anna Univ"
+                       class="w-full px-3.5 py-2.5 rounded-xl border-2 border-white/20 bg-[#1E0D47] text-white text-xs font-medium focus:border-dkoder-yellow focus:outline-none">
+              </div>
+
+              <div class="grid grid-cols-2 gap-3">
+                <div>
+                  <label class="block text-[11px] font-extrabold uppercase tracking-wider text-dkoder-yellow mb-1">
+                    Contact Person *
+                  </label>
+                  <input type="text" id="mou-poc" required placeholder="Head - T&P"
+                         class="w-full px-3.5 py-2.5 rounded-xl border-2 border-white/20 bg-[#1E0D47] text-white text-xs font-medium focus:border-dkoder-yellow focus:outline-none">
+                </div>
+                <div>
+                  <label class="block text-[11px] font-extrabold uppercase tracking-wider text-dkoder-yellow mb-1">
+                    Official Email *
+                  </label>
+                  <input type="email" id="mou-email" required placeholder="tpo@college.edu.in"
+                         class="w-full px-3.5 py-2.5 rounded-xl border-2 border-white/20 bg-[#1E0D47] text-white text-xs font-medium focus:border-dkoder-yellow focus:outline-none">
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-[11px] font-extrabold uppercase tracking-wider text-dkoder-yellow mb-1">
+                  Batch Size / Student Volume *
+                </label>
+                <select id="mou-batch-size" required class="w-full px-3.5 py-2.5 rounded-xl border-2 border-white/20 bg-[#1E0D47] text-white text-xs font-medium focus:border-dkoder-yellow focus:outline-none">
+                  <option value="" disabled selected class="text-white bg-[#1E0D47]">Select Batch Size</option>
+                  <option value="250-500" class="text-white bg-[#1E0D47]">250 – 500 Students (Single Department)</option>
+                  <option value="500-1500" class="text-white bg-[#1E0D47]">500 – 1,500 Students (Full Engineering Batch)</option>
+                  <option value="1500+" class="text-white bg-[#1E0D47]">1,500+ Students (Complete Multi-Campus Trust)</option>
+                </select>
+              </div>
+
+              <button type="submit" id="mou-btn" class="btn-brutal w-full py-3.5 rounded-full font-extrabold text-sm text-dkoder-dark bg-dkoder-yellow border-2 border-white shadow-[4px_4px_0_0_#fff]">
+                Submit Campus MOU Application ↗
+              </button>
+            </form>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 10. LUXURIOUS DEEP PURPLE FOOTER (LIVE DKODER FOOTER ARCHITECTURE)         -->
+  <!-- ========================================================================= -->
+  <footer class="bg-dkoder-purple text-dkoder-purpleSoft border-t-2 border-dkoder-dark pt-16 pb-12 selection:bg-dkoder-yellow selection:text-dkoder-purple">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Top Direct Contact Strips -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pb-12 border-b border-white/10">
+        
+        <a href="tel:+918800000000" class="btn-brutal flex items-center space-x-4 p-4 rounded-2xl bg-white/[0.05] border border-white/10 hover:border-dkoder-yellow hover:bg-white/[0.08] transition-all">
+          <span class="w-12 h-12 rounded-xl bg-dkoder-yellow text-dkoder-purple flex items-center justify-center font-bold text-lg shrink-0">
+            <i class="fa-solid fa-phone"></i>
+          </span>
+          <div>
+            <span class="text-[11px] font-bold uppercase tracking-widest text-dkoder-purpleAccent block">Call us</span>
+            <span class="font-bold text-white text-sm">+91 (080) 4129-8800</span>
+          </div>
+        </a>
+
+        <a href="https://wa.me/919845000000?text=Hi%20Dkoder%20team%2C%20I%20have%20a%20question." target="_blank" rel="noopener noreferrer" class="btn-brutal flex items-center space-x-4 p-4 rounded-2xl bg-white/[0.05] border border-white/10 hover:border-dkoder-yellow hover:bg-white/[0.08] transition-all">
+          <span class="w-12 h-12 rounded-xl bg-dkoder-yellow text-dkoder-purple flex items-center justify-center font-bold text-lg shrink-0">
+            <i class="fa-brands fa-whatsapp"></i>
+          </span>
+          <div>
+            <span class="text-[11px] font-bold uppercase tracking-widest text-dkoder-purpleAccent block">WhatsApp</span>
+            <span class="font-bold text-white text-sm">Chat with our team</span>
+          </div>
+        </a>
+
+        <a href="mailto:support@dkoder.co.in" class="btn-brutal flex items-center space-x-4 p-4 rounded-2xl bg-white/[0.05] border border-white/10 hover:border-dkoder-yellow hover:bg-white/[0.08] transition-all">
+          <span class="w-12 h-12 rounded-xl bg-dkoder-yellow text-dkoder-purple flex items-center justify-center font-bold text-lg shrink-0">
+            <i class="fa-solid fa-envelope"></i>
+          </span>
+          <div>
+            <span class="text-[11px] font-bold uppercase tracking-widest text-dkoder-purpleAccent block">Email Support</span>
+            <span class="font-bold text-white text-sm">support@dkoder.co.in</span>
+          </div>
+        </a>
+
+      </div>
+
+      <!-- Main Navigation Link Columns (Exact dkoder.co.in Link Groups) -->
+      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 py-12 border-b border-white/10">
+        
+        <!-- Brand Summary Column -->
+        <div class="col-span-2 md:col-span-4 lg:col-span-1 space-y-4">
+          <div class="flex items-center space-x-2">
+            <div class="w-9 h-9 rounded-xl bg-dkoder-yellow text-dkoder-dark flex items-center justify-center font-display font-black text-xl border border-dkoder-dark">
+              &gt;_
+            </div>
+            <span class="font-display font-black text-2xl text-white">dkoder</span>
+          </div>
+          <p class="text-xs text-dkoder-purpleSoft leading-relaxed pr-2">
+            Dkoder is a placement-readiness platform for students and colleges across India: real company questions, live coding practice, courses and campus programmes.
+          </p>
+          <div class="p-3 rounded-xl bg-white/[0.05] border border-white/10 text-xs">
+            <span class="font-bold text-white block mb-0.5"><i class="fa-solid fa-location-dot text-dkoder-yellow mr-1"></i> Our Office</span>
+            <span class="text-dkoder-purpleAccent text-[11px]">Bangalore Tech Hub, Karnataka, India</span>
+          </div>
+        </div>
+
+        <!-- Column 1: For students -->
+        <div class="space-y-3">
+          <p class="font-display font-bold text-sm text-white flex items-center">
+            <i class="fa-solid fa-user-graduate text-dkoder-yellow mr-2"></i> For students
+          </p>
+          <ul class="space-y-2 text-xs">
+            <li><a href="https://dkoder.co.in/practice" class="hover:text-dkoder-yellow transition-colors">Practice</a></li>
+            <li><a href="https://dkoder.co.in/practice/coding" class="hover:text-dkoder-yellow transition-colors">Coding practice</a></li>
+            <li><a href="https://dkoder.co.in/practice/platforms" class="hover:text-dkoder-yellow transition-colors">Platform arena</a></li>
+            <li><a href="https://dkoder.co.in/challenges" class="hover:text-dkoder-yellow transition-colors">Challenges</a></li>
+            <li><a href="https://dkoder.co.in/leaderboard" class="hover:text-dkoder-yellow transition-colors">Leaderboard</a></li>
+            <li><a href="https://dkoder.co.in/learn/courses" class="hover:text-dkoder-yellow transition-colors">Courses</a></li>
+            <li><a href="https://dkoder.co.in/pricing" class="hover:text-dkoder-yellow transition-colors">Pricing</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 2: For institutions -->
+        <div class="space-y-3">
+          <p class="font-display font-bold text-sm text-white flex items-center">
+            <i class="fa-solid fa-school text-dkoder-yellow mr-2"></i> For institutions
+          </p>
+          <ul class="space-y-2 text-xs">
+            <li><a href="https://dkoder.co.in/colleges" class="hover:text-dkoder-yellow transition-colors">Dkoder for colleges</a></li>
+            <li><a href="https://dkoder.co.in/partner-mou" class="hover:text-dkoder-yellow text-dkoder-yellow font-bold transition-colors">Apply for MOU</a></li>
+            <li><a href="https://dkoder.co.in/hackathons/100-days" class="hover:text-dkoder-yellow transition-colors">Host a hackathon</a></li>
+            <li><a href="https://dkoder.co.in/hackathons/100-days/benefits" class="hover:text-dkoder-yellow transition-colors">Benefits for institutions</a></li>
+            <li><a href="https://dkoder.co.in/auth/institution" class="hover:text-dkoder-yellow transition-colors">Institution sign-in</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Programmes -->
+        <div class="space-y-3">
+          <p class="font-display font-bold text-sm text-white flex items-center">
+            <i class="fa-solid fa-trophy text-dkoder-yellow mr-2"></i> Programmes
+          </p>
+          <ul class="space-y-2 text-xs">
+            <li><a href="https://dkoder.co.in/hackathons" class="hover:text-dkoder-yellow transition-colors">Hackathons</a></li>
+            <li><a href="https://dkoder.co.in/hackathons/100-days" class="hover:text-dkoder-yellow transition-colors">100 Days of Sustainability</a></li>
+            <li><a href="https://dkoder.co.in/final-year-projects" class="hover:text-dkoder-yellow transition-colors">Final Year Projects</a></li>
+            <li><a href="https://dkoder.co.in/certifications/topic" class="hover:text-dkoder-yellow transition-colors">Topic certifications</a></li>
+            <li><a href="https://dkoder.co.in/certifications/technology" class="hover:text-dkoder-yellow transition-colors">Technology certifications</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Help & support -->
+        <div class="space-y-3">
+          <p class="font-display font-bold text-sm text-white flex items-center">
+            <i class="fa-solid fa-headset text-dkoder-yellow mr-2"></i> Help &amp; support
+          </p>
+          <ul class="space-y-2 text-xs">
+            <li><a href="mailto:support@dkoder.co.in" class="hover:text-dkoder-yellow transition-colors">Contact support</a></li>
+            <li><a href="https://wa.me/919845000000?text=Hi%20Dkoder%20team%2C%20I%20have%20a%20question." target="_blank" rel="noopener noreferrer" class="hover:text-dkoder-yellow transition-colors">Chat on WhatsApp</a></li>
+            <li><a href="https://dkoder.co.in/dashboard" class="hover:text-dkoder-yellow transition-colors">Go to Dashboard</a></li>
+            <li><a href="https://dkoder.co.in/auth/login" class="hover:text-dkoder-yellow transition-colors">Sign in</a></li>
+            <li><a href="https://dkoder.co.in/auth/signup" class="hover:text-dkoder-yellow transition-colors">Create an account</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Statutory Recognitions & Registrations Strip (From dkoder.co.in) -->
+      <div class="py-10 border-b border-white/10">
+        <p class="text-xs font-bold uppercase tracking-widest text-dkoder-yellow mb-4 font-space flex items-center">
+          <i class="fa-solid fa-stamp mr-2 text-sm"></i> Recognitions &amp; Registrations
+        </p>
+        
+        <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2 text-center text-[11px] font-bold text-dkoder-purple">
+          <div class="bg-white rounded-xl p-2.5 flex flex-col items-center justify-center border border-white/20">
+            <i class="fa-solid fa-building text-base mb-1 text-dkoder-purple"></i>
+            <span>Ministry of MSME</span>
+          </div>
+          <div class="bg-white rounded-xl p-2.5 flex flex-col items-center justify-center border border-white/20">
+            <i class="fa-solid fa-rocket text-base mb-1 text-dkoder-purple"></i>
+            <span>DPIIT Startup India</span>
+          </div>
+          <div class="bg-white rounded-xl p-2.5 flex flex-col items-center justify-center border border-white/20">
+            <i class="fa-solid fa-certificate text-base mb-1 text-dkoder-purple"></i>
+            <span>ISO 9001:2015</span>
+          </div>
+          <div class="bg-white rounded-xl p-2.5 flex flex-col items-center justify-center border border-white/20">
+            <i class="fa-solid fa-scale-balanced text-base mb-1 text-dkoder-purple"></i>
+            <span>Ministry of Corporate Affairs</span>
+          </div>
+          <div class="bg-white rounded-xl p-2.5 flex flex-col items-center justify-center border border-white/20">
+            <i class="fa-solid fa-university text-base mb-1 text-dkoder-purple"></i>
+            <span>AICTE Internship Portal</span>
+          </div>
+          <div class="bg-white rounded-xl p-2.5 flex flex-col items-center justify-center border border-white/20">
+            <i class="fa-solid fa-briefcase text-base mb-1 text-dkoder-purple"></i>
+            <span>National Career Service</span>
+          </div>
+          <div class="bg-white rounded-xl p-2.5 flex flex-col items-center justify-center border border-white/20">
+            <i class="fa-solid fa-handshake text-base mb-1 text-dkoder-purple"></i>
+            <span>NAPS Registered</span>
+          </div>
+          <div class="bg-white rounded-xl p-2.5 flex flex-col items-center justify-center border border-white/20">
+            <i class="fa-solid fa-graduation-cap text-base mb-1 text-dkoder-purple"></i>
+            <span>Skill India Mission</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Copyright & Bottom Bar -->
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-dkoder-purpleAccent space-y-4 sm:space-y-0">
+        <div>
+          &copy; 2026 Dkoder Platforms Inc. All rights reserved. · <span class="text-white font-medium">Practice · Learn · Achieve</span>
+        </div>
+        <div class="flex items-center space-x-6">
+          <a href="#" class="hover:text-white">Privacy Policy</a>
+          <a href="#" class="hover:text-white">Terms of Service</a>
+          <button onclick="window.scrollTo({top:0, behavior:'smooth'})" class="btn-brutal inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-full border border-white/20 text-white hover:bg-white/10">
+            <i class="fa-solid fa-arrow-up text-[10px]"></i>
+            <span>Back to top</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ========================================================================= -->
+  <!-- 11. INTERACTIVE SCRIPT LOGIC (FILTERING, WORRY SELECTOR & FORM HANDLERS)   -->
+  <!-- ========================================================================= -->
+  <script>
+    // --- Mobile Menu Toggle ---
+    const mobileBtn = document.getElementById('mobile-toggle-btn');
+    const mobileDrawer = document.getElementById('mobile-drawer');
+    const mobileIcon = document.getElementById('mobile-icon');
+
+    if (mobileBtn && mobileDrawer) {
+      mobileBtn.addEventListener('click', () => {
+        const isHidden = mobileDrawer.classList.contains('hidden');
+        if (isHidden) {
+          mobileDrawer.classList.remove('hidden');
+          mobileIcon.classList.remove('fa-bars');
+          mobileIcon.classList.add('fa-xmark');
+        } else {
+          mobileDrawer.classList.add('hidden');
+          mobileIcon.classList.remove('fa-xmark');
+          mobileIcon.classList.add('fa-bars');
+        }
+      });
+    }
+
+    // --- Interactive Practice Filter Simulator ---
+    const companyMockData = {
+      'Zoho': {
+        title: 'Zoho · 6 – 10 LPA Targeted Prep',
+        count: '18 Curated Questions',
+        q1: 'String Pattern Expansion with Bracket Multipliers',
+        q2: 'Find Disappeared Numbers & Duplicate In-Place',
+        q3: 'Pointer Arithmetic & Struct Alignment in C'
+      },
+      'TCS': {
+        title: 'TCS NQT · 3 – 7 LPA Targeted Prep',
+        count: '42 Curated Questions',
+        q1: 'Prime Pair Distance & Segmented Sieve',
+        q2: 'Matrix Spiral Boundary Traversal in C++',
+        q3: 'Permutations & Combinations Aptitude Set #3'
+      },
+      'Amazon': {
+        title: 'Amazon SDE-1 · 14 – 45 LPA Super Dream Prep',
+        count: '34 Curated Questions',
+        q1: 'Rotten Oranges Graph BFS with Multi-Source Queue',
+        q2: 'Sliding Window Maximum using Deque O(N)',
+        q3: 'Word Break Problem with Dynamic Programming'
+      },
+      'Infosys': {
+        title: 'Infosys SP/DSE · 6.5 – 9.5 LPA Targeted Prep',
+        count: '24 Curated Questions',
+        q1: 'Longest Consecutive Subsequence with Hash Set',
+        q2: 'Subarray Sum Divisible by K',
+        q3: 'Object Oriented Inheritance & Virtual Functions'
+      }
+    };
+
+    // --- Hero Goal Interactive Switcher ---
+    const heroGoalData = {
+      'zoho': {
+        student1: '&ldquo;I have a dream to get placed with a <strong class="text-dkoder-yellow">₹10 LPA package</strong> at Zoho. Can you help me?&rdquo;',
+        bot1: '&ldquo;Of course! Zoho looks for strong foundations in C/C++/Java, matrix/string manipulation, and clean problem solving without shortcuts. I will frame a <strong class="text-dkoder-yellow">personalized Zoho roadmap</strong> for you.&rdquo;',
+        student2: '&ldquo;I practise coding every day, but I don’t have a clear target. Can I crack <strong class="text-dkoder-yellow">Zoho Round 2 &amp; Round 3</strong>?&rdquo;',
+        bot2: '&ldquo;Yes! We filter 18 curated Zoho interview questions. Target String Multipliers &amp; In-Place Arrays first to build momentum.&rdquo;'
+      },
+      'tcs': {
+        student1: '&ldquo;I want to clear <strong class="text-dkoder-yellow">TCS NQT &amp; Digital (₹7.5 LPA)</strong> in my campus day-1 drive. Can you guide me?&rdquo;',
+        bot1: '&ldquo;Absolutely. TCS NQT tests timed Numerical Ability, Reasoning, and Hands-on Coding. I will activate the <strong class="text-dkoder-yellow">TCS NQT National Qualifier Kit</strong> with 42 target questions.&rdquo;',
+        student2: '&ldquo;What if I struggle with the 15-minute speed constraints in the <strong class="text-dkoder-yellow">Advanced Coding Section</strong>?&rdquo;',
+        bot2: '&ldquo;Our live sandbox timer trains you on Prime Sieve and Matrix Traversal so you submit 100% testcases well within time.&rdquo;'
+      },
+      'amazon': {
+        student1: '&ldquo;My ambition is an <strong class="text-dkoder-yellow">Amazon SDE-1 package (₹28 – ₹45 LPA)</strong>. How do I start?&rdquo;',
+        bot1: '&ldquo;Amazon OA demands mastery of Multi-source BFS, Sliding Window Deque, Dynamic Programming, and 16 Leadership Principles. I will launch your <strong class="text-dkoder-yellow">Super Dream Assessment Protocol</strong>.&rdquo;',
+        student2: '&ldquo;Do I need LeetCode Hard or will <strong class="text-dkoder-yellow">Dkoder’s curated 34 Amazon problems</strong> be enough?&rdquo;',
+        bot2: '&ldquo;Dkoder cuts the noise. Practise the top 34 verified Amazon hiring questions and you will master 95% of actual OA patterns.&rdquo;'
+      }
+    };
+
+    function setHeroGoal(goalKey, el) {
+      document.querySelectorAll('.hero-goal-btn').forEach(btn => {
+        btn.classList.remove('bg-dkoder-yellow', 'text-dkoder-dark', 'border-dkoder-yellow', 'shadow-sm');
+        btn.classList.add('bg-white/10', 'text-white', 'border-white/20');
+      });
+      el.classList.remove('bg-white/10', 'text-white', 'border-white/20');
+      el.classList.add('bg-dkoder-yellow', 'text-dkoder-dark', 'border-dkoder-yellow', 'shadow-sm');
+
+      const data = heroGoalData[goalKey];
+      if (data) {
+        document.getElementById('hero-dialogue-student-1').innerHTML = data.student1;
+        document.getElementById('hero-dialogue-bot-1').innerHTML = data.bot1;
+        document.getElementById('hero-dialogue-student-2').innerHTML = data.student2;
+        document.getElementById('hero-dialogue-bot-2').innerHTML = data.bot2;
+      }
+    }
+
+    function setFilterCompany(companyName, el) {
+      document.querySelectorAll('.company-chip').forEach(chip => {
+        chip.classList.remove('bg-dkoder-yellow', 'text-dkoder-dark', 'border-white', 'shadow-sm');
+        chip.classList.add('bg-[#2B1160]', 'text-white', 'border-white/20');
+      });
+      el.classList.remove('bg-[#2B1160]', 'text-white', 'border-white/20');
+      el.classList.add('bg-dkoder-yellow', 'text-dkoder-dark', 'border-white', 'shadow-sm');
+
+      const data = companyMockData[companyName] || companyMockData['Zoho'];
+      document.getElementById('display-target-title').innerText = data.title;
+      document.getElementById('active-match-count').innerText = data.count;
+      document.getElementById('q1-title').innerText = data.q1;
+      document.getElementById('q2-title').innerText = data.q2;
+      document.getElementById('q3-title').innerText = data.q3;
+    }
+
+    function setFilterPackage(pkgRange, el) {
+      document.querySelectorAll('.package-chip').forEach(chip => {
+        chip.classList.remove('bg-dkoder-yellow', 'text-dkoder-dark', 'border-white', 'shadow-sm');
+        chip.classList.add('bg-[#2B1160]', 'text-white', 'border-white/20');
+      });
+      el.classList.remove('bg-[#2B1160]', 'text-white', 'border-white/20');
+      el.classList.add('bg-dkoder-yellow', 'text-dkoder-dark', 'border-white', 'shadow-sm');
+    }
+
+    // --- Interactive Worry Selector ---
+    function selectWorry(el, solutionText) {
+      document.querySelectorAll('.worry-card').forEach(card => {
+        card.classList.remove('bg-dkoder-yellow', 'text-dkoder-dark', 'border-white');
+        card.classList.add('bg-[#280F57]', 'text-white', 'border-white/20');
+        const icon = card.querySelector('i');
+        if (icon) {
+          icon.className = 'fa-solid fa-chevron-right text-xs text-dkoder-yellow';
+        }
+      });
+
+      el.classList.remove('bg-[#280F57]', 'text-white', 'border-white/20');
+      el.classList.add('bg-dkoder-yellow', 'text-dkoder-dark', 'border-white');
+      const activeIcon = el.querySelector('i');
+      if (activeIcon) {
+        activeIcon.className = 'fa-solid fa-circle-check text-dkoder-dark';
+      }
+
+      const solBox = document.getElementById('worry-solution-text');
+      if (solBox) solBox.innerText = solutionText;
+    }
+
+    // --- Leaderboard Tab Switcher ---
+    function setBoardMode(mode, el) {
+      document.querySelectorAll('.lb-tab').forEach(tab => {
+        tab.classList.remove('bg-dkoder-yellow', 'text-dkoder-dark');
+        tab.classList.add('text-dkoder-purpleSoft');
+      });
+      el.classList.add('bg-dkoder-yellow', 'text-dkoder-dark');
+      el.classList.remove('text-dkoder-purpleSoft');
+    }
+
+    // --- Campus MOU Form Submission ---
+    function handleMouSubmit(event) {
+      event.preventDefault();
+      const btn = document.getElementById('mou-btn');
+      const feedback = document.getElementById('mou-feedback');
+      const refCode = document.getElementById('mou-ref-code');
+
+      btn.disabled = true;
+      btn.innerText = 'Transmitting Institutional MoU Request...';
+
+      setTimeout(() => {
+        const genRef = 'DK-MOU-' + Math.floor(10000 + Math.random() * 90000);
+        if (refCode) refCode.innerText = genRef;
+        if (feedback) feedback.classList.remove('hidden');
+
+        btn.disabled = false;
+        btn.innerText = 'Application Dispatched Successfully ✓';
+        btn.classList.remove('bg-dkoder-yellow');
+        btn.classList.add('bg-emerald-400');
+      }, 1000);
+    }
+  </script>
+</body>
+</html>
