@@ -15,6 +15,13 @@
   <!-- FontAwesome 6 CDN -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+  <!-- Chart.js & Confetti for DKoder 2.0 Visualizations -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+  <!-- DKoder 2.0 Custom Styles & Keyframe Animations -->
+  <link rel="stylesheet" href="assets/css/dkoder-2.css" />
+
   <!-- Tailwind CSS CDN with Authentic Dkoder Yellow & Purple Palette -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -184,7 +191,7 @@
       <div class="flex items-center justify-between h-20">
         
         <!-- Brand Logo (Official Dkoder Link) -->
-        <a href="https://dkoder.co.in/" class="flex items-center space-x-3 group focus:outline-none" title="Dkoder Home">
+        <a href="#home" onclick="DKoderApp.closeWorkspace(); return false;" class="flex items-center space-x-3 group focus:outline-none" title="Dkoder Home">
           <div class="w-11 h-11 rounded-2xl bg-dkoder-yellow border-2 border-white shadow-brutal-sm flex items-center justify-center text-dkoder-dark group-hover:scale-105 transition-transform shadow-[0_0_15px_rgba(252,196,25,0.4)]">
             <span class="font-display font-black text-2xl tracking-tighter">&gt;_</span>
           </div>
@@ -197,114 +204,184 @@
           </div>
         </a>
 
-        <!-- Desktop Navigation Items with Official Links -->
-        <nav class="hidden lg:flex items-center space-x-1 xl:space-x-2">
+        <!-- Desktop Navigation Items with Official Links & 10 Advanced Modules -->
+        <nav class="hidden lg:flex items-center space-x-1 xl:space-x-1.5">
           <!-- 1. Home -->
-          <a href="https://dkoder.co.in/" class="px-3.5 py-2 rounded-full font-bold text-sm text-dkoder-dark bg-dkoder-yellow border-2 border-white shadow-brutal-sm">
+          <a href="#home" onclick="DKoderApp.closeWorkspace()" class="px-3 py-1.5 rounded-full font-bold text-xs text-dkoder-dark bg-dkoder-yellow border-2 border-white shadow-brutal-sm hover:scale-105 transition-transform">
             Home
           </a>
 
-          <!-- 2. Learn (Official Link & Dropdown) -->
-          <div class="relative group" id="learn-dropdown">
-            <a href="https://dkoder.co.in/learn/courses" class="px-3.5 py-2 rounded-full font-semibold text-sm text-white hover:text-dkoder-yellow hover:bg-white/10 transition-colors flex items-center space-x-1.5 no-underline">
-              <span>Learn</span>
-              <i class="fa-solid fa-chevron-down text-xs opacity-70 group-hover:rotate-180 transition-transform"></i>
-            </a>
-            <div class="absolute left-0 mt-2 w-72 bg-[#1E0D47] border-2 border-dkoder-yellow/40 rounded-2xl p-2.5 shadow-brutal opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50">
-              <div class="px-3 py-1 text-[10px] font-extrabold uppercase tracking-widest text-dkoder-yellow font-space">Official Learn Directory</div>
-              <a href="https://dkoder.co.in/learn/courses" class="flex items-start space-x-3 p-2.5 rounded-xl hover:bg-white/10 transition-colors">
-                <span class="w-8 h-8 rounded-lg bg-dkoder-yellow border border-white flex items-center justify-center text-xs font-bold shrink-0 text-dkoder-dark">
-                  <i class="fa-solid fa-laptop-code"></i>
-                </span>
+          <!-- 2. DKoder 2.0 Super Suite (10 Features Dropdown) -->
+          <div class="relative group" id="dkoder2-suite-dropdown">
+            <button class="px-3 py-1.5 rounded-full font-extrabold text-xs text-dkoder-dark bg-gradient-to-r from-dkoder-yellow via-[#FFE066] to-dkoder-yellow border-2 border-white shadow-brutal-sm hover:scale-105 transition-transform flex items-center space-x-1.5">
+              <i class="fa-solid fa-sparkles text-xs animate-pulse text-dkoder-purple"></i>
+              <span>DKoder 2.0</span>
+              <span class="bg-[#12052B] text-dkoder-yellow px-1.5 py-0.2 rounded-full text-[9px] font-black uppercase">10 Features</span>
+              <i class="fa-solid fa-chevron-down text-[10px] opacity-75 group-hover:rotate-180 transition-transform"></i>
+            </button>
+            <div class="absolute left-0 mt-2 w-80 bg-[#17062e] border-2 border-dkoder-yellow/50 rounded-2xl p-2 shadow-[0_10px_35px_rgba(0,0,0,0.8)] opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50 max-h-[85vh] overflow-y-auto">
+              <div class="px-3 py-1 text-[10px] font-extrabold uppercase tracking-widest text-dkoder-yellow font-space border-b border-white/10 mb-1">
+                AI Coding &amp; Placement Suite
+              </div>
+              <a href="#ai-mentor" onclick="DKoderApp.openWorkspace('ai-mentor')" class="flex items-center space-x-2.5 p-2 rounded-xl hover:bg-white/10 transition-colors">
+                <span class="w-7 h-7 rounded-lg bg-dkoder-yellow text-dkoder-dark flex items-center justify-center text-xs font-bold shrink-0"><i class="fa-solid fa-robot"></i></span>
                 <div>
-                  <p class="font-bold text-xs text-white">Courses</p>
-                  <p class="text-[11px] text-dkoder-purpleSoft">Skill-based placement modules</p>
+                  <p class="font-bold text-xs text-white">1. DKoder AI Mentor</p>
+                  <p class="text-[10px] text-dkoder-purpleSoft">Line-by-line tutor &amp; compiler diagnostics</p>
                 </div>
               </a>
-              <a href="https://dkoder.co.in/learn/events" class="flex items-start space-x-3 p-2.5 rounded-xl hover:bg-white/10 transition-colors">
-                <span class="w-8 h-8 rounded-lg bg-dkoder-yellow/20 border border-dkoder-yellow/40 flex items-center justify-center text-xs font-bold shrink-0 text-dkoder-yellow">
-                  <i class="fa-solid fa-calendar-check"></i>
-                </span>
+              <a href="#codelab" onclick="DKoderApp.openWorkspace('codelab')" class="flex items-center space-x-2.5 p-2 rounded-xl hover:bg-white/10 transition-colors">
+                <span class="w-7 h-7 rounded-lg bg-emerald-400 text-dkoder-dark flex items-center justify-center text-xs font-bold shrink-0"><i class="fa-solid fa-code"></i></span>
                 <div>
-                  <p class="font-bold text-xs text-white">Events &amp; Workshops</p>
-                  <p class="text-[11px] text-dkoder-purpleSoft">Live company prep sessions</p>
+                  <p class="font-bold text-xs text-white">2. DKoder CodeLab IDE</p>
+                  <p class="text-[10px] text-dkoder-purpleSoft">Isolated compiler (Python, C++, Java, SQL)</p>
                 </div>
               </a>
-              <a href="https://dkoder.co.in/learn/resources" class="flex items-start space-x-3 p-2.5 rounded-xl hover:bg-white/10 transition-colors">
-                <span class="w-8 h-8 rounded-lg bg-dkoder-yellow/20 border border-dkoder-yellow/40 flex items-center justify-center text-xs font-bold shrink-0 text-dkoder-yellow">
-                  <i class="fa-solid fa-folder-open"></i>
-                </span>
+              <a href="#roadmap" onclick="DKoderApp.openWorkspace('roadmap')" class="flex items-center space-x-2.5 p-2 rounded-xl hover:bg-white/10 transition-colors">
+                <span class="w-7 h-7 rounded-lg bg-blue-400 text-dkoder-dark flex items-center justify-center text-xs font-bold shrink-0"><i class="fa-solid fa-map-location-dot"></i></span>
                 <div>
-                  <p class="font-bold text-xs text-white">Resources</p>
-                  <p class="text-[11px] text-dkoder-purpleSoft">Interview cheat sheets &amp; guides</p>
+                  <p class="font-bold text-xs text-white">3. My Placement Roadmap</p>
+                  <p class="text-[10px] text-dkoder-purpleSoft">Personalized 12-category company goal plan</p>
                 </div>
               </a>
-              <a href="https://dkoder.co.in/final-year-projects" class="flex items-start space-x-3 p-2.5 rounded-xl hover:bg-white/10 transition-colors">
-                <span class="w-8 h-8 rounded-lg bg-dkoder-yellow border border-white flex items-center justify-center text-xs font-bold shrink-0 text-dkoder-dark">
-                  <i class="fa-solid fa-graduation-cap"></i>
-                </span>
+              <a href="#analytics" onclick="DKoderApp.openWorkspace('analytics')" class="flex items-center space-x-2.5 p-2 rounded-xl hover:bg-white/10 transition-colors">
+                <span class="w-7 h-7 rounded-lg bg-amber-400 text-dkoder-dark flex items-center justify-center text-xs font-bold shrink-0"><i class="fa-solid fa-chart-line"></i></span>
                 <div>
-                  <p class="font-bold text-xs text-white">Final Year Projects</p>
-                  <p class="text-[11px] text-dkoder-purpleSoft">Guidance, mentor &amp; publication</p>
+                  <p class="font-bold text-xs text-white">4. Smart Student Analytics</p>
+                  <p class="text-[10px] text-dkoder-purpleSoft">Streaks, success rates &amp; interactive charts</p>
                 </div>
               </a>
-              <div class="border-t border-white/15 my-1"></div>
-              <div class="px-3 py-1 text-[10px] font-extrabold uppercase tracking-widest text-dkoder-yellow font-space">Certifications</div>
-              <a href="https://dkoder.co.in/certifications/topic" class="flex items-center space-x-2 px-3 py-1.5 rounded-lg text-xs font-bold text-white hover:text-dkoder-yellow hover:bg-white/10 transition-colors">
-                <i class="fa-solid fa-award text-sm text-dkoder-yellow"></i>
-                <span>Topic Wise Certifications</span>
+              <a href="#interview" onclick="DKoderApp.openWorkspace('interview')" class="flex items-center space-x-2.5 p-2 rounded-xl hover:bg-white/10 transition-colors">
+                <span class="w-7 h-7 rounded-lg bg-pink-400 text-dkoder-dark flex items-center justify-center text-xs font-bold shrink-0"><i class="fa-solid fa-microphone-lines"></i></span>
+                <div>
+                  <p class="font-bold text-xs text-white">5. AI Interview Studio</p>
+                  <p class="text-[10px] text-dkoder-purpleSoft">Voice/Text technical, HR &amp; behavioral mocks</p>
+                </div>
               </a>
-              <a href="https://dkoder.co.in/certifications/technology" class="flex items-center space-x-2 px-3 py-1.5 rounded-lg text-xs font-bold text-white hover:text-dkoder-yellow hover:bg-white/10 transition-colors">
-                <i class="fa-solid fa-microchip text-sm text-dkoder-yellow"></i>
-                <span>Technology Wise Certifications</span>
+              <a href="#arena" onclick="DKoderApp.openWorkspace('arena')" class="flex items-center space-x-2.5 p-2 rounded-xl hover:bg-white/10 transition-colors">
+                <span class="w-7 h-7 rounded-lg bg-orange-400 text-dkoder-dark flex items-center justify-center text-xs font-bold shrink-0"><i class="fa-solid fa-trophy"></i></span>
+                <div>
+                  <p class="font-bold text-xs text-white">6. DKoder Arena</p>
+                  <p class="text-[10px] text-dkoder-purpleSoft">Live competitions &amp; real-time podium</p>
+                </div>
+              </a>
+              <a href="#skills" onclick="DKoderApp.openWorkspace('skills')" class="flex items-center space-x-2.5 p-2 rounded-xl hover:bg-white/10 transition-colors">
+                <span class="w-7 h-7 rounded-lg bg-teal-400 text-dkoder-dark flex items-center justify-center text-xs font-bold shrink-0"><i class="fa-solid fa-bullseye"></i></span>
+                <div>
+                  <p class="font-bold text-xs text-white">7. Skill Gap Analyzer</p>
+                  <p class="text-[10px] text-dkoder-purpleSoft">Diagnostics across 14 CS &amp; aptitude skills</p>
+                </div>
+              </a>
+              <a href="#community" onclick="DKoderApp.openWorkspace('community')" class="flex items-center space-x-2.5 p-2 rounded-xl hover:bg-white/10 transition-colors">
+                <span class="w-7 h-7 rounded-lg bg-purple-400 text-dkoder-dark flex items-center justify-center text-xs font-bold shrink-0"><i class="fa-solid fa-users"></i></span>
+                <div>
+                  <p class="font-bold text-xs text-white">8. Student Community</p>
+                  <p class="text-[10px] text-dkoder-purpleSoft">Discussions, reactions, study groups &amp; boards</p>
+                </div>
+              </a>
+              <a href="#career" onclick="DKoderApp.openWorkspace('career')" class="flex items-center space-x-2.5 p-2 rounded-xl hover:bg-white/10 transition-colors">
+                <span class="w-7 h-7 rounded-lg bg-indigo-400 text-white flex items-center justify-center text-xs font-bold shrink-0"><i class="fa-solid fa-id-card-clip"></i></span>
+                <div>
+                  <p class="font-bold text-xs text-white">9. Career Profile</p>
+                  <p class="text-[10px] text-dkoder-purpleSoft">ATS Resume Builder &amp; Portfolio Generator</p>
+                </div>
+              </a>
+              <a href="#admin" id="nav-admin-link" onclick="DKoderApp.openWorkspace('admin')" class="flex items-center space-x-2.5 p-2 rounded-xl hover:bg-white/10 transition-colors border-t border-white/10 mt-1">
+                <span class="w-7 h-7 rounded-lg bg-rose-500 text-white flex items-center justify-center text-xs font-bold shrink-0"><i class="fa-solid fa-shield-halved"></i></span>
+                <div>
+                  <p class="font-bold text-xs text-white">10. Admin Command Center</p>
+                  <p class="text-[10px] text-dkoder-purpleSoft">Role management, questions &amp; audit log</p>
+                </div>
               </a>
             </div>
           </div>
 
-          <!-- 3. Hackathons (Official Link) -->
-          <a href="https://dkoder.co.in/hackathons" class="px-3.5 py-2 rounded-full font-semibold text-sm text-white hover:text-dkoder-yellow hover:bg-white/10 transition-colors flex items-center space-x-1.5">
-            <span>Hackathons</span>
-            <span class="inline-flex items-center px-1.5 py-0.2 rounded-full bg-dkoder-yellow text-[9px] font-black uppercase tracking-wider text-dkoder-dark">
+          <!-- 3. Learn & Placement Tracks -->
+          <div class="relative group" id="learn-dropdown">
+            <button onclick="DKoderApp.openWorkspace('roadmap')" class="px-3 py-1.5 rounded-full font-semibold text-xs text-white hover:text-dkoder-yellow hover:bg-white/10 transition-colors flex items-center space-x-1.5 no-underline">
+              <i class="fa-solid fa-graduation-cap text-dkoder-yellow text-xs"></i>
+              <span>Learn</span>
+              <i class="fa-solid fa-chevron-down text-[10px] opacity-70 group-hover:rotate-180 transition-transform"></i>
+            </button>
+            <div class="absolute left-0 mt-2 w-72 bg-[#1E0D47] border-2 border-dkoder-yellow/40 rounded-2xl p-2.5 shadow-brutal opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50">
+              <div class="px-3 py-1 text-[10px] font-extrabold uppercase tracking-widest text-dkoder-yellow font-space">DKoder Learning Modules</div>
+              <a href="#roadmap" onclick="DKoderApp.openWorkspace('roadmap'); return false;" class="flex items-start space-x-3 p-2 rounded-xl hover:bg-white/10 transition-colors">
+                <span class="w-7 h-7 rounded-lg bg-dkoder-yellow border border-white flex items-center justify-center text-xs font-bold shrink-0 text-dkoder-dark">
+                  <i class="fa-solid fa-map-location-dot"></i>
+                </span>
+                <div>
+                  <p class="font-bold text-xs text-white">Placement Roadmap (12 Tracks)</p>
+                  <p class="text-[11px] text-dkoder-purpleSoft">Company study plans &amp; milestones</p>
+                </div>
+              </a>
+              <a href="#codelab" onclick="DKoderApp.openWorkspace('codelab'); return false;" class="flex items-start space-x-3 p-2 rounded-xl hover:bg-white/10 transition-colors">
+                <span class="w-7 h-7 rounded-lg bg-emerald-400 border border-white flex items-center justify-center text-xs font-bold shrink-0 text-dkoder-dark">
+                  <i class="fa-solid fa-code"></i>
+                </span>
+                <div>
+                  <p class="font-bold text-xs text-white">CodeLab Interactive IDE</p>
+                  <p class="text-[11px] text-dkoder-purpleSoft">Multi-language compiler &amp; practice</p>
+                </div>
+              </a>
+              <a href="#ai-mentor" onclick="DKoderApp.openWorkspace('ai-mentor'); return false;" class="flex items-start space-x-3 p-2 rounded-xl hover:bg-white/10 transition-colors">
+                <span class="w-7 h-7 rounded-lg bg-blue-400 border border-white flex items-center justify-center text-xs font-bold shrink-0 text-dkoder-dark">
+                  <i class="fa-solid fa-robot"></i>
+                </span>
+                <div>
+                  <p class="font-bold text-xs text-white">AI Code Tutor &amp; Mentor</p>
+                  <p class="text-[11px] text-dkoder-purpleSoft">Concept explanations &amp; debugging</p>
+                </div>
+              </a>
+              <a href="#skills" onclick="DKoderApp.openWorkspace('skills'); return false;" class="flex items-start space-x-3 p-2 rounded-xl hover:bg-white/10 transition-colors">
+                <span class="w-7 h-7 rounded-lg bg-teal-400 border border-white flex items-center justify-center text-xs font-bold shrink-0 text-dkoder-dark">
+                  <i class="fa-solid fa-bullseye"></i>
+                </span>
+                <div>
+                  <p class="font-bold text-xs text-white">Skill Gap Diagnostics</p>
+                  <p class="text-[11px] text-dkoder-purpleSoft">14 core CS competencies</p>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <!-- 4. Arena LIVE -->
+          <a href="#arena" onclick="DKoderApp.openWorkspace('arena'); return false;" class="px-3.5 py-1.5 rounded-full font-extrabold text-xs text-dkoder-dark bg-dkoder-yellow border-2 border-white shadow-brutal-sm hover:scale-105 transition-all flex items-center space-x-1.5 cursor-pointer">
+            <i class="fa-solid fa-trophy text-xs"></i>
+            <span>Arena</span>
+            <span class="inline-flex items-center px-1.5 py-0.2 rounded-full bg-[#12052B] text-[9px] font-black uppercase tracking-wider text-dkoder-yellow animate-pulse">
               LIVE
             </span>
           </a>
 
-          <!-- 4. For Colleges (Official Link) -->
-          <a href="https://dkoder.co.in/colleges" class="px-3.5 py-2 rounded-full font-semibold text-sm text-white hover:text-dkoder-yellow hover:bg-white/10 transition-colors">
+          <!-- 5. For Colleges (Stays on website, scrolls to Section) -->
+          <a href="#college-mou" onclick="DKoderApp.scrollToCollegeMOU(event);" class="px-3 py-1.5 rounded-full font-semibold text-xs text-white hover:text-dkoder-yellow hover:bg-white/10 transition-colors cursor-pointer">
             For Colleges
           </a>
 
-          <!-- 5. Apply for MOU (Official Link) -->
-          <a href="https://dkoder.co.in/partner-mou" class="px-3.5 py-2 rounded-full font-semibold text-sm text-white hover:text-dkoder-yellow hover:bg-white/10 transition-colors">
+          <!-- 6. Apply for MOU -->
+          <a href="#college-mou" onclick="DKoderApp.scrollToCollegeMOU(event);" class="px-3 py-1.5 rounded-full font-semibold text-xs text-white hover:text-dkoder-yellow hover:bg-white/10 transition-colors cursor-pointer">
             Apply for MOU
           </a>
         </nav>
 
-        <!-- Right Side CTA Cluster: Dashboard + Sign In + Apply for MOU -->
-        <div class="hidden sm:flex items-center space-x-2.5">
-          <!-- Official Go to Dashboard Button -->
-          <a href="https://dkoder.co.in/dashboard" 
-             id="nav-dashboard-btn"
-             title="Go to Official Dkoder Dashboard"
-             class="flex items-center gap-2 whitespace-nowrap rounded-full border-2 border-dkoder-yellow/50 bg-[#1E0D47] px-4 py-2.5 text-sm font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#FCC419] active:translate-y-0">
-            <i class="fa-solid fa-gauge-high text-dkoder-yellow text-xs"></i>
-            <span class="hidden md:inline">Go to Dashboard</span>
-            <span class="md:hidden">Dashboard</span>
-          </a>
+        <!-- Right Side Cluster: User Session Capsule + Sign In / Switch -->
+        <div class="hidden sm:flex items-center space-x-2">
+          <!-- Live User Capsule (Rendered by DKoderApp) -->
+          <div id="user-session-capsule">
+            <button onclick="DKoderApp.openAuthModal()" class="px-3 py-1.5 rounded-full font-bold text-xs text-dkoder-dark bg-dkoder-yellow border border-white flex items-center space-x-1 shadow-sm">
+              <i class="fa-solid fa-user-circle"></i>
+              <span>Sign In / Demo</span>
+            </button>
+          </div>
 
-          <!-- Sign In -->
-          <a href="https://dkoder.co.in/auth/login" class="px-3 py-2 font-bold text-sm text-white hover:text-dkoder-yellow transition-colors">
-            Sign In
-          </a>
-          
           <!-- Apply for MOU Highlighted Button -->
-          <a href="https://dkoder.co.in/partner-mou" 
+          <a href="#college-mou" 
              id="nav-partner-mou-btn"
              data-tracking="partner-mou"
-             class="btn-brutal inline-flex items-center space-x-1.5 px-4 xl:px-5 py-2.5 rounded-full font-extrabold text-sm text-dkoder-dark bg-dkoder-yellow border-2 border-white shadow-[3px_3px_0_0_#fff] hover:shadow-[5px_5px_0_0_#fff] transition-all">
+             class="btn-brutal inline-flex items-center space-x-1 px-3.5 py-2 rounded-full font-extrabold text-xs text-dkoder-dark bg-dkoder-yellow border-2 border-white shadow-[2px_2px_0_0_#fff] hover:shadow-[4px_4px_0_0_#fff] transition-all">
             <i class="fa-solid fa-file-signature text-xs"></i>
-            <span>Apply for MOU</span>
-            <span class="ml-1 text-[10px] font-black uppercase tracking-wider bg-dkoder-dark text-dkoder-yellow px-1.5 py-0.5 rounded-full">
+            <span>MOU</span>
+            <span class="text-[9px] font-black uppercase tracking-wider bg-dkoder-dark text-dkoder-yellow px-1 py-0.5 rounded-full">
               Colleges
             </span>
           </a>
@@ -320,35 +397,110 @@
       </div>
     </div>
 
-    <!-- Mobile Drawer with Official Links (Yellow & Purple) -->
+    <!-- Mobile Drawer (100% Internal DKoder 2.0 Navigation) -->
     <div id="mobile-drawer" class="hidden lg:hidden border-t-2 border-dkoder-yellow/30 bg-[#160731] px-4 pt-3 pb-6 space-y-2">
-      <a href="https://dkoder.co.in/" class="block px-4 py-3 rounded-xl font-bold text-dkoder-dark bg-dkoder-yellow border-2 border-white shadow-brutal-sm">
+      <a href="#home" onclick="DKoderApp.closeWorkspace(); return false;" class="block px-4 py-3 rounded-xl font-bold text-dkoder-dark bg-dkoder-yellow border-2 border-white shadow-brutal-sm">
         Home
       </a>
-      <a href="https://dkoder.co.in/learn/courses" class="block px-4 py-3 rounded-xl font-semibold text-white hover:bg-white/10">
-        Learn (Courses, Events, Resources)
+      <a href="#roadmap" onclick="DKoderApp.openWorkspace('roadmap'); return false;" class="block px-4 py-3 rounded-xl font-semibold text-white hover:bg-white/10">
+        Placement Roadmap &amp; Learn
       </a>
-      <a href="https://dkoder.co.in/hackathons" class="block px-4 py-3 rounded-xl font-semibold text-white hover:bg-white/10 flex items-center justify-between">
-        <span>Hackathons</span>
+      <a href="#arena" onclick="DKoderApp.openWorkspace('arena'); return false;" class="block px-4 py-3 rounded-xl font-semibold text-white hover:bg-white/10 flex items-center justify-between">
+        <span>DKoder Arena Competitions</span>
         <span class="text-[9px] font-black uppercase tracking-wider bg-dkoder-yellow text-dkoder-dark px-2 py-0.5 rounded-full">LIVE</span>
       </a>
-      <a href="https://dkoder.co.in/colleges" class="block px-4 py-3 rounded-xl font-semibold text-white hover:bg-white/10">
+      <a href="#college-mou" onclick="DKoderApp.scrollToCollegeMOU(event);" class="block px-4 py-3 rounded-xl font-semibold text-white hover:bg-white/10">
         For Colleges
       </a>
-      <a href="https://dkoder.co.in/partner-mou" class="block px-4 py-3 rounded-xl font-semibold text-white hover:bg-white/10">
+      <a href="#college-mou" onclick="DKoderApp.scrollToCollegeMOU(event);" class="block px-4 py-3 rounded-xl font-semibold text-white hover:bg-white/10">
         Apply for MOU
       </a>
       <div class="pt-3 border-t-2 border-white/15 flex flex-col gap-2.5">
-        <a href="https://dkoder.co.in/dashboard" class="flex items-center justify-center gap-2 px-4 py-3 rounded-full font-bold text-dkoder-dark bg-dkoder-yellow border-2 border-white shadow-brutal">
-          <i class="fa-solid fa-gauge-high text-dkoder-dark text-sm"></i>
-          <span>Go to Official Dashboard</span>
+        <a href="#analytics" onclick="DKoderApp.openWorkspace('analytics'); return false;" class="flex items-center justify-center gap-2 px-4 py-3 rounded-full font-bold text-dkoder-dark bg-dkoder-yellow border-2 border-white shadow-brutal">
+          <i class="fa-solid fa-chart-line text-dkoder-dark text-sm"></i>
+          <span>Student Analytics Dashboard</span>
         </a>
-        <a href="https://dkoder.co.in/auth/login" class="text-center px-4 py-2.5 rounded-full font-bold text-white bg-white/10 border border-white/20">
-          Sign In
-        </a>
+        <button onclick="DKoderApp.openAuthModal();" class="text-center px-4 py-2.5 rounded-full font-bold text-white bg-white/10 border border-white/20">
+          Switch User / Sign In
+        </button>
       </div>
     </div>
   </header>
+
+  <!-- ========================================================================= -->
+  <!-- 0.5 INTERACTIVE FEATURE DEMO TOUR BAR (10 ADVANCED MODULES)               -->
+  <!-- ========================================================================= -->
+  <div class="bg-[#1C0A3F] border-b-2 border-dkoder-yellow/50 py-3 px-4 shadow-[0_4px_20px_rgba(0,0,0,0.5)] relative z-40">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3">
+      <div class="flex items-center space-x-2.5">
+        <span class="w-8 h-8 rounded-xl bg-dkoder-yellow text-dkoder-dark font-black flex items-center justify-center text-sm shadow-sm animate-bounce">
+          <i class="fa-solid fa-gamepad"></i>
+        </span>
+        <div>
+          <div class="flex items-center space-x-2">
+            <span class="text-xs font-black uppercase tracking-wider text-dkoder-yellow font-space">
+              Live Feature Demo Center
+            </span>
+            <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-400 text-dkoder-dark font-black">
+              100% Interactive
+            </span>
+          </div>
+          <p class="text-[11px] text-white/90">
+            Click any button below to launch a live working demo:
+          </p>
+        </div>
+      </div>
+      
+      <!-- 10 Quick Demo Action Buttons Strip -->
+      <div class="flex flex-wrap items-center gap-1.5 overflow-x-auto max-w-full pb-1 md:pb-0">
+        <button onclick="DKoderApp.runInteractiveDemo('ai-mentor')" class="px-2.5 py-1 rounded-lg bg-dkoder-yellow text-dkoder-dark font-extrabold text-[11px] hover:bg-white transition-all shadow-sm flex items-center space-x-1 cursor-pointer">
+          <i class="fa-solid fa-robot text-[10px]"></i>
+          <span>1. AI Mentor</span>
+        </button>
+        <button onclick="DKoderApp.runInteractiveDemo('codelab')" class="px-2.5 py-1 rounded-lg bg-emerald-400 text-dkoder-dark font-extrabold text-[11px] hover:bg-white transition-all shadow-sm flex items-center space-x-1 cursor-pointer">
+          <i class="fa-solid fa-code text-[10px]"></i>
+          <span>2. CodeLab</span>
+        </button>
+        <button onclick="DKoderApp.runInteractiveDemo('roadmap')" class="px-2.5 py-1 rounded-lg bg-blue-400 text-dkoder-dark font-extrabold text-[11px] hover:bg-white transition-all shadow-sm flex items-center space-x-1 cursor-pointer">
+          <i class="fa-solid fa-map-location-dot text-[10px]"></i>
+          <span>3. Roadmap</span>
+        </button>
+        <button onclick="DKoderApp.runInteractiveDemo('analytics')" class="px-2.5 py-1 rounded-lg bg-amber-400 text-dkoder-dark font-extrabold text-[11px] hover:bg-white transition-all shadow-sm flex items-center space-x-1 cursor-pointer">
+          <i class="fa-solid fa-chart-line text-[10px]"></i>
+          <span>4. Analytics</span>
+        </button>
+        <button onclick="DKoderApp.runInteractiveDemo('interview')" class="px-2.5 py-1 rounded-lg bg-pink-400 text-dkoder-dark font-extrabold text-[11px] hover:bg-white transition-all shadow-sm flex items-center space-x-1 cursor-pointer">
+          <i class="fa-solid fa-microphone text-[10px]"></i>
+          <span>5. Interview</span>
+        </button>
+        <button onclick="DKoderApp.runInteractiveDemo('arena')" class="px-2.5 py-1 rounded-lg bg-orange-400 text-dkoder-dark font-extrabold text-[11px] hover:bg-white transition-all shadow-sm flex items-center space-x-1 cursor-pointer">
+          <i class="fa-solid fa-trophy text-[10px]"></i>
+          <span>6. Arena (Live)</span>
+        </button>
+        <button onclick="DKoderApp.runInteractiveDemo('skills')" class="px-2.5 py-1 rounded-lg bg-teal-400 text-dkoder-dark font-extrabold text-[11px] hover:bg-white transition-all shadow-sm flex items-center space-x-1 cursor-pointer">
+          <i class="fa-solid fa-bullseye text-[10px]"></i>
+          <span>7. Skills</span>
+        </button>
+        <button onclick="DKoderApp.runInteractiveDemo('community')" class="px-2.5 py-1 rounded-lg bg-purple-400 text-dkoder-dark font-extrabold text-[11px] hover:bg-white transition-all shadow-sm flex items-center space-x-1 cursor-pointer">
+          <i class="fa-solid fa-users text-[10px]"></i>
+          <span>8. Community</span>
+        </button>
+        <button onclick="DKoderApp.runInteractiveDemo('career')" class="px-2.5 py-1 rounded-lg bg-indigo-400 text-white font-extrabold text-[11px] hover:bg-white hover:text-dkoder-dark transition-all shadow-sm flex items-center space-x-1 cursor-pointer">
+          <i class="fa-solid fa-id-card text-[10px]"></i>
+          <span>9. Resume</span>
+        </button>
+        <button onclick="DKoderApp.runInteractiveDemo('admin')" class="px-2.5 py-1 rounded-lg bg-rose-500 text-white font-extrabold text-[11px] hover:bg-white hover:text-dkoder-dark transition-all shadow-sm flex items-center space-x-1 cursor-pointer">
+          <i class="fa-solid fa-shield-halved text-[10px]"></i>
+          <span>10. Admin</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- WRAPPER: DKODER HOMEPAGE CONTENT                                          -->
+  <!-- ========================================================================= -->
+  <main id="dkoder-homepage-content">
 
   <!-- ========================================================================= -->
   <!-- 2. HERO SECTION / FRONT PAGE: VIBRANT YELLOW & ROYAL PURPLE EXPERIENCE    -->
@@ -483,33 +635,33 @@
             </span>
           </div>
 
-          <!-- Official Dashboard Module Links Dock -->
+          <!-- DKoder 2.0 Interactive Module Dock (Stays Inside App) -->
           <div class="flex flex-wrap items-center justify-between gap-2 bg-[#2B1160] border-2 border-dkoder-yellow/50 rounded-2xl p-2.5 mb-5 text-xs font-bold shadow-sm">
             <div class="flex flex-wrap items-center gap-1 sm:gap-1.5">
-              <a href="https://dkoder.co.in/dashboard" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-[10px] uppercase font-black tracking-wider bg-dkoder-yellow px-2.5 py-1 rounded-lg border border-white text-dkoder-dark hover:bg-white transition-colors" title="Official Dkoder Dashboard">
+              <button onclick="DKoderApp.openWorkspace('analytics');" class="inline-flex items-center text-[10px] uppercase font-black tracking-wider bg-dkoder-yellow px-2.5 py-1 rounded-lg border border-white text-dkoder-dark hover:bg-white transition-colors">
                 <i class="fa-solid fa-gauge-high mr-1"></i> Dashboard
-              </a>
-              <a href="https://dkoder.co.in/" target="_blank" rel="noopener noreferrer" class="px-2 py-1 rounded-lg hover:bg-white/10 text-white transition-colors">
+              </button>
+              <button onclick="DKoderApp.closeWorkspace();" class="px-2 py-1 rounded-lg hover:bg-white/10 text-white transition-colors">
                 Home
-              </a>
-              <a href="https://dkoder.co.in/learn/courses" target="_blank" rel="noopener noreferrer" class="px-2 py-1 rounded-lg hover:bg-white/10 text-white transition-colors">
+              </button>
+              <button onclick="DKoderApp.openWorkspace('roadmap');" class="px-2 py-1 rounded-lg hover:bg-white/10 text-white transition-colors">
                 Learn
-              </a>
-              <a href="https://dkoder.co.in/hackathons" target="_blank" rel="noopener noreferrer" class="px-2 py-1 rounded-lg hover:bg-white/10 text-white transition-colors inline-flex items-center gap-1">
-                <span>Hackathons</span>
-                <span class="w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse"></span>
-              </a>
-              <a href="https://dkoder.co.in/colleges" target="_blank" rel="noopener noreferrer" class="px-2 py-1 rounded-lg hover:bg-white/10 text-white transition-colors">
+              </button>
+              <button onclick="DKoderApp.openWorkspace('arena');" class="px-2 py-1 rounded-lg bg-orange-500/20 text-dkoder-yellow hover:bg-dkoder-yellow hover:text-dkoder-dark transition-colors inline-flex items-center gap-1">
+                <span>Arena (Live)</span>
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              </button>
+              <button onclick="DKoderApp.scrollToCollegeMOU(event);" class="px-2 py-1 rounded-lg hover:bg-white/10 text-white transition-colors">
                 For Colleges
-              </a>
-              <a href="https://dkoder.co.in/partner-mou" target="_blank" rel="noopener noreferrer" class="px-2 py-1 rounded-lg bg-dkoder-yellow/20 border border-dkoder-yellow/40 text-dkoder-yellow hover:bg-dkoder-yellow hover:text-dkoder-dark transition-colors">
+              </button>
+              <button onclick="DKoderApp.scrollToCollegeMOU(event);" class="px-2 py-1 rounded-lg bg-dkoder-yellow/20 border border-dkoder-yellow/40 text-dkoder-yellow hover:bg-dkoder-yellow hover:text-dkoder-dark transition-colors">
                 Apply for MOU
-              </a>
+              </button>
             </div>
-            <a href="https://dkoder.co.in/dashboard" target="_blank" rel="noopener noreferrer" class="btn-brutal inline-flex items-center space-x-1.5 px-3 py-1 rounded-lg bg-dkoder-yellow text-dkoder-dark font-extrabold text-[11px] hover:bg-white transition-colors">
-              <span>Open Dashboard</span>
-              <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
-            </a>
+            <button onclick="DKoderApp.runInteractiveDemo('codelab');" class="btn-brutal inline-flex items-center space-x-1.5 px-3 py-1 rounded-lg bg-dkoder-yellow text-dkoder-dark font-extrabold text-[11px] hover:bg-white transition-colors shadow-sm">
+              <i class="fa-solid fa-play text-[10px]"></i>
+              <span>Launch Demo</span>
+            </button>
           </div>
 
           <!-- Interactive Goal Switching Tabs (Zoho 10 LPA / TCS NQT / Amazon SDE) -->
@@ -665,6 +817,238 @@
           <span class="opacity-30">/</span>
           <span class="inline-flex items-center gap-2"><i class="fa-solid fa-building-columns"></i> TCS Digital</span>
         </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 3.5 DKODER 2.0 SUPER SUITE SPOTLIGHT: 10 ADVANCED MODULES SHOWCASE         -->
+  <!-- ========================================================================= -->
+  <section id="dkoder2-spotlight" class="py-20 bg-gradient-to-b from-[#140628] via-[#1E0D47] to-[#140628] text-white border-b-2 border-dkoder-yellow/40 relative overflow-hidden">
+    <!-- Ambient Floating Orbs in Yellow and Purple -->
+    <div class="ambient-orb-purple w-[500px] h-[500px] -top-32 -right-20"></div>
+    <div class="ambient-orb-yellow w-[450px] h-[450px] -bottom-20 -left-20"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      
+      <!-- Section Title Header -->
+      <div class="text-center max-w-3xl mx-auto mb-14 space-y-3">
+        <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-dkoder-yellow/20 border border-dkoder-yellow text-xs font-black text-dkoder-yellow uppercase tracking-widest font-space shadow-[0_0_15px_rgba(252,196,25,0.3)]">
+          <i class="fa-solid fa-sparkles animate-pulse"></i>
+          <span>DKoder 2.0 Architecture Upgrade</span>
+        </div>
+        <h2 class="font-display font-black text-3xl sm:text-4xl lg:text-5xl text-white tracking-tight">
+          10 Advanced AI &amp; Placement Modules
+        </h2>
+        <p class="text-sm sm:text-base text-dkoder-purpleSoft leading-relaxed">
+          Upgraded with full-stack Django APIs, SQLite relational schema, isolated compiler sandboxing, and real-time LLM intelligence while preserving authentic yellow &amp; purple heritage.
+        </p>
+      </div>
+
+      <!-- 10 Feature Interactive Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
+        
+        <!-- Card 1: AI Mentor -->
+        <div class="dk-surface-card rounded-2xl p-4 flex flex-col justify-between group hover:border-dkoder-yellow transition-all">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="w-10 h-10 rounded-xl bg-dkoder-yellow text-dkoder-dark font-black flex items-center justify-center text-lg border border-white shadow-brutal-sm group-hover:scale-110 transition-transform">
+                <i class="fa-solid fa-robot"></i>
+              </span>
+              <span class="text-[9px] font-black uppercase px-2 py-0.5 rounded-full bg-emerald-400 text-dkoder-dark">Live AI</span>
+            </div>
+            <h4 class="font-display font-extrabold text-sm text-white group-hover:text-dkoder-yellow transition-colors">1. AI Mentor</h4>
+            <p class="text-[11px] text-dkoder-purpleSoft mt-1 leading-normal">
+              Line-by-line code explanation, compiler error diagnostics, and company prompt presets.
+            </p>
+          </div>
+          <button onclick="DKoderApp.openWorkspace('ai-mentor')" class="btn-dk-yellow w-full mt-4 py-2 rounded-xl text-xs flex items-center justify-center space-x-1">
+            <span>Launch Mentor</span>
+            <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </button>
+        </div>
+
+        <!-- Card 2: CodeLab Compiler -->
+        <div class="dk-surface-card rounded-2xl p-4 flex flex-col justify-between group hover:border-dkoder-yellow transition-all">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="w-10 h-10 rounded-xl bg-emerald-400 text-dkoder-dark font-black flex items-center justify-center text-lg border border-white shadow-brutal-sm group-hover:scale-110 transition-transform">
+                <i class="fa-solid fa-code"></i>
+              </span>
+              <span class="text-[9px] font-black uppercase px-2 py-0.5 rounded-full bg-dkoder-yellow text-dkoder-dark">Sandboxed</span>
+            </div>
+            <h4 class="font-display font-extrabold text-sm text-white group-hover:text-emerald-400 transition-colors">2. CodeLab IDE</h4>
+            <p class="text-[11px] text-dkoder-purpleSoft mt-1 leading-normal">
+              Isolated compiler for Python, C, C++, Java, JS &amp; SQL with testcase scoring.
+            </p>
+          </div>
+          <button onclick="DKoderApp.openWorkspace('codelab')" class="btn-dk-yellow w-full mt-4 py-2 rounded-xl text-xs flex items-center justify-center space-x-1">
+            <span>Open CodeLab</span>
+            <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </button>
+        </div>
+
+        <!-- Card 3: Placement Roadmap -->
+        <div class="dk-surface-card rounded-2xl p-4 flex flex-col justify-between group hover:border-dkoder-yellow transition-all">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="w-10 h-10 rounded-xl bg-blue-400 text-dkoder-dark font-black flex items-center justify-center text-lg border border-white shadow-brutal-sm group-hover:scale-110 transition-transform">
+                <i class="fa-solid fa-map-location-dot"></i>
+              </span>
+              <span class="text-[9px] font-black uppercase px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-300">12 Categories</span>
+            </div>
+            <h4 class="font-display font-extrabold text-sm text-white group-hover:text-blue-400 transition-colors">3. Placement Roadmap</h4>
+            <p class="text-[11px] text-dkoder-purpleSoft mt-1 leading-normal">
+              Personalized company study plan with milestone checkboxes and completion tracking.
+            </p>
+          </div>
+          <button onclick="DKoderApp.openWorkspace('roadmap')" class="btn-dk-yellow w-full mt-4 py-2 rounded-xl text-xs flex items-center justify-center space-x-1">
+            <span>View Roadmap</span>
+            <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </button>
+        </div>
+
+        <!-- Card 4: Smart Analytics -->
+        <div class="dk-surface-card rounded-2xl p-4 flex flex-col justify-between group hover:border-dkoder-yellow transition-all">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="w-10 h-10 rounded-xl bg-amber-400 text-dkoder-dark font-black flex items-center justify-center text-lg border border-white shadow-brutal-sm group-hover:scale-110 transition-transform">
+                <i class="fa-solid fa-chart-line"></i>
+              </span>
+              <span class="text-[9px] font-black uppercase px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300">Chart.js</span>
+            </div>
+            <h4 class="font-display font-extrabold text-sm text-white group-hover:text-amber-400 transition-colors">4. Student Analytics</h4>
+            <p class="text-[11px] text-dkoder-purpleSoft mt-1 leading-normal">
+              Weekly learning charts, coding streak counters, and skill mastery radar charts.
+            </p>
+          </div>
+          <button onclick="DKoderApp.openWorkspace('analytics')" class="btn-dk-yellow w-full mt-4 py-2 rounded-xl text-xs flex items-center justify-center space-x-1">
+            <span>View Analytics</span>
+            <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </button>
+        </div>
+
+        <!-- Card 5: AI Interview Studio -->
+        <div class="dk-surface-card rounded-2xl p-4 flex flex-col justify-between group hover:border-dkoder-yellow transition-all">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="w-10 h-10 rounded-xl bg-pink-400 text-dkoder-dark font-black flex items-center justify-center text-lg border border-white shadow-brutal-sm group-hover:scale-110 transition-transform">
+                <i class="fa-solid fa-microphone-lines"></i>
+              </span>
+              <span class="text-[9px] font-black uppercase px-2 py-0.5 rounded-full bg-pink-500/20 text-pink-300">Voice / Text</span>
+            </div>
+            <h4 class="font-display font-extrabold text-sm text-white group-hover:text-pink-400 transition-colors">5. Interview Studio</h4>
+            <p class="text-[11px] text-dkoder-purpleSoft mt-1 leading-normal">
+              Technical, HR &amp; behavioral mock interviews with AI rubrics and score reports.
+            </p>
+          </div>
+          <button onclick="DKoderApp.openWorkspace('interview')" class="btn-dk-yellow w-full mt-4 py-2 rounded-xl text-xs flex items-center justify-center space-x-1">
+            <span>Start Interview</span>
+            <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </button>
+        </div>
+
+        <!-- Card 6: Live Arena -->
+        <div class="dk-surface-card rounded-2xl p-4 flex flex-col justify-between group hover:border-dkoder-yellow transition-all">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="w-10 h-10 rounded-xl bg-orange-400 text-dkoder-dark font-black flex items-center justify-center text-lg border border-white shadow-brutal-sm group-hover:scale-110 transition-transform">
+                <i class="fa-solid fa-trophy"></i>
+              </span>
+              <span class="text-[9px] font-black uppercase px-2 py-0.5 rounded-full bg-emerald-400 text-dkoder-dark animate-pulse">Live Contest</span>
+            </div>
+            <h4 class="font-display font-extrabold text-sm text-white group-hover:text-orange-400 transition-colors">6. DKoder Arena</h4>
+            <p class="text-[11px] text-dkoder-purpleSoft mt-1 leading-normal">
+              Live coding competitions, countdown timers, and server-side leaderboard scoring.
+            </p>
+          </div>
+          <button onclick="DKoderApp.openWorkspace('arena')" class="btn-dk-yellow w-full mt-4 py-2 rounded-xl text-xs flex items-center justify-center space-x-1">
+            <span>Enter Arena</span>
+            <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </button>
+        </div>
+
+        <!-- Card 7: Skill Gap Analyzer -->
+        <div class="dk-surface-card rounded-2xl p-4 flex flex-col justify-between group hover:border-dkoder-yellow transition-all">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="w-10 h-10 rounded-xl bg-teal-400 text-dkoder-dark font-black flex items-center justify-center text-lg border border-white shadow-brutal-sm group-hover:scale-110 transition-transform">
+                <i class="fa-solid fa-bullseye"></i>
+              </span>
+              <span class="text-[9px] font-black uppercase px-2 py-0.5 rounded-full bg-teal-500/20 text-teal-300">14 Core Skills</span>
+            </div>
+            <h4 class="font-display font-extrabold text-sm text-white group-hover:text-teal-400 transition-colors">7. Skill Gap Analyzer</h4>
+            <p class="text-[11px] text-dkoder-purpleSoft mt-1 leading-normal">
+              Diagnostic tracking for Arrays, Graphs, DP, SQL, OS, and quantitative aptitude.
+            </p>
+          </div>
+          <button onclick="DKoderApp.openWorkspace('skills')" class="btn-dk-yellow w-full mt-4 py-2 rounded-xl text-xs flex items-center justify-center space-x-1">
+            <span>Diagnose Skills</span>
+            <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </button>
+        </div>
+
+        <!-- Card 8: Student Community -->
+        <div class="dk-surface-card rounded-2xl p-4 flex flex-col justify-between group hover:border-dkoder-yellow transition-all">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="w-10 h-10 rounded-xl bg-purple-400 text-dkoder-dark font-black flex items-center justify-center text-lg border border-white shadow-brutal-sm group-hover:scale-110 transition-transform">
+                <i class="fa-solid fa-users"></i>
+              </span>
+              <span class="text-[9px] font-black uppercase px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-300">Study Groups</span>
+            </div>
+            <h4 class="font-display font-extrabold text-sm text-white group-hover:text-purple-400 transition-colors">8. DKoder Community</h4>
+            <p class="text-[11px] text-dkoder-purpleSoft mt-1 leading-normal">
+              Peer discussions, tag filters, reactions, Zoho study groups &amp; weekly leaderboards.
+            </p>
+          </div>
+          <button onclick="DKoderApp.openWorkspace('community')" class="btn-dk-yellow w-full mt-4 py-2 rounded-xl text-xs flex items-center justify-center space-x-1">
+            <span>Join Discussions</span>
+            <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </button>
+        </div>
+
+        <!-- Card 9: Career Profile -->
+        <div class="dk-surface-card rounded-2xl p-4 flex flex-col justify-between group hover:border-dkoder-yellow transition-all">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="w-10 h-10 rounded-xl bg-indigo-400 text-white font-black flex items-center justify-center text-lg border border-white shadow-brutal-sm group-hover:scale-110 transition-transform">
+                <i class="fa-solid fa-id-card-clip"></i>
+              </span>
+              <span class="text-[9px] font-black uppercase px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300">ATS 94%</span>
+            </div>
+            <h4 class="font-display font-extrabold text-sm text-white group-hover:text-indigo-400 transition-colors">9. Career Profile</h4>
+            <p class="text-[11px] text-dkoder-purpleSoft mt-1 leading-normal">
+              Interactive ATS Resume Builder with live preview &amp; public portfolio link generator.
+            </p>
+          </div>
+          <button onclick="DKoderApp.openWorkspace('career')" class="btn-dk-yellow w-full mt-4 py-2 rounded-xl text-xs flex items-center justify-center space-x-1">
+            <span>Build Resume</span>
+            <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </button>
+        </div>
+
+        <!-- Card 10: Admin Dashboard -->
+        <div class="dk-surface-card rounded-2xl p-4 flex flex-col justify-between group hover:border-dkoder-yellow transition-all border-rose-500/30">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="w-10 h-10 rounded-xl bg-rose-500 text-white font-black flex items-center justify-center text-lg border border-white shadow-brutal-sm group-hover:scale-110 transition-transform">
+                <i class="fa-solid fa-shield-halved"></i>
+              </span>
+              <span class="text-[9px] font-black uppercase px-2 py-0.5 rounded-full bg-rose-500/20 text-rose-300">RBAC</span>
+            </div>
+            <h4 class="font-display font-extrabold text-sm text-white group-hover:text-rose-400 transition-colors">10. Admin Console</h4>
+            <p class="text-[11px] text-dkoder-purpleSoft mt-1 leading-normal">
+              User moderation, coding question publisher, testcase manager &amp; audit logging.
+            </p>
+          </div>
+          <button onclick="DKoderApp.openWorkspace('admin')" class="btn-dk-yellow w-full mt-4 py-2 rounded-xl text-xs flex items-center justify-center space-x-1">
+            <span>Admin Console</span>
+            <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </button>
+        </div>
+
       </div>
 
     </div>
@@ -1625,13 +2009,13 @@
             <i class="fa-solid fa-user-graduate text-dkoder-yellow mr-2"></i> For students
           </p>
           <ul class="space-y-2 text-xs">
-            <li><a href="https://dkoder.co.in/practice" class="hover:text-dkoder-yellow transition-colors">Practice</a></li>
-            <li><a href="https://dkoder.co.in/practice/coding" class="hover:text-dkoder-yellow transition-colors">Coding practice</a></li>
-            <li><a href="https://dkoder.co.in/practice/platforms" class="hover:text-dkoder-yellow transition-colors">Platform arena</a></li>
-            <li><a href="https://dkoder.co.in/challenges" class="hover:text-dkoder-yellow transition-colors">Challenges</a></li>
-            <li><a href="https://dkoder.co.in/leaderboard" class="hover:text-dkoder-yellow transition-colors">Leaderboard</a></li>
-            <li><a href="https://dkoder.co.in/learn/courses" class="hover:text-dkoder-yellow transition-colors">Courses</a></li>
-            <li><a href="https://dkoder.co.in/pricing" class="hover:text-dkoder-yellow transition-colors">Pricing</a></li>
+            <li><a href="#codelab" onclick="DKoderApp.openWorkspace('codelab'); return false;" class="hover:text-dkoder-yellow transition-colors">Practice</a></li>
+            <li><a href="#codelab" onclick="DKoderApp.openWorkspace('codelab'); return false;" class="hover:text-dkoder-yellow transition-colors">Coding practice</a></li>
+            <li><a href="#arena" onclick="DKoderApp.openWorkspace('arena'); return false;" class="hover:text-dkoder-yellow transition-colors">Platform arena</a></li>
+            <li><a href="#arena" onclick="DKoderApp.openWorkspace('arena'); return false;" class="hover:text-dkoder-yellow transition-colors">Challenges</a></li>
+            <li><a href="#community" onclick="DKoderApp.openWorkspace('community'); return false;" class="hover:text-dkoder-yellow transition-colors">Leaderboard</a></li>
+            <li><a href="#roadmap" onclick="DKoderApp.openWorkspace('roadmap'); return false;" class="hover:text-dkoder-yellow transition-colors">Courses</a></li>
+            <li><a href="#roadmap" onclick="DKoderApp.openWorkspace('roadmap'); return false;" class="hover:text-dkoder-yellow transition-colors">Pricing</a></li>
           </ul>
         </div>
 
@@ -1641,11 +2025,11 @@
             <i class="fa-solid fa-school text-dkoder-yellow mr-2"></i> For institutions
           </p>
           <ul class="space-y-2 text-xs">
-            <li><a href="https://dkoder.co.in/colleges" class="hover:text-dkoder-yellow transition-colors">Dkoder for colleges</a></li>
-            <li><a href="https://dkoder.co.in/partner-mou" class="hover:text-dkoder-yellow text-dkoder-yellow font-bold transition-colors">Apply for MOU</a></li>
-            <li><a href="https://dkoder.co.in/hackathons/100-days" class="hover:text-dkoder-yellow transition-colors">Host a hackathon</a></li>
-            <li><a href="https://dkoder.co.in/hackathons/100-days/benefits" class="hover:text-dkoder-yellow transition-colors">Benefits for institutions</a></li>
-            <li><a href="https://dkoder.co.in/auth/institution" class="hover:text-dkoder-yellow transition-colors">Institution sign-in</a></li>
+            <li><a href="#college-mou" onclick="DKoderApp.scrollToCollegeMOU(event);" class="hover:text-dkoder-yellow transition-colors">Dkoder for colleges</a></li>
+            <li><a href="#college-mou" onclick="DKoderApp.scrollToCollegeMOU(event);" class="hover:text-dkoder-yellow text-dkoder-yellow font-bold transition-colors">Apply for MOU</a></li>
+            <li><a href="#arena" onclick="DKoderApp.openWorkspace('arena'); return false;" class="hover:text-dkoder-yellow transition-colors">Host a hackathon</a></li>
+            <li><a href="#college-mou" onclick="DKoderApp.scrollToCollegeMOU(event);" class="hover:text-dkoder-yellow transition-colors">Benefits for institutions</a></li>
+            <li><a href="#college-mou" onclick="DKoderApp.scrollToCollegeMOU(event);" class="hover:text-dkoder-yellow transition-colors">Institution sign-in</a></li>
           </ul>
         </div>
 
@@ -1655,11 +2039,11 @@
             <i class="fa-solid fa-trophy text-dkoder-yellow mr-2"></i> Programmes
           </p>
           <ul class="space-y-2 text-xs">
-            <li><a href="https://dkoder.co.in/hackathons" class="hover:text-dkoder-yellow transition-colors">Hackathons</a></li>
-            <li><a href="https://dkoder.co.in/hackathons/100-days" class="hover:text-dkoder-yellow transition-colors">100 Days of Sustainability</a></li>
-            <li><a href="https://dkoder.co.in/final-year-projects" class="hover:text-dkoder-yellow transition-colors">Final Year Projects</a></li>
-            <li><a href="https://dkoder.co.in/certifications/topic" class="hover:text-dkoder-yellow transition-colors">Topic certifications</a></li>
-            <li><a href="https://dkoder.co.in/certifications/technology" class="hover:text-dkoder-yellow transition-colors">Technology certifications</a></li>
+            <li><a href="#arena" onclick="DKoderApp.openWorkspace('arena'); return false;" class="hover:text-dkoder-yellow transition-colors">Hackathons</a></li>
+            <li><a href="#arena" onclick="DKoderApp.openWorkspace('arena'); return false;" class="hover:text-dkoder-yellow transition-colors">100 Days of Sustainability</a></li>
+            <li><a href="#career" onclick="DKoderApp.openWorkspace('career'); return false;" class="hover:text-dkoder-yellow transition-colors">Final Year Projects</a></li>
+            <li><a href="#skills" onclick="DKoderApp.openWorkspace('skills'); return false;" class="hover:text-dkoder-yellow transition-colors">Topic certifications</a></li>
+            <li><a href="#skills" onclick="DKoderApp.openWorkspace('skills'); return false;" class="hover:text-dkoder-yellow transition-colors">Technology certifications</a></li>
           </ul>
         </div>
 
@@ -1671,9 +2055,9 @@
           <ul class="space-y-2 text-xs">
             <li><a href="mailto:support@dkoder.co.in" class="hover:text-dkoder-yellow transition-colors">Contact support</a></li>
             <li><a href="https://wa.me/919845000000?text=Hi%20Dkoder%20team%2C%20I%20have%20a%20question." target="_blank" rel="noopener noreferrer" class="hover:text-dkoder-yellow transition-colors">Chat on WhatsApp</a></li>
-            <li><a href="https://dkoder.co.in/dashboard" class="hover:text-dkoder-yellow transition-colors">Go to Dashboard</a></li>
-            <li><a href="https://dkoder.co.in/auth/login" class="hover:text-dkoder-yellow transition-colors">Sign in</a></li>
-            <li><a href="https://dkoder.co.in/auth/signup" class="hover:text-dkoder-yellow transition-colors">Create an account</a></li>
+            <li><a href="#analytics" onclick="DKoderApp.openWorkspace('analytics'); return false;" class="hover:text-dkoder-yellow transition-colors">Go to Dashboard</a></li>
+            <li><a href="#auth" onclick="DKoderApp.openAuthModal(); return false;" class="hover:text-dkoder-yellow transition-colors">Sign in</a></li>
+            <li><a href="#auth" onclick="DKoderApp.openAuthModal(); return false;" class="hover:text-dkoder-yellow transition-colors">Create an account</a></li>
           </ul>
         </div>
 
@@ -1738,6 +2122,1081 @@
 
     </div>
   </footer>
+  </main>
+
+  <!-- ========================================================================= -->
+  <!-- DKODER 2.0 DEDICATED WORKSPACE: ALL 10 MODULES WORKSPACE CONTAINER        -->
+  <!-- ========================================================================= -->
+  <div id="dkoder-2-workspace" class="hidden min-h-screen bg-[#12052B] text-white selection:bg-dkoder-yellow selection:text-dkoder-dark">
+    
+    <!-- Workspace Sticky Global Header -->
+    <div class="sticky top-0 z-40 bg-[#160633]/95 backdrop-blur-xl border-b-2 border-dkoder-yellow/40 px-4 sm:px-6 lg:px-8 py-3.5 shadow-[0_4px_25px_rgba(0,0,0,0.6)]">
+      <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+        
+        <!-- Left: Back to Home + Module Icon & Title -->
+        <div class="flex items-center space-x-3 w-full sm:w-auto">
+          <button onclick="DKoderApp.closeWorkspace()" class="btn-dk-yellow px-3.5 py-1.5 rounded-full text-xs font-black flex items-center space-x-1.5 shrink-0" title="Return to Homepage">
+            <i class="fa-solid fa-arrow-left text-[11px]"></i>
+            <span>Home</span>
+          </button>
+          <div class="h-6 w-px bg-white/20 hidden sm:block"></div>
+          <div class="flex items-center space-x-2.5 min-w-0">
+            <span class="w-8 h-8 rounded-lg bg-dkoder-yellow/20 border border-dkoder-yellow/40 flex items-center justify-center shrink-0">
+              <i id="ws-current-icon" class="fa-solid fa-robot text-dkoder-yellow text-sm"></i>
+            </span>
+            <div class="truncate">
+              <h2 id="ws-current-title" class="font-display font-extrabold text-sm sm:text-base text-white truncate leading-tight">DKoder AI Mentor</h2>
+              <p id="ws-current-desc" class="text-[10px] text-dkoder-purpleSoft truncate">Placement Intelligence &amp; Code Tutor</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Fast Module Switcher Dropdown + System Status -->
+        <div class="flex items-center space-x-2 w-full sm:w-auto justify-end">
+          <div class="relative flex-1 sm:flex-initial">
+            <select id="ws-module-select" onchange="DKoderApp.openWorkspace(this.value)" class="w-full sm:w-auto bg-[#1E0D47] text-white font-bold text-xs border-2 border-dkoder-yellow/50 rounded-full px-3.5 py-1.5 appearance-none pr-8 cursor-pointer shadow-sm focus:outline-none">
+              <option value="ai-mentor">🤖 1. AI Mentor</option>
+              <option value="codelab">💻 2. CodeLab IDE</option>
+              <option value="roadmap">🗺️ 3. Placement Roadmap</option>
+              <option value="analytics">📊 4. Student Analytics</option>
+              <option value="interview">🎙️ 5. Interview Studio</option>
+              <option value="arena">🏆 6. DKoder Arena</option>
+              <option value="skills">🎯 7. Skill Gap Analyzer</option>
+              <option value="community">👥 8. Student Community</option>
+              <option value="career">📄 9. Career Profile</option>
+              <option value="admin">🛡️ 10. Admin Console</option>
+            </select>
+            <i class="fa-solid fa-chevron-down absolute right-3 top-1/2 -translate-y-1/2 text-[10px] text-dkoder-yellow pointer-events-none"></i>
+          </div>
+
+          <span class="hidden md:inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-full text-[11px] font-bold bg-[#140628] border border-dkoder-yellow/40 text-dkoder-purpleSoft">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span>Django &bull; SQLite Synced</span>
+          </span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Main Workspaces Container -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+
+      <!-- ===================================================================== -->
+      <!-- MODULE 1: DKODER AI MENTOR                                            -->
+      <!-- ===================================================================== -->
+      <div id="view-ai-mentor" class="module-workspace-view">
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 min-h-[72vh]">
+          
+          <!-- Left Sidebar: Conversations & Prompts -->
+          <div class="lg:col-span-1 bg-[#180731] border-2 border-white/10 rounded-2xl p-4 flex flex-col justify-between shadow-sm">
+            <div>
+              <div class="flex items-center justify-between mb-3 pb-3 border-b border-white/10">
+                <span class="text-xs font-black uppercase tracking-wider text-dkoder-yellow font-space">Sessions</span>
+                <button onclick="DKoderApp.startNewAIConversation()" class="btn-dk-yellow px-2.5 py-1 rounded-lg text-xs font-bold flex items-center space-x-1">
+                  <i class="fa-solid fa-plus text-[10px]"></i>
+                  <span>New Chat</span>
+                </button>
+              </div>
+
+              <!-- Provider Status Capsule -->
+              <div id="ai-provider-badge" class="mb-3">
+                <span class="inline-flex items-center space-x-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">
+                  <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+                  <span>Dev Simulation Active</span>
+                </span>
+              </div>
+
+              <!-- Session List -->
+              <div id="ai-convo-list" class="space-y-1.5 max-h-[46vh] overflow-y-auto pr-1">
+                <p class="text-xs text-dkoder-purpleSoft italic">No conversations yet.</p>
+              </div>
+            </div>
+
+            <div class="pt-3 border-t border-white/10 mt-3">
+              <button onclick="DKoderApp.clearAIChat()" class="w-full py-2 px-3 rounded-xl bg-white/5 hover:bg-rose-500/20 text-dkoder-purpleSoft hover:text-rose-300 text-xs font-bold transition-colors flex items-center justify-center space-x-1.5">
+                <i class="fa-regular fa-trash-can text-xs"></i>
+                <span>Clear History</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Right Column: Interactive Chat Stream -->
+          <div class="lg:col-span-3 bg-[#180731] border-2 border-white/10 rounded-2xl p-5 flex flex-col justify-between shadow-sm">
+            
+            <!-- Top Chat Header Bar: Language Switcher & Quick Prompts -->
+            <div>
+              <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-white/10">
+                <div class="flex items-center space-x-2">
+                  <span class="text-xs font-bold text-white"><i class="fa-solid fa-terminal mr-1 text-dkoder-yellow"></i>Target Language:</span>
+                  <select id="ai-lang-select" class="bg-[#12052B] text-white border border-dkoder-yellow/50 rounded-lg text-xs px-2.5 py-1 font-bold focus:outline-none">
+                    <option value="Python">Python 3.12</option>
+                    <option value="C">C (Pointers &amp; Structs)</option>
+                    <option value="C++">C++ (STL &amp; Systems)</option>
+                    <option value="Java">Java (Collections &amp; OOP)</option>
+                    <option value="JavaScript">JavaScript (Async &amp; ES6)</option>
+                    <option value="SQL">SQL (Queries &amp; Window Funcs)</option>
+                  </select>
+                </div>
+                <div class="text-[11px] text-dkoder-purpleSoft font-medium">
+                  Verified against Zoho, TCS Digital &amp; Amazon OA patterns
+                </div>
+              </div>
+
+              <!-- Suggested Prompt Preset Chips -->
+              <div class="flex flex-wrap gap-1.5 py-2.5 border-b border-white/5">
+                <button onclick="DKoderApp.handlePromptChip('Explain Multi-Source BFS on a grid line by line with Rotten Oranges example.')" class="px-2.5 py-1 rounded-full text-[11px] bg-white/5 hover:bg-dkoder-yellow hover:text-dkoder-dark transition-colors font-medium text-dkoder-purpleSoft">
+                  💡 Explain Multi-Source BFS
+                </button>
+                <button onclick="DKoderApp.handlePromptChip('Debug C/C++ segmentation fault and pointer arithmetic in Zoho Round 2.')" class="px-2.5 py-1 rounded-full text-[11px] bg-white/5 hover:bg-dkoder-yellow hover:text-dkoder-dark transition-colors font-medium text-dkoder-purpleSoft">
+                  🐞 Debug C Pointer Fault
+                </button>
+                <button onclick="DKoderApp.handlePromptChip('Give me the top 3 speed shortcut formulas for TCS NQT Aptitude.')" class="px-2.5 py-1 rounded-full text-[11px] bg-white/5 hover:bg-dkoder-yellow hover:text-dkoder-dark transition-colors font-medium text-dkoder-purpleSoft">
+                  ⏱️ TCS NQT Aptitude Shortcut
+                </button>
+                <button onclick="DKoderApp.handlePromptChip('Explain how to solve nested bracket string expansion without recursion.')" class="px-2.5 py-1 rounded-full text-[11px] bg-white/5 hover:bg-dkoder-yellow hover:text-dkoder-dark transition-colors font-medium text-dkoder-purpleSoft">
+                  🚀 Zoho String Expansion
+                </button>
+              </div>
+            </div>
+
+            <!-- Chat Stream Area -->
+            <div id="ai-message-stream" class="flex-1 my-3 overflow-y-auto max-h-[50vh] pr-2 space-y-3">
+              <div class="text-center py-10 px-4">
+                <div class="w-16 h-16 rounded-2xl bg-dkoder-yellow text-dkoder-dark flex items-center justify-center text-3xl font-black mx-auto mb-4 border-2 border-white shadow-brutal">
+                  <i class="fa-solid fa-robot"></i>
+                </div>
+                <h3 class="font-display font-extrabold text-xl text-white">DKoder AI Mentor Active</h3>
+                <p class="text-xs text-dkoder-purpleSoft max-w-md mx-auto mt-2 leading-relaxed">
+                  Ask any programming question, paste compiler error tracebacks, or request step-by-step algorithms and aptitude shortcuts.
+                </p>
+              </div>
+            </div>
+
+            <!-- Bottom Input Bar -->
+            <div class="pt-3 border-t border-white/10">
+              <div class="relative flex items-center">
+                <textarea id="ai-chat-input" rows="2" placeholder="Ask AI Mentor anything (e.g. 'Explain quicksort vs mergesort' or paste code/error)..." class="w-full bg-[#12052B] border-2 border-dkoder-yellow/40 rounded-2xl p-3 pr-28 text-xs text-white placeholder:text-dkoder-purpleSoft focus:border-dkoder-yellow focus:outline-none resize-none font-sans"></textarea>
+                <button onclick="DKoderApp.sendAIMessage()" class="absolute right-2.5 btn-dk-yellow px-4 py-2 rounded-xl text-xs flex items-center space-x-1.5 shadow-sm">
+                  <span>Send</span>
+                  <i class="fa-solid fa-paper-plane text-[10px]"></i>
+                </button>
+              </div>
+              <p class="text-[10px] text-dkoder-purpleSoft mt-1.5 flex items-center justify-between">
+                <span>Press Enter to send message</span>
+                <span>Environment key: GEMINI_API_KEY / OPENAI_API_KEY</span>
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ===================================================================== -->
+      <!-- MODULE 2: DKODER CODELAB IDE                                          -->
+      <!-- ===================================================================== -->
+      <div id="view-codelab" class="module-workspace-view hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 min-h-[75vh]">
+          
+          <!-- Left Column (5 Cols): Problem Statement, Constraints & Submissions -->
+          <div class="lg:col-span-5 bg-[#180731] border-2 border-white/10 rounded-2xl p-5 flex flex-col justify-between shadow-sm max-h-[82vh] overflow-y-auto">
+            <div>
+              <!-- Problem Selector -->
+              <div class="mb-4">
+                <label class="text-[10px] font-extrabold uppercase tracking-wider text-dkoder-yellow font-space block mb-1">Select Placement Question</label>
+                <select id="codelab-problem-select" onchange="DKoderApp.selectCodeLabProblem(this.value)" class="w-full bg-[#12052B] text-white border-2 border-dkoder-yellow/50 rounded-xl p-2.5 text-xs font-bold focus:outline-none">
+                  <!-- Populated via API -->
+                </select>
+              </div>
+
+              <!-- Problem Header -->
+              <div class="pb-3 border-b border-white/10 mb-3">
+                <div class="flex items-center space-x-2 mb-1.5">
+                  <span id="codelab-p-diff" class="px-2 py-0.5 rounded text-[10px] font-black uppercase bg-dkoder-yellow text-dkoder-dark">Medium</span>
+                  <span id="codelab-p-tags" class="text-[11px] font-bold text-dkoder-purpleSoft">Zoho, TCS Digital</span>
+                </div>
+                <h3 id="codelab-p-title" class="font-display font-extrabold text-lg text-white">String Pattern Expansion</h3>
+              </div>
+
+              <!-- Problem Description -->
+              <div class="space-y-3 text-xs text-dkoder-purpleSoft leading-relaxed">
+                <div>
+                  <h5 class="text-xs font-bold text-white mb-1">Description:</h5>
+                  <p id="codelab-p-desc" class="whitespace-pre-line"></p>
+                </div>
+                <div class="bg-[#12052B] p-3 rounded-xl border border-white/10 font-mono text-[11px]">
+                  <p class="text-dkoder-yellow font-bold">Sample Input:</p>
+                  <pre id="codelab-p-sample-in" class="text-white mt-0.5 whitespace-pre-wrap"></pre>
+                  <p class="text-dkoder-yellow font-bold mt-2">Sample Output:</p>
+                  <pre id="codelab-p-sample-out" class="text-emerald-400 mt-0.5 whitespace-pre-wrap"></pre>
+                </div>
+              </div>
+            </div>
+
+            <!-- Submissions History Accordion -->
+            <div class="pt-4 border-t border-white/10 mt-4">
+              <h5 class="text-xs font-bold text-white mb-2 flex items-center justify-between">
+                <span>Recent Submissions</span>
+                <span class="text-[10px] text-dkoder-yellow font-space font-bold">Automated Test Bench</span>
+              </h5>
+              <div class="overflow-x-auto max-h-36 overflow-y-auto">
+                <table class="w-full text-left">
+                  <thead>
+                    <tr class="text-[10px] uppercase font-space text-dkoder-purpleSoft border-b border-white/10">
+                      <th class="py-1 px-3">Problem</th>
+                      <th class="py-1 px-3">Lang</th>
+                      <th class="py-1 px-3">Status</th>
+                      <th class="py-1 px-3">Time</th>
+                      <th class="py-1 px-3">Date</th>
+                    </tr>
+                  </thead>
+                  <tbody id="codelab-submissions-list">
+                    <!-- Populated via API -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column (7 Cols): Code Editor & Execution Console -->
+          <div class="lg:col-span-7 flex flex-col space-y-4">
+            
+            <!-- Code Editor Box -->
+            <div class="bg-[#180731] border-2 border-white/10 rounded-2xl p-4 shadow-sm flex-1 flex flex-col justify-between">
+              
+              <!-- Editor Header: Language Switcher & Controls -->
+              <div class="flex items-center justify-between pb-3 border-b border-white/10 mb-3">
+                <div class="flex items-center space-x-2">
+                  <span class="text-xs font-bold text-white"><i class="fa-solid fa-code text-dkoder-yellow mr-1"></i>Language:</span>
+                  <select id="codelab-lang-select" onchange="DKoderApp.changeCodeLabLanguage()" class="bg-[#12052B] text-white border border-dkoder-yellow/50 rounded-lg text-xs px-2.5 py-1 font-bold focus:outline-none">
+                    <option value="python">Python 3.12</option>
+                    <option value="javascript">JavaScript (Node.js)</option>
+                    <option value="cpp">C++ (g++ 17)</option>
+                    <option value="java">Java 21</option>
+                    <option value="c">C (gcc)</option>
+                    <option value="sql">SQL Sandbox</option>
+                  </select>
+                </div>
+                <button onclick="DKoderApp.changeCodeLabLanguage()" class="text-xs text-dkoder-purpleSoft hover:text-white transition-colors" title="Reset to starter code">
+                  <i class="fa-solid fa-rotate-left mr-1"></i> Reset Code
+                </button>
+              </div>
+
+              <!-- Monospace Code Editor -->
+              <textarea id="codelab-editor" rows="15" spellcheck="false" class="w-full flex-1 bg-[#0c0319] border-2 border-[#240C52] rounded-xl p-4 font-mono text-xs text-white leading-relaxed focus:border-dkoder-yellow focus:outline-none resize-y"></textarea>
+
+              <!-- Controls & Run Buttons -->
+              <div class="pt-3 mt-3 border-t border-white/10 flex flex-wrap items-center justify-between gap-2">
+                <div class="flex items-center space-x-2 flex-1 max-w-sm">
+                  <input type="text" id="codelab-custom-input" placeholder="Custom test input..." class="w-full bg-[#12052B] border border-white/20 rounded-xl px-3 py-2 text-xs text-white placeholder:text-dkoder-purpleSoft font-mono focus:border-dkoder-yellow focus:outline-none" />
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button id="codelab-run-btn" onclick="DKoderApp.runCodeLabCode()" class="btn-dk-purple px-4 py-2 rounded-xl text-xs font-extrabold flex items-center space-x-1.5">
+                    <i class="fa-solid fa-play text-xs text-dkoder-yellow"></i>
+                    <span>Run Code</span>
+                  </button>
+                  <button id="codelab-submit-btn" onclick="DKoderApp.submitCodeLabSolution()" class="btn-dk-yellow px-5 py-2 rounded-xl text-xs font-black flex items-center space-x-1.5">
+                    <i class="fa-solid fa-cloud-arrow-up text-xs"></i>
+                    <span>Submit Solution</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Terminal Output Console -->
+            <div class="bg-[#0e041e] border-2 border-white/10 rounded-2xl p-4 shadow-sm">
+              <div class="flex items-center justify-between pb-2 mb-2 border-b border-white/10 text-xs font-mono font-bold text-dkoder-yellow">
+                <span class="flex items-center space-x-2">
+                  <i class="fa-solid fa-terminal text-xs"></i>
+                  <span>Output Terminal Console</span>
+                </span>
+                <span class="text-[10px] text-dkoder-purpleSoft">Isolated Sandbox</span>
+              </div>
+              <div id="codelab-console" class="text-xs font-mono text-dkoder-purpleSoft min-h-20 whitespace-pre-wrap">
+                Click "Run Code" to test against custom input, or "Submit Solution" to evaluate all test cases.
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ===================================================================== -->
+      <!-- MODULE 3: MY PLACEMENT ROADMAP                                        -->
+      <!-- ===================================================================== -->
+      <div id="view-roadmap" class="module-workspace-view hidden">
+        <!-- Top Banner with Goal & Progress Ring -->
+        <div class="bg-[#180731] border-2 border-dkoder-yellow/40 rounded-2xl p-6 mb-6 shadow-sm">
+          <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+            <div>
+              <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-dkoder-yellow/20 text-dkoder-yellow text-xs font-black uppercase font-space mb-2">
+                <i class="fa-solid fa-bullseye"></i>
+                <span>Zoho &amp; Amazon Dream Placement Track</span>
+              </div>
+              <h3 class="font-display font-black text-2xl text-white">Your Tailored Campus Preparation Blueprint</h3>
+              <p id="roadmap-stats-label" class="text-xs text-dkoder-purpleSoft mt-1">16 Curated Milestones across 12 Core Placement Pillars</p>
+            </div>
+            
+            <div class="flex items-center space-x-6 shrink-0">
+              <div class="text-center">
+                <div id="roadmap-pct-text" class="text-3xl font-display font-black text-dkoder-yellow">45%</div>
+                <span class="text-[10px] font-space font-bold uppercase text-dkoder-purpleSoft">Completed</span>
+              </div>
+              <button onclick="DKoderApp.openRoadmapModal()" class="btn-dk-yellow px-4 py-2 rounded-xl text-xs font-black">
+                <i class="fa-solid fa-sliders mr-1"></i> Regenerate Plan
+              </button>
+            </div>
+          </div>
+
+          <!-- Animated Progress Bar -->
+          <div class="w-full h-3 rounded-full bg-white/10 overflow-hidden mt-5">
+            <div id="roadmap-progress-bar" class="h-full bg-gradient-to-r from-dkoder-yellow to-amber-300 rounded-full transition-all duration-700" style="width: 45%;"></div>
+          </div>
+        </div>
+
+        <!-- Weeks & Categories Tasks Container -->
+        <div id="roadmap-weeks-container">
+          <!-- Populated via API -->
+        </div>
+      </div>
+
+      <!-- ===================================================================== -->
+      <!-- MODULE 4: SMART STUDENT ANALYTICS                                     -->
+      <!-- ===================================================================== -->
+      <div id="view-analytics" class="module-workspace-view hidden">
+        <!-- KPI Metric Cards Grid -->
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3 mb-6">
+          <div class="bg-[#180731] border-2 border-white/10 rounded-2xl p-3.5 text-center">
+            <span class="text-[10px] font-space font-extrabold uppercase text-dkoder-purpleSoft block">Attempted</span>
+            <span id="stat-total-attempted" class="text-2xl font-black text-white mt-1 block">54</span>
+          </div>
+          <div class="bg-[#180731] border-2 border-white/10 rounded-2xl p-3.5 text-center">
+            <span class="text-[10px] font-space font-extrabold uppercase text-emerald-400 block">Accepted</span>
+            <span id="stat-total-accepted" class="text-2xl font-black text-emerald-400 mt-1 block">45</span>
+          </div>
+          <div class="bg-[#180731] border-2 border-white/10 rounded-2xl p-3.5 text-center">
+            <span class="text-[10px] font-space font-extrabold uppercase text-dkoder-yellow block">Success Rate</span>
+            <span id="stat-success-rate" class="text-2xl font-black text-dkoder-yellow mt-1 block">83.3%</span>
+          </div>
+          <div class="bg-[#180731] border-2 border-white/10 rounded-2xl p-3.5 text-center">
+            <span class="text-[10px] font-space font-extrabold uppercase text-blue-400 block">Aptitude Acc.</span>
+            <span id="stat-aptitude-accuracy" class="text-2xl font-black text-blue-400 mt-1 block">88.5%</span>
+          </div>
+          <div class="bg-[#180731] border-2 border-white/10 rounded-2xl p-3.5 text-center">
+            <span class="text-[10px] font-space font-extrabold uppercase text-pink-400 block">Mock Score</span>
+            <span id="stat-interview-score" class="text-2xl font-black text-pink-400 mt-1 block">87/100</span>
+          </div>
+          <div class="bg-[#180731] border-2 border-white/10 rounded-2xl p-3.5 text-center">
+            <span class="text-[10px] font-space font-extrabold uppercase text-amber-400 block">Study Time</span>
+            <span id="stat-learning-hours" class="text-2xl font-black text-amber-400 mt-1 block">52 hrs</span>
+          </div>
+          <div class="bg-[#180731] border-2 border-dkoder-yellow/50 rounded-2xl p-3.5 text-center bg-gradient-to-b from-[#180731] to-[#260c4f]">
+            <span class="text-[10px] font-space font-extrabold uppercase text-dkoder-yellow block">🔥 Streak</span>
+            <span id="stat-active-streak" class="text-2xl font-black text-dkoder-yellow mt-1 block">14 Days</span>
+          </div>
+        </div>
+
+        <!-- Charts Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+          <!-- Weekly Activity Chart -->
+          <div class="bg-[#180731] border-2 border-white/10 rounded-2xl p-5 shadow-sm">
+            <div class="flex items-center justify-between pb-3 mb-3 border-b border-white/10">
+              <h4 class="font-display font-extrabold text-sm text-white flex items-center space-x-2">
+                <i class="fa-solid fa-chart-line text-dkoder-yellow"></i>
+                <span>Weekly Problem-Solving Velocity</span>
+              </h4>
+              <span class="text-[10px] font-bold text-dkoder-yellow bg-dkoder-yellow/20 px-2 py-0.5 rounded-full">Last 7 Days</span>
+            </div>
+            <div class="h-64 relative">
+              <canvas id="chart-activity-canvas"></canvas>
+            </div>
+          </div>
+
+          <!-- Topic Proficiency Radar/Bar Chart -->
+          <div class="bg-[#180731] border-2 border-white/10 rounded-2xl p-5 shadow-sm">
+            <div class="flex items-center justify-between pb-3 mb-3 border-b border-white/10">
+              <h4 class="font-display font-extrabold text-sm text-white flex items-center space-x-2">
+                <i class="fa-solid fa-bullseye text-dkoder-yellow"></i>
+                <span>Skill Mastery by Topic</span>
+              </h4>
+              <span class="text-[10px] font-bold text-emerald-400 bg-emerald-500/20 px-2 py-0.5 rounded-full">Core CS &amp; DSA</span>
+            </div>
+            <div class="h-64 relative">
+              <canvas id="chart-skills-canvas"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===================================================================== -->
+      <!-- MODULE 5: AI MOCK INTERVIEW STUDIO                                    -->
+      <!-- ===================================================================== -->
+      <div id="view-interview" class="module-workspace-view hidden">
+        
+        <!-- State 1: Setup Screen -->
+        <div id="interview-setup-screen" class="max-w-3xl mx-auto py-8">
+          <div class="text-center mb-8">
+            <div class="w-16 h-16 rounded-2xl bg-pink-500 text-white flex items-center justify-center text-3xl font-black mx-auto mb-3 border-2 border-white shadow-brutal">
+              <i class="fa-solid fa-microphone-lines"></i>
+            </div>
+            <h3 class="font-display font-black text-2xl text-white">DKoder Interview Studio</h3>
+            <p class="text-xs text-dkoder-purpleSoft mt-1">Realistic campus placement technical &amp; HR mock interview simulations with live AI scoring.</p>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <button onclick="DKoderApp.startMockInterview('Technical')" class="p-5 rounded-2xl bg-[#180731] border-2 border-white/10 hover:border-dkoder-yellow transition-all text-left group">
+              <div class="flex items-center justify-between mb-2">
+                <span class="w-9 h-9 rounded-xl bg-dkoder-yellow text-dkoder-dark font-black flex items-center justify-center text-base"><i class="fa-solid fa-code"></i></span>
+                <span class="text-[10px] font-bold uppercase text-dkoder-yellow bg-dkoder-yellow/20 px-2 py-0.5 rounded-full">5 Questions</span>
+              </div>
+              <h4 class="font-display font-extrabold text-base text-white group-hover:text-dkoder-yellow">Technical Round (DSA &amp; Systems)</h4>
+              <p class="text-xs text-dkoder-purpleSoft mt-1">Questions on nested strings, B-Trees, graph BFS, and memory architecture.</p>
+            </button>
+
+            <button onclick="DKoderApp.startMockInterview('HR')" class="p-5 rounded-2xl bg-[#180731] border-2 border-white/10 hover:border-dkoder-yellow transition-all text-left group">
+              <div class="flex items-center justify-between mb-2">
+                <span class="w-9 h-9 rounded-xl bg-pink-400 text-dkoder-dark font-black flex items-center justify-center text-base"><i class="fa-solid fa-user-tie"></i></span>
+                <span class="text-[10px] font-bold uppercase text-pink-300 bg-pink-500/20 px-2 py-0.5 rounded-full">STAR Method</span>
+              </div>
+              <h4 class="font-display font-extrabold text-base text-white group-hover:text-pink-400">HR &amp; Behavioral Round</h4>
+              <p class="text-xs text-dkoder-purpleSoft mt-1">Conflict resolution, project leadership, and company culture fit questions.</p>
+            </button>
+          </div>
+        </div>
+
+        <!-- State 2: Active Room Screen -->
+        <div id="interview-room-screen" class="max-w-3xl mx-auto py-6 hidden">
+          <div class="bg-[#180731] border-2 border-white/10 rounded-2xl p-6 shadow-sm">
+            <div class="flex items-center justify-between pb-3 mb-4 border-b border-white/10">
+              <span id="interview-q-index" class="text-xs font-bold text-dkoder-yellow font-space uppercase">Question 1 of 5</span>
+              <span id="interview-q-category" class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-white/10 text-white">Technical Architecture</span>
+            </div>
+
+            <!-- Question Card -->
+            <div class="p-4 rounded-xl bg-[#12052B] border border-dkoder-yellow/40 mb-4">
+              <h4 id="interview-q-text" class="text-sm font-bold text-white leading-relaxed">Loading interview question...</h4>
+            </div>
+
+            <!-- Answer Box with Optional Voice Recording -->
+            <div class="mb-4">
+              <div class="flex items-center justify-between mb-1.5">
+                <label class="text-xs font-bold text-white">Your Answer (Type or Speak):</label>
+                <!-- Voice Wave Visualizer & Record Button -->
+                <div class="flex items-center space-x-2">
+                  <div id="voice-wave-anim" class="hidden flex items-center space-x-1 h-5">
+                    <span class="wave-bar"></span><span class="wave-bar"></span><span class="wave-bar"></span><span class="wave-bar"></span><span class="wave-bar"></span>
+                  </div>
+                  <button id="voice-record-btn" onclick="DKoderApp.toggleVoiceRecording()" class="px-2.5 py-1 rounded-full text-xs font-bold bg-white/10 hover:bg-white/20 text-white flex items-center space-x-1 transition-colors" title="Toggle voice-to-text">
+                    <i class="fa-solid fa-microphone text-xs text-dkoder-yellow"></i>
+                    <span>Voice Input</span>
+                  </button>
+                </div>
+              </div>
+              <textarea id="interview-answer-input" rows="5" placeholder="Type your answer here or use the Voice Input button to transcribe your explanation..." class="w-full bg-[#12052B] border border-white/20 rounded-xl p-3 text-xs text-white placeholder:text-dkoder-purpleSoft focus:border-dkoder-yellow focus:outline-none resize-y"></textarea>
+            </div>
+
+            <!-- AI Evaluation Box (shown after submission) -->
+            <div id="interview-feedback-box" class="hidden p-4 rounded-xl bg-emerald-950/30 border border-emerald-500/40 mb-4">
+              <div class="flex items-center justify-between mb-1.5">
+                <span class="text-xs font-extrabold text-emerald-400">AI Mentor Feedback</span>
+                <span id="interview-fb-score" class="text-xs font-mono font-bold text-dkoder-yellow">88/100</span>
+              </div>
+              <p id="interview-fb-text" class="text-xs text-dkoder-purpleSoft leading-relaxed"></p>
+              <p class="text-[11px] text-amber-300 font-medium mt-2"><i class="fa-solid fa-lightbulb mr-1"></i> <span id="interview-fb-tips"></span></p>
+            </div>
+
+            <!-- Actions -->
+            <div class="flex items-center justify-end space-x-3 pt-3 border-t border-white/10">
+              <button id="interview-submit-btn" onclick="DKoderApp.submitInterviewAnswer()" class="btn-dk-yellow px-5 py-2 rounded-xl text-xs font-extrabold">
+                Submit Answer for Evaluation
+              </button>
+              <button id="interview-next-btn" class="hidden btn-dk-yellow px-5 py-2 rounded-xl text-xs font-extrabold">
+                Next Question &rarr;
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- State 3: Final Report Screen -->
+        <div id="interview-report-screen" class="max-w-3xl mx-auto py-6 hidden">
+          <div class="bg-[#180731] border-2 border-dkoder-yellow/50 rounded-2xl p-6 shadow-sm">
+            <div class="text-center pb-4 mb-4 border-b border-white/10">
+              <span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-400 uppercase font-space">Interview Completed</span>
+              <h3 class="font-display font-black text-2xl text-white mt-2">Comprehensive Evaluation Report</h3>
+              <div class="flex items-center justify-center space-x-6 mt-4">
+                <div class="text-center">
+                  <span class="text-[10px] text-dkoder-purpleSoft uppercase font-space font-bold block">Overall Score</span>
+                  <span id="rep-overall-score" class="text-3xl font-black text-dkoder-yellow">87.5/100</span>
+                </div>
+                <div class="text-center">
+                  <span class="text-[10px] text-dkoder-purpleSoft uppercase font-space font-bold block">Technical</span>
+                  <span id="rep-tech-score" class="text-2xl font-bold text-emerald-400">89/100</span>
+                </div>
+                <div class="text-center">
+                  <span class="text-[10px] text-dkoder-purpleSoft uppercase font-space font-bold block">Communication</span>
+                  <span id="rep-comm-score" class="text-2xl font-bold text-blue-400">85/100</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="space-y-4 text-xs">
+              <div class="bg-[#12052B] p-4 rounded-xl border border-white/10">
+                <h5 class="text-xs font-bold text-white mb-1">Evaluator Summary:</h5>
+                <p id="rep-summary" class="text-dkoder-purpleSoft leading-relaxed"></p>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="bg-emerald-950/20 p-4 rounded-xl border border-emerald-500/30">
+                  <h5 class="text-xs font-bold text-emerald-400 mb-2">Key Strengths Demonstrated:</h5>
+                  <ul id="rep-strengths" class="space-y-1 text-dkoder-purpleSoft"></ul>
+                </div>
+                <div class="bg-amber-950/20 p-4 rounded-xl border border-amber-500/30">
+                  <h5 class="text-xs font-bold text-amber-300 mb-2">Areas for Placement Polish:</h5>
+                  <ul id="rep-weaknesses" class="space-y-1 text-dkoder-purpleSoft"></ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="text-center pt-5 mt-5 border-t border-white/10">
+              <button onclick="DKoderApp.loadModule('interview')" class="btn-dk-yellow px-5 py-2.5 rounded-full text-xs font-extrabold">
+                Start Another Mock Round
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ===================================================================== -->
+      <!-- MODULE 6: DKODER ARENA                                                -->
+      <!-- ===================================================================== -->
+      <div id="view-arena" class="module-workspace-view hidden">
+        <div class="mb-6">
+          <h3 class="font-display font-black text-2xl text-white">Live Placement Competitions</h3>
+          <p class="text-xs text-dkoder-purpleSoft mt-1">Timed coding hackathons under authentic company OA conditions with server-side scoring.</p>
+        </div>
+
+        <div id="arena-competitions-list" class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <!-- Populated via API -->
+        </div>
+
+        <!-- Live Arena Podium Leaderboard -->
+        <div class="bg-[#180731] border-2 border-white/10 rounded-2xl p-5 shadow-sm">
+          <div class="flex items-center justify-between pb-3 mb-3 border-b border-white/10">
+            <h4 class="font-display font-extrabold text-sm text-white flex items-center space-x-2">
+              <i class="fa-solid fa-trophy text-dkoder-yellow"></i>
+              <span>National Placement Sprint #14 — Live Leaderboard</span>
+            </h4>
+            <span class="text-[10px] text-emerald-400 font-mono font-bold">● Real-time ICPC Scoring</span>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left">
+              <thead>
+                <tr class="text-[10px] uppercase font-space text-dkoder-purpleSoft border-b border-white/10">
+                  <th class="py-2 px-3">Rank</th>
+                  <th class="py-2 px-3">Student Name</th>
+                  <th class="py-2 px-3">Engineering College</th>
+                  <th class="py-2 px-3">Points</th>
+                  <th class="py-2 px-3">Solved</th>
+                  <th class="py-2 px-3">Penalty</th>
+                </tr>
+              </thead>
+              <tbody id="arena-podium-rows">
+                <!-- Populated via API -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===================================================================== -->
+      <!-- MODULE 7: SKILL GAP ANALYZER                                          -->
+      <!-- ===================================================================== -->
+      <div id="view-skills" class="module-workspace-view hidden">
+        <div class="mb-6">
+          <h3 class="font-display font-black text-2xl text-white">Placement Skill Gap Diagnostics</h3>
+          <p class="text-xs text-dkoder-purpleSoft mt-1">Analyzes 14 core competency areas from your submissions, assessments, and mock interviews.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+          <!-- Column 1: Needs Attention -->
+          <div class="bg-[#180731] border-2 border-rose-500/30 rounded-2xl p-5 shadow-sm">
+            <div class="flex items-center space-x-2 pb-3 mb-3 border-b border-white/10">
+              <span class="w-3 h-3 rounded-full bg-rose-500"></span>
+              <h4 class="font-display font-extrabold text-sm text-rose-400">Needs Attention (&lt; 50%)</h4>
+            </div>
+            <div id="skills-needs-attention-container"></div>
+          </div>
+
+          <!-- Column 2: Developing -->
+          <div class="bg-[#180731] border-2 border-amber-500/30 rounded-2xl p-5 shadow-sm">
+            <div class="flex items-center space-x-2 pb-3 mb-3 border-b border-white/10">
+              <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+              <h4 class="font-display font-extrabold text-sm text-amber-300">Developing (50% – 75%)</h4>
+            </div>
+            <div id="skills-developing-container"></div>
+          </div>
+
+          <!-- Column 3: Proficient -->
+          <div class="bg-[#180731] border-2 border-emerald-500/30 rounded-2xl p-5 shadow-sm">
+            <div class="flex items-center space-x-2 pb-3 mb-3 border-b border-white/10">
+              <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+              <h4 class="font-display font-extrabold text-sm text-emerald-400">Proficient (&gt; 75%)</h4>
+            </div>
+            <div id="skills-proficient-container"></div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ===================================================================== -->
+      <!-- MODULE 8: STUDENT COMMUNITY & LEADERBOARDS                            -->
+      <!-- ===================================================================== -->
+      <div id="view-community" class="module-workspace-view hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          
+          <!-- Left 2 Cols: Feed & New Post -->
+          <div class="lg:col-span-2 space-y-4">
+            <div class="flex items-center justify-between pb-3 border-b border-white/10">
+              <h3 class="font-display font-extrabold text-lg text-white">Campus Discussion Forum</h3>
+              <button onclick="DKoderApp.openCreatePostModal()" class="btn-dk-yellow px-4 py-1.5 rounded-full text-xs font-black">
+                <i class="fa-solid fa-plus mr-1"></i> New Discussion
+              </button>
+            </div>
+            <div id="community-posts-feed">
+              <!-- Populated via API -->
+            </div>
+          </div>
+
+          <!-- Right 1 Col: Study Groups & Guidelines -->
+          <div class="space-y-4">
+            <div class="bg-[#180731] border-2 border-white/10 rounded-2xl p-5 shadow-sm">
+              <h4 class="font-display font-extrabold text-sm text-dkoder-yellow mb-3 flex items-center space-x-2">
+                <i class="fa-solid fa-users"></i>
+                <span>Active Study Groups</span>
+              </h4>
+              <div class="space-y-3">
+                <div class="p-3 rounded-xl bg-white/5 border border-white/10 flex items-center justify-between">
+                  <div>
+                    <h5 class="text-xs font-bold text-white">Zoho 2026 Achievers</h5>
+                    <p class="text-[10px] text-dkoder-purpleSoft">128 active engineering members</p>
+                  </div>
+                  <button class="px-2.5 py-1 rounded bg-dkoder-yellow text-dkoder-dark font-extrabold text-xs">Joined ✓</button>
+                </div>
+                <div class="p-3 rounded-xl bg-white/5 border border-white/10 flex items-center justify-between">
+                  <div>
+                    <h5 class="text-xs font-bold text-white">Amazon SDE-1 Club</h5>
+                    <p class="text-[10px] text-dkoder-purpleSoft">214 product aspirants</p>
+                  </div>
+                  <button class="px-2.5 py-1 rounded bg-white/10 text-white hover:bg-dkoder-yellow hover:text-dkoder-dark font-bold text-xs transition-colors">Join</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-[#180731] border-2 border-white/10 rounded-2xl p-5 text-xs text-dkoder-purpleSoft space-y-2">
+              <h4 class="font-bold text-white uppercase text-[11px] font-space text-dkoder-yellow">Community Moderation Rules</h4>
+              <p>&bull; Share original placement insights &amp; verified questions.</p>
+              <p>&bull; Be respectful to peers from other engineering colleges.</p>
+              <p>&bull; Inappropriate content can be reported directly to moderators.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ===================================================================== -->
+      <!-- MODULE 9: CAREER PROFILE (RESUME & PORTFOLIO)                         -->
+      <!-- ===================================================================== -->
+      <div id="view-career" class="module-workspace-view hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          
+          <!-- Left Column (5 Cols): Resume Form Editor -->
+          <div class="lg:col-span-5 bg-[#180731] border-2 border-white/10 rounded-2xl p-5 shadow-sm max-h-[85vh] overflow-y-auto">
+            <div class="flex items-center justify-between pb-3 mb-4 border-b border-white/10">
+              <h4 class="font-display font-extrabold text-base text-white">Resume Information Form</h4>
+              <span class="px-2 py-0.5 rounded text-[10px] font-black bg-emerald-500/20 text-emerald-400">ATS Score: 94%</span>
+            </div>
+
+            <form id="resume-editor-form" onsubmit="DKoderApp.saveResumeChanges(event)" class="space-y-3 text-xs">
+              <div>
+                <label class="text-[10px] font-bold text-dkoder-purpleSoft uppercase">Full Name</label>
+                <input type="text" name="full_name" class="w-full bg-[#12052B] border border-white/20 rounded-xl p-2.5 text-white mt-1 focus:border-dkoder-yellow focus:outline-none" />
+              </div>
+              <div class="grid grid-cols-2 gap-2">
+                <div>
+                  <label class="text-[10px] font-bold text-dkoder-purpleSoft uppercase">Email</label>
+                  <input type="email" name="email" class="w-full bg-[#12052B] border border-white/20 rounded-xl p-2 text-white mt-1 focus:border-dkoder-yellow focus:outline-none" />
+                </div>
+                <div>
+                  <label class="text-[10px] font-bold text-dkoder-purpleSoft uppercase">Phone</label>
+                  <input type="text" name="phone" class="w-full bg-[#12052B] border border-white/20 rounded-xl p-2 text-white mt-1 focus:border-dkoder-yellow focus:outline-none" />
+                </div>
+              </div>
+              <div>
+                <label class="text-[10px] font-bold text-dkoder-purpleSoft uppercase">Location</label>
+                <input type="text" name="location" class="w-full bg-[#12052B] border border-white/20 rounded-xl p-2 text-white mt-1 focus:border-dkoder-yellow focus:outline-none" />
+              </div>
+              <div>
+                <label class="text-[10px] font-bold text-dkoder-purpleSoft uppercase">Professional Summary</label>
+                <textarea name="summary" rows="3" class="w-full bg-[#12052B] border border-white/20 rounded-xl p-2.5 text-white mt-1 focus:border-dkoder-yellow focus:outline-none resize-none"></textarea>
+              </div>
+              <div class="grid grid-cols-2 gap-2">
+                <div>
+                  <label class="text-[10px] font-bold text-dkoder-purpleSoft uppercase">GitHub Link</label>
+                  <input type="text" name="github_url" class="w-full bg-[#12052B] border border-white/20 rounded-xl p-2 text-white mt-1 focus:border-dkoder-yellow focus:outline-none" />
+                </div>
+                <div>
+                  <label class="text-[10px] font-bold text-dkoder-purpleSoft uppercase">LinkedIn Link</label>
+                  <input type="text" name="linkedin_url" class="w-full bg-[#12052B] border border-white/20 rounded-xl p-2 text-white mt-1 focus:border-dkoder-yellow focus:outline-none" />
+                </div>
+              </div>
+              <button type="submit" class="btn-dk-yellow w-full py-2.5 rounded-xl text-xs font-black mt-3">
+                Save Resume Changes
+              </button>
+            </form>
+          </div>
+
+          <!-- Right Column (7 Cols): Live Formatted Resume Preview & Export -->
+          <div class="lg:col-span-7 space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-extrabold uppercase text-dkoder-yellow font-space">Live Preview</span>
+              <button onclick="DKoderApp.printResume()" class="btn-dk-yellow px-4 py-1.5 rounded-full text-xs font-extrabold flex items-center space-x-1.5">
+                <i class="fa-solid fa-print"></i>
+                <span>Download PDF / Print</span>
+              </button>
+            </div>
+            <div id="resume-preview-container" class="max-h-[82vh] overflow-y-auto">
+              <!-- Populated via API -->
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ===================================================================== -->
+      <!-- MODULE 10: ADMIN DASHBOARD (RBAC PROTECTED)                           -->
+      <!-- ===================================================================== -->
+      <div id="view-admin" class="module-workspace-view hidden">
+        
+        <!-- Non-Admin Notice Banner -->
+        <div id="admin-unauth-notice" class="hidden text-center py-12 bg-[#180731] border-2 border-rose-500/50 rounded-2xl p-6 max-w-xl mx-auto">
+          <i class="fa-solid fa-lock text-4xl text-rose-400 mb-3"></i>
+          <h3 class="font-display font-black text-xl text-white">Administrator Access Required</h3>
+          <p class="text-xs text-dkoder-purpleSoft mt-1 mb-4">You are currently signed in as a Student. Switch to the Administrator Demo account to manage questions, users, and moderation.</p>
+          <button onclick="DKoderApp.quickSwitchUser('admin')" class="btn-dk-yellow px-5 py-2.5 rounded-full text-xs font-black">
+            Switch to Admin Demo (Prof. Vikram Sharma)
+          </button>
+        </div>
+
+        <!-- Protected Admin Dashboard Content -->
+        <div id="admin-dashboard-content">
+          <!-- KPI Cards -->
+          <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-6">
+            <div class="bg-[#180731] border-2 border-white/10 rounded-2xl p-4 text-center">
+              <span class="text-[10px] font-space font-bold uppercase text-dkoder-purpleSoft">Total Students</span>
+              <span id="ad-stat-students" class="text-2xl font-black text-white mt-1 block">5</span>
+            </div>
+            <div class="bg-[#180731] border-2 border-white/10 rounded-2xl p-4 text-center">
+              <span class="text-[10px] font-space font-bold uppercase text-dkoder-yellow">Published Questions</span>
+              <span id="ad-stat-problems" class="text-2xl font-black text-dkoder-yellow mt-1 block">4</span>
+            </div>
+            <div class="bg-[#180731] border-2 border-white/10 rounded-2xl p-4 text-center">
+              <span class="text-[10px] font-space font-bold uppercase text-white">Submissions</span>
+              <span id="ad-stat-submissions" class="text-2xl font-black text-white mt-1 block">48</span>
+            </div>
+            <div class="bg-[#180731] border-2 border-white/10 rounded-2xl p-4 text-center">
+              <span class="text-[10px] font-space font-bold uppercase text-emerald-400">Pass Rate</span>
+              <span id="ad-stat-passrate" class="text-2xl font-black text-emerald-400 mt-1 block">83.3%</span>
+            </div>
+            <div class="bg-[#180731] border-2 border-rose-500/40 rounded-2xl p-4 text-center">
+              <span class="text-[10px] font-space font-bold uppercase text-rose-400">Moderation Reports</span>
+              <span id="ad-stat-reports" class="text-2xl font-black text-rose-400 mt-1 block">1</span>
+            </div>
+          </div>
+
+          <!-- Admin Tabs Grid -->
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            
+            <!-- User Management Table -->
+            <div class="bg-[#180731] border-2 border-white/10 rounded-2xl p-5 shadow-sm">
+              <div class="flex items-center justify-between pb-3 mb-3 border-b border-white/10">
+                <h4 class="font-display font-extrabold text-sm text-white">Registered Students &amp; Roles</h4>
+                <span class="text-[10px] font-bold text-dkoder-yellow font-space uppercase">Role-Based Control</span>
+              </div>
+              <div class="overflow-x-auto max-h-64 overflow-y-auto">
+                <table class="w-full text-left">
+                  <thead>
+                    <tr class="text-[10px] uppercase font-space text-dkoder-purpleSoft border-b border-white/10">
+                      <th class="py-2 px-3">Name</th>
+                      <th class="py-2 px-3">Email</th>
+                      <th class="py-2 px-3">Role</th>
+                      <th class="py-2 px-3">College</th>
+                      <th class="py-2 px-3">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="admin-users-table">
+                    <!-- Populated via API -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Moderation Queue & Question Publisher -->
+            <div class="space-y-6">
+              
+              <!-- Moderation Queue -->
+              <div class="bg-[#180731] border-2 border-white/10 rounded-2xl p-5 shadow-sm">
+                <h4 class="font-display font-extrabold text-sm text-rose-400 pb-3 mb-3 border-b border-white/10">
+                  Community Moderation Reports Queue
+                </h4>
+                <div id="admin-moderation-list" class="max-h-48 overflow-y-auto">
+                  <!-- Populated via API -->
+                </div>
+              </div>
+
+              <!-- Question Management Action -->
+              <div class="bg-[#180731] border-2 border-white/10 rounded-2xl p-5 shadow-sm flex items-center justify-between">
+                <div>
+                  <h4 class="font-display font-extrabold text-sm text-white">Publish Coding Question</h4>
+                  <p class="text-xs text-dkoder-purpleSoft">Add new problem to CodeLab with sample and hidden test cases.</p>
+                </div>
+                <button onclick="DKoderApp.openNewQuestionModal()" class="btn-dk-yellow px-4 py-2 rounded-xl text-xs font-black">
+                  + Add Question
+                </button>
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- Audit Logs Table -->
+          <div class="bg-[#180731] border-2 border-white/10 rounded-2xl p-5 shadow-sm mt-6">
+            <h4 class="font-display font-extrabold text-sm text-white pb-3 mb-3 border-b border-white/10 flex items-center justify-between">
+              <span>Security &amp; Administrative Audit Trail</span>
+              <span class="text-[10px] font-mono text-dkoder-yellow">Immutable Log</span>
+            </h4>
+            <div class="overflow-x-auto max-h-56 overflow-y-auto">
+              <table class="w-full text-left">
+                <thead>
+                  <tr class="text-[10px] uppercase font-space text-dkoder-purpleSoft border-b border-white/10">
+                    <th class="py-1.5 px-3">Timestamp</th>
+                    <th class="py-1.5 px-3">Actor</th>
+                    <th class="py-1.5 px-3">Action</th>
+                    <th class="py-1.5 px-3">Details</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-audit-logs-list">
+                  <!-- Populated via API -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODALS CONTAINER                                                          -->
+  <!-- ========================================================================= -->
+
+  <!-- 1. Auth & Switch User Modal -->
+  <div id="auth-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
+    <div class="bg-[#180731] border-2 border-dkoder-yellow rounded-2xl p-6 max-w-md w-full shadow-brutal text-white">
+      <div class="flex items-center justify-between pb-3 mb-4 border-b border-white/10">
+        <h4 class="font-display font-extrabold text-base text-white">Switch Role / Demo Accounts</h4>
+        <button onclick="DKoderApp.closeModal('auth-modal')" class="text-dkoder-purpleSoft hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+      </div>
+
+      <div class="space-y-2.5 mb-5">
+        <button onclick="DKoderApp.quickSwitchUser('alex')" class="w-full p-3 rounded-xl bg-white/5 hover:bg-white/15 border border-white/10 flex items-center justify-between transition-colors">
+          <div class="text-left">
+            <span class="text-xs font-bold text-white block">Alex Rivera</span>
+            <span class="text-[10px] text-dkoder-purpleSoft">Student &bull; Anna University CSE</span>
+          </div>
+          <span class="px-2 py-0.5 rounded text-[10px] font-black uppercase bg-dkoder-yellow text-dkoder-dark">Student</span>
+        </button>
+
+        <button onclick="DKoderApp.quickSwitchUser('admin')" class="w-full p-3 rounded-xl bg-white/5 hover:bg-white/15 border border-white/10 flex items-center justify-between transition-colors">
+          <div class="text-left">
+            <span class="text-xs font-bold text-white block">Prof. Vikram Sharma</span>
+            <span class="text-[10px] text-dkoder-purpleSoft">Head of Placement Cell &bull; Full Access</span>
+          </div>
+          <span class="px-2 py-0.5 rounded text-[10px] font-black uppercase bg-rose-500 text-white">Admin</span>
+        </button>
+
+        <button onclick="DKoderApp.quickSwitchUser('priya')" class="w-full p-3 rounded-xl bg-white/5 hover:bg-white/15 border border-white/10 flex items-center justify-between transition-colors">
+          <div class="text-left">
+            <span class="text-xs font-bold text-white block">Priya Patel</span>
+            <span class="text-[10px] text-dkoder-purpleSoft">Lead TA &bull; PSG College of Tech</span>
+          </div>
+          <span class="px-2 py-0.5 rounded text-[10px] font-black uppercase bg-indigo-500 text-white">Moderator</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Notifications Modal Drawer -->
+  <div id="notifications-modal" class="hidden fixed inset-0 z-50 flex items-center justify-end bg-black/70 backdrop-blur-sm p-4">
+    <div class="bg-[#180731] border-2 border-dkoder-yellow/50 rounded-2xl p-5 max-w-sm w-full h-[85vh] shadow-brutal text-white flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between pb-3 mb-3 border-b border-white/10">
+          <h4 class="font-display font-extrabold text-sm text-white flex items-center space-x-2">
+            <i class="fa-solid fa-bell text-dkoder-yellow"></i>
+            <span>Placement Notifications</span>
+          </h4>
+          <button onclick="DKoderApp.closeModal('notifications-modal')" class="text-dkoder-purpleSoft hover:text-white"><i class="fa-solid fa-xmark text-base"></i></button>
+        </div>
+        <div id="notifications-drawer-list" class="space-y-2 overflow-y-auto max-h-[68vh] pr-1"></div>
+      </div>
+      <button onclick="DKoderApp.closeModal('notifications-modal')" class="btn-dk-yellow w-full py-2 rounded-xl text-xs font-bold">Close Drawer</button>
+    </div>
+  </div>
+
+  <!-- 3. Roadmap Generator Modal -->
+  <div id="roadmap-generator-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
+    <div class="bg-[#180731] border-2 border-dkoder-yellow rounded-2xl p-6 max-w-md w-full shadow-brutal text-white">
+      <div class="flex items-center justify-between pb-3 mb-4 border-b border-white/10">
+        <h4 class="font-display font-extrabold text-base text-white">Customize Placement Roadmap</h4>
+        <button onclick="DKoderApp.closeModal('roadmap-generator-modal')" class="text-dkoder-purpleSoft hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+      </div>
+      <form onsubmit="DKoderApp.submitGenerateRoadmap(event)" class="space-y-3 text-xs">
+        <div>
+          <label class="text-[10px] font-bold text-dkoder-purpleSoft uppercase">Target Career Role</label>
+          <input type="text" name="target_role" value="Full Stack SDE / Systems Engineer" class="w-full bg-[#12052B] border border-white/20 rounded-xl p-2.5 text-white mt-1" />
+        </div>
+        <div>
+          <label class="text-[10px] font-bold text-dkoder-purpleSoft uppercase">Target Companies (Comma separated)</label>
+          <input type="text" name="target_companies" value="Zoho, TCS Digital, Amazon, Infosys" class="w-full bg-[#12052B] border border-white/20 rounded-xl p-2.5 text-white mt-1" />
+        </div>
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label class="text-[10px] font-bold text-dkoder-purpleSoft uppercase">Daily Available Time</label>
+            <select name="daily_hours" class="w-full bg-[#12052B] border border-white/20 rounded-xl p-2 text-white mt-1">
+              <option value="1.5">1.5 Hours / day</option>
+              <option value="2.5" selected>2.5 Hours / day</option>
+              <option value="4.0">4.0+ Hours / day</option>
+            </select>
+          </div>
+          <div>
+            <label class="text-[10px] font-bold text-dkoder-purpleSoft uppercase">Skill Level</label>
+            <select name="skill_level" class="w-full bg-[#12052B] border border-white/20 rounded-xl p-2 text-white mt-1">
+              <option value="Beginner">Beginner</option>
+              <option value="Intermediate" selected>Intermediate</option>
+              <option value="Advanced">Advanced</option>
+            </select>
+          </div>
+        </div>
+        <button type="submit" class="btn-dk-yellow w-full py-2.5 rounded-xl text-xs font-black mt-3">Generate Blueprint</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 4. Community Post Modal -->
+  <div id="community-post-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
+    <div class="bg-[#180731] border-2 border-dkoder-yellow rounded-2xl p-6 max-w-md w-full shadow-brutal text-white">
+      <div class="flex items-center justify-between pb-3 mb-4 border-b border-white/10">
+        <h4 class="font-display font-extrabold text-base text-white">Create Community Post</h4>
+        <button onclick="DKoderApp.closeModal('community-post-modal')" class="text-dkoder-purpleSoft hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+      </div>
+      <form onsubmit="DKoderApp.submitCommunityPost(event)" class="space-y-3 text-xs">
+        <div>
+          <label class="text-[10px] font-bold text-dkoder-purpleSoft uppercase">Topic Tag</label>
+          <select name="tag" class="w-full bg-[#12052B] border border-white/20 rounded-xl p-2 text-white mt-1">
+            <option value="DSA Discussion">DSA Discussion</option>
+            <option value="Interview Experience">Interview Experience</option>
+            <option value="Placement Tips">Placement Tips</option>
+            <option value="Bug Help">Bug Help</option>
+          </select>
+        </div>
+        <div>
+          <label class="text-[10px] font-bold text-dkoder-purpleSoft uppercase">Post Title</label>
+          <input type="text" name="title" placeholder="e.g. How I cleared Zoho Advanced Coding round..." required class="w-full bg-[#12052B] border border-white/20 rounded-xl p-2.5 text-white mt-1" />
+        </div>
+        <div>
+          <label class="text-[10px] font-bold text-dkoder-purpleSoft uppercase">Discussion Content</label>
+          <textarea name="content" rows="4" placeholder="Share your experience, approach or query..." required class="w-full bg-[#12052B] border border-white/20 rounded-xl p-2.5 text-white mt-1 resize-none"></textarea>
+        </div>
+        <button type="submit" class="btn-dk-yellow w-full py-2.5 rounded-xl text-xs font-black mt-2">Publish Discussion</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 5. Community Report Modal -->
+  <div id="community-report-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
+    <div class="bg-[#180731] border-2 border-rose-500 rounded-2xl p-6 max-w-sm w-full shadow-brutal text-white">
+      <div class="flex items-center justify-between pb-3 mb-3 border-b border-white/10">
+        <h4 class="font-display font-extrabold text-sm text-rose-400">Report Inappropriate Content</h4>
+        <button onclick="DKoderApp.closeModal('community-report-modal')" class="text-dkoder-purpleSoft hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+      </div>
+      <form onsubmit="DKoderApp.submitReportPost(event)" class="space-y-3 text-xs">
+        <input type="hidden" id="report-post-id" name="post_id" />
+        <div>
+          <label class="text-[10px] font-bold text-dkoder-purpleSoft uppercase">Reason for Report</label>
+          <textarea name="reason" rows="3" placeholder="Explain why this content violates community guidelines..." required class="w-full bg-[#12052B] border border-white/20 rounded-xl p-2.5 text-white mt-1 resize-none"></textarea>
+        </div>
+        <button type="submit" class="w-full py-2 rounded-xl bg-rose-600 hover:bg-rose-700 text-white font-extrabold text-xs">Submit Report</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 6. Admin Question Publisher Modal -->
+  <div id="admin-question-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
+    <div class="bg-[#180731] border-2 border-dkoder-yellow rounded-2xl p-6 max-w-md w-full shadow-brutal text-white max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between pb-3 mb-4 border-b border-white/10">
+        <h4 class="font-display font-extrabold text-base text-white">Create Coding Question</h4>
+        <button onclick="DKoderApp.closeModal('admin-question-modal')" class="text-dkoder-purpleSoft hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+      </div>
+      <form onsubmit="DKoderApp.submitAdminQuestion(event)" class="space-y-3 text-xs">
+        <div>
+          <label class="text-[10px] font-bold text-dkoder-purpleSoft uppercase">Question Title</label>
+          <input type="text" name="title" required placeholder="e.g. Reverse Words in String" class="w-full bg-[#12052B] border border-white/20 rounded-xl p-2.5 text-white mt-1" />
+        </div>
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label class="text-[10px] font-bold text-dkoder-purpleSoft uppercase">Difficulty</label>
+            <select name="difficulty" class="w-full bg-[#12052B] border border-white/20 rounded-xl p-2 text-white mt-1">
+              <option value="Easy">Easy</option>
+              <option value="Medium" selected>Medium</option>
+              <option value="Hard">Hard</option>
+            </select>
+          </div>
+          <div>
+            <label class="text-[10px] font-bold text-dkoder-purpleSoft uppercase">Points</label>
+            <input type="number" name="points" value="100" class="w-full bg-[#12052B] border border-white/20 rounded-xl p-2 text-white mt-1" />
+          </div>
+        </div>
+        <div>
+          <label class="text-[10px] font-bold text-dkoder-purpleSoft uppercase">Company Tags</label>
+          <input type="text" name="company_tags" value="Zoho, TCS" class="w-full bg-[#12052B] border border-white/20 rounded-xl p-2 text-white mt-1" />
+        </div>
+        <div>
+          <label class="text-[10px] font-bold text-dkoder-purpleSoft uppercase">Category</label>
+          <input type="text" name="category" value="Arrays & Strings" class="w-full bg-[#12052B] border border-white/20 rounded-xl p-2 text-white mt-1" />
+        </div>
+        <div>
+          <label class="text-[10px] font-bold text-dkoder-purpleSoft uppercase">Description</label>
+          <textarea name="description" rows="3" required class="w-full bg-[#12052B] border border-white/20 rounded-xl p-2 text-white mt-1 resize-none"></textarea>
+        </div>
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label class="text-[10px] font-bold text-dkoder-purpleSoft uppercase">Sample Input</label>
+            <input type="text" name="sample_input" placeholder="Input" class="w-full bg-[#12052B] border border-white/20 rounded-xl p-2 text-white mt-1 font-mono" />
+          </div>
+          <div>
+            <label class="text-[10px] font-bold text-dkoder-purpleSoft uppercase">Sample Output</label>
+            <input type="text" name="sample_output" placeholder="Output" class="w-full bg-[#12052B] border border-white/20 rounded-xl p-2 text-white mt-1 font-mono" />
+          </div>
+        </div>
+        <button type="submit" class="btn-dk-yellow w-full py-2.5 rounded-xl text-xs font-black mt-3">Publish to CodeLab</button>
+      </form>
+    </div>
+  </div>
 
   <!-- ========================================================================= -->
   <!-- 11. INTERACTIVE SCRIPT LOGIC (FILTERING, WORRY SELECTOR & FORM HANDLERS)   -->
@@ -1913,5 +3372,9 @@
       }, 1000);
     }
   </script>
+
+  <!-- DKoder 2.0 Core API & Interactive Suite Scripts -->
+  <script src="assets/js/dkoder-api.js"></script>
+  <script src="assets/js/dkoder-app.js"></script>
 </body>
 </html>
